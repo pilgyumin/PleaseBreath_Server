@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>숨좀쉬자</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#siteMapBtn").toggle(
+                function() {
+                    $("#B").css({ left: 200 })
+                },
+                function() {
+                    $("#B").css({ left: 0 })
+                }
+            )
+            $("#circle1").click(function() {
+                var txt = $("#cirtext").text()
+                if (txt == "ON") {
+                    $("#cirtext").text("OFF")
+                    alert("System ON")
+                } else {
+                    $("#cirtext").text("ON")
+                    alert("System OFF")
+                }
+            })
+        })
+
+        function btnClick(x) {
+            x.classList.toggle("change")
+        }
+
+        function myFunction() {
+            var input, filter, ul, li, a, i
+            input = document.getElementById("mySearch")
+            filter = input.value.toUpperCase()
+            ul = document.getElementById("myMenu")
+            li = ul.getElementsByTagName("li")
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0]
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = ""
+                } else {
+                    li[i].style.display = "none"
+                }
+            }
+        }
+
+        function getTemp() {
+            $.ajax({
+                type: 'GET',
+                url : "/main/whatstatus",
+                async: true,
+                success : function (data) {
+                    let status = JSON.parse(data);
+                    let tempOuter = status.tempOuter;
+                    let tempInner = status.tempInner;
+                    let humidOuter = status.humidOuter;
+                    let humidInner = status.humidInner;
+                    let pm10Outer = status.pm10Outer;
+                    let pm10Inner = status.pm10Inner;
+                    let pm25Outer = status.pm25Outer;
+                    let pm25Inner = status.pm25Inner;
+                    let vocOuter = status.vocOuter;
+                    let vocInner = status.vocInner;
+
+                    document.getElementById('tempOuter').innerHTML= '온도 : ' + tempOuter + "℃";
+                    document.getElementById('tempInner').innerHTML= '온도 : ' + tempInner + "℃";
+                    document.getElementById('humidOuter').innerHTML= '습도 : ' + humidOuter + "%";
+                    document.getElementById('humidInner').innerHTML= '습도 : ' + humidInner + "%";
+                    document.getElementById('pm10Outer').innerHTML= 'pm10 : ' + pm10Outer;
+                    document.getElementById('pm10Inner').innerHTML= 'pm10 : ' + pm10Inner;
+                    document.getElementById('pm25Outer').innerHTML= 'pm2.5 : ' + pm25Outer;
+                    document.getElementById('pm25Inner').innerHTML= 'pm2.5 : ' + pm25Inner;
+                    document.getElementById('vocOuter').innerHTML= 'VOC : ' + vocOuter;
+                    document.getElementById('vocInner').innerHTML= 'VOC : ' + vocInner;
+
+                },
+                error:function(request,status,error){
+                    alert(status + " " + error);
+                }
+            });
+            setInterval(function() {
+                $.ajax({
+                    type: 'GET',
+                    url : "/main/whatstatus",
+                    async: true,
+                    success : function (data) {
+                        let status = JSON.parse(data);
+                        let tempOuter = status.tempOuter;
+                        let tempInner = status.tempInner;
+                        let humidOuter = status.humidOuter;
+                        let humidInner = status.humidInner;
+                        let pm10Outer = status.pm10Outer;
+                        let pm10Inner = status.pm10Inner;
+                        let pm25Outer = status.pm25Outer;
+                        let pm25Inner = status.pm25Inner;
+                        let vocOuter = status.vocOuter;
+                        let vocInner = status.vocInner;
+
+                        document.getElementById('tempOuter').innerHTML= '온도 : ' + tempOuter + "℃";
+                        document.getElementById('tempInner').innerHTML= '온도 : ' + tempInner + "℃";
+                        document.getElementById('humidOuter').innerHTML= '습도 : ' + humidOuter + "%";
+                        document.getElementById('humidInner').innerHTML= '습도 : ' + humidInner + "%";
+                        document.getElementById('pm10Outer').innerHTML= 'pm10 : ' + pm10Outer;
+                        document.getElementById('pm10Inner').innerHTML= 'pm10 : ' + pm10Inner;
+                        document.getElementById('pm25Outer').innerHTML= 'pm2.5 : ' + pm25Outer;
+                        document.getElementById('pm25Inner').innerHTML= 'pm2.5 : ' + pm25Inner;
+                        document.getElementById('vocOuter').innerHTML= 'VOC : ' + vocOuter;
+                        document.getElementById('vocInner').innerHTML= 'VOC : ' + vocInner;
+                    },
+                    error:function(request,status,error){
+                        alert(status + " " + error);
+                    }
+                });
+            }, 3000);
+        }
+
+        getTemp();
+
+    </script>
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+
+<body>
+<div class="head">
+    <div class="container" onclick="btnClick(this)" id="siteMapBtn">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </div>
+    <div class="subject">
+        <h1>메인 페이지</h1>
+    </div>
+    <div id="base" onclick="location.href='OpenPage.html'" style="cursor: pointer"></div>
+</div>
+<div id="A" class="left" style="background-color:#bbb;">
+    <h2>Menu</h2>
+    <input
+            type="text"
+            id="mySearch"
+            onkeyup="myFunction()"
+            placeholder="Search.."
+            title="Type in a category"
+    />
+    <ul id="myMenu">
+        <li><a href="Main.html">메인 페이지</a></li>
+        <li><a href="Detailair.html">상세 공기 상태</a></li>
+        <li><a href="DataHistory.html">누적 데이터</a></li>
+        <li><a href="RemoteControl.html">리모컨 기능</a></li>
+        <li><a href="ModeControl.html">모드 설정</a></li>
+    </ul>
+</div>
+<div id="B">
+    <div id="upleft">
+        <div id="outerinfo">
+            <div id="tempOuter">
+                온도 : 45℃
+            </div>
+            <div id="humidOuter">
+                습도 : 80%
+            </div>
+            <div id = "pm10Outer">
+                pm10 : ${ pm}
+            </div>
+            <div id = "pm25Outer">
+                pm2.5 : Bad
+            </div>
+            <div id = "vocOuter">
+                VOC : Bad
+            </div>
+        </div>
+    </div>
+        <div id="downright">
+            <div id="innerinfo">
+                <div id="tempInner">
+                    온도 : 45℃
+                </div>
+                <div id="humidInner">
+                    습도 : 80%
+                </div>
+                <div id = "pm10Inner">
+                    pm10 : ${ pm}
+                </div>
+                <div id = "pm25Inner">
+                    pm2.5 : Bad
+                </div>
+                <div id = "vocInner">
+                    VOC : Bad
+                </div>
+            </div>
+        <div id="circle1">
+            <p id="cirtext">ON</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

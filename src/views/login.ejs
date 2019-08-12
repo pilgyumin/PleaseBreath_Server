@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>숨좀쉬자</title>
+  <style>
+    header {
+      height: 200px;
+      margin: 50px;
+    }
+    nav {
+      text-align: center;
+      font-size: 30px;
+      height: 60px;
+      margin: 50px;
+    }
+    section {
+      margin: 30px;
+    }
+    #reg,
+    #idlogin,
+    #btlogin {
+      width: 100px;
+      background-color: #81bef7;
+      border: none;
+      color: #fff;
+      padding: 15px 0;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    #idinput,
+    #pwinput {
+      width: 200px;
+      height: 30px;
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <center>
+    <img src="air.png" width="300" height="200" />
+  </center>
+</header>
+<nav>
+  <h1>숨좀쉬자!</h1>
+</nav>
+<section>
+  <center>
+    <h1>ID : <input type="text" id="idinput" name="name" size="20" /></h1>
+  </center>
+</section>
+<section>
+  <center>
+    <h1>PW : <input type="password" id="pwinput" name="name" size="20" /></h1>
+  </center>
+</section>
+<section>
+  <center>
+    <input type="button" id="reg" value="회원가입" onclick="location.href = 'Register.html' " />
+    <input
+            type="button"
+            id="idlogin"
+            value="ID 로그인"
+            onclick="location.href = '/main' "
+    />
+    <input
+            type="button"
+            id="btlogin"
+            value="블루투스 로그인 "
+            onclick="location.href = '/main' "
+    />
+  </center>
+</section>
+</body>
+</html>
