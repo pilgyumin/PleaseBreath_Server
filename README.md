@@ -13,3 +13,17 @@ npm start
 
 * 0.0.1
     * 작업 진행 중 (라즈베리파이와 Http 통신 모듈 개발)
+
+## 개발자
+
+민필규 – pilgyu147@gmail.com
+
+[https://github.com/pilgyumin](https://github.com/pilgyumin/)
+
+안유진 - auj97@naver.com
+
+[https://github.com/ahnyujin](https://github.com/ahnyujin/)
+
+조현학 - zhh102000@gmail.com
+
+[https://git.swmgit.org/zhh1020](https://git.swmgit.org/zhh1020/)    
