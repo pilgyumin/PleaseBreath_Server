@@ -3,3 +3,8 @@
 
 [](./image/pb.png)
 
+## 실행 방법
+```sh
+cd src
+npm start
+```
