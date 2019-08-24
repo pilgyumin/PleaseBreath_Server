@@ -8,6 +8,10 @@ import path from 'path'
 
 import loginRouter from './routes/login'
 import mainRouter from './routes/main'
+import detailairRouter from './routes/detailair'
+import dataHistoryRouter from './routes/dataHistory'
+import remoteControlRouter from './routes/remoteControl'
+import modeControlRouter from './routes/modeControl'
 
 const app = express()
 
@@ -24,6 +28,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', loginRouter);
 app.use('/main', mainRouter);
+app.use('/detailair', detailairRouter);
+app.use('/modeControl', modeControlRouter);
+app.use('/remoteControl', remoteControlRouter);
+app.use('/dataHistory', dataHistoryRouter);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

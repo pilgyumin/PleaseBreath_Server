@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>숨좀쉬자</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        $(document).ready(function() {
+            google.charts.setOnLoadCallback(columnChart1)
+            google.charts.setOnLoadCallback(columnChart2)
+            $("#siteMapBtn").toggle(
+                function() {
+                    $("#B").css({ left: 200 })
+                },
+                function() {
+                    $("#B").css({ left: 0 })
+                }
+            )
+        })
+
+        $(window).resize(function() {
+            if (this.resizeTO) clearTimeout(this.resizeTO)
+            this.resizeTO = setTimeout(function() {
+                $(this).trigger("resizeEnd")
+            }, 500)
+        })
+
+        //redraw graph when window resize is completed
+        $(window).on("resizeEnd", function() {
+            google.charts.setOnLoadCallback(columnChart1)
+            google.charts.setOnLoadCallback(columnChart2)
+        })
+
+        function btnClick(x) {
+            x.classList.toggle("change")
+        }
+
+        //검색에 대한 함수
+        function myFunction() {
+            var input, filter, ul, li, a, i
+            input = document.getElementById("mySearch")
+            filter = input.value.toUpperCase()
+            ul = document.getElementById("myMenu")
+            li = ul.getElementsByTagName("li")
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0]
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = ""
+                } else {
+                    li[i].style.display = "none"
+                }
+            }
+        }
+
+        // 구글 차트 로딩
+        google.charts.load("current", { packages: ["corechart"] })
+
+        function columnChart1() {
+            var arr = [
+                ["년도", "현재온도", "적정온도"],
+                ["온도", 45, 25],
+                ["습도", 80, 40],
+                ["PM10", 90, 10],
+                ["PM2.5", 95, 10],
+                ["VOC", 90, 10]
+            ]
+
+            var dataTable = google.visualization.arrayToDataTable(arr)
+            var options = {
+                title: "",
+                hAxis: {
+                    title: "실내 공기 상태",
+                    titleTextStyle: {
+                        color: "blue"
+                    }
+                }
+            }
+            var objDiv = document.getElementById("column_chart_downright")
+            var chart = new google.visualization.ColumnChart(objDiv)
+            chart.draw(dataTable, options)
+        }
+
+        function columnChart2() {
+            var arr2 = [
+                ["년도", "현재온도", "적정온도"],
+                ["온도", 45, 25],
+                ["습도", 80, 40],
+                ["PM10", 90, 10],
+                ["PM2.5", 95, 10],
+                ["VOC", 90, 10]
+            ]
+
+            var dataTable2 = google.visualization.arrayToDataTable(arr2)
+            var options2 = {
+                title: "",
+                hAxis: {
+                    title: "실외 공기 상태",
+                    titleTextStyle: {
+                        color: "blue"
+                    }
+                }
+            }
+            var objDiv2 = document.getElementById("column_chart_upleft")
+            var chart2 = new google.visualization.ColumnChart(objDiv2)
+            chart2.draw(dataTable2, options2)
+        }
+    </script>
+    <style>
+        @media (max-width: 1000px) {
+            .container {
+                cursor: pointer;
+                margin: 15px;
+                position: absolute;
+            }
+            .subject {
+                position: absolute;
+                left: 37%;
+            }
+            .bar1,
+            .bar2,
+            .bar3 {
+                width: 35px;
+                height: 5px;
+                background-color: #333;
+                margin: 6px 0;
+                transition: 0.4s;
+            }
+
+            .change .bar1 {
+                -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+                transform: rotate(-45deg) translate(-9px, 6px);
+            }
+
+            .change .bar2 {
+                opacity: 0;
+            }
+
+            .change .bar3 {
+                -webkit-transform: rotate(45deg) translate(-8px, -8px);
+                transform: rotate(45deg) translate(-8px, -8px);
+            }
+            .left {
+                flex: 35%;
+                padding: 15px 0;
+            }
+
+            .left h2 {
+                padding-left: 8px;
+            }
+            #mySearch {
+                width: 100%;
+                font-size: 18px;
+                padding: 11px;
+                border: 1px solid #ddd;
+            }
+
+            #myMenu {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                text-align: center;
+            }
+
+            #myMenu li a {
+                padding: 12px;
+                text-decoration: none;
+                color: black;
+                display: block;
+            }
+
+            #myMenu li a:hover {
+                background-color: #eee;
+            }
+            .head {
+                height: 80px;
+                width: 100%;
+                background-color: #81bef7;
+            }
+            html,
+            body {
+                left: 50px;
+                right: 50px;
+                margin: 0;
+                padding: 0;
+                border: 0;
+            }
+            #A,
+            #B {
+                position: absolute;
+            }
+            #A {
+                top: 80px;
+                width: 200px;
+                bottom: 0px;
+            }
+            #B {
+                top: 80px;
+                left: 0px;
+                right: 0;
+                bottom: 0px;
+                background: white;
+            }
+
+            #upleft {
+                width: 100%;
+                height: 50%;
+                top: 0%;
+                background-position-x: 0px;
+                background-position-y: 0px;
+                background-size: 100% 100%;
+                position: absolute;
+            }
+            #downright {
+                width: 100%;
+                top: 50%;
+                height: 50%;
+                background-position-x: 0px;
+                background-position-y: 0px;
+                background-size: 100% 100%;
+                position: absolute;
+            }
+            #column_chart_upleft {
+                width: 100%;
+                height: 100%;
+                background-position-x: 0px;
+                background-position-y: 0px;
+                background-size: 100% 100%;
+            }
+            #column_chart_downright {
+                width: 100%;
+                height: 100%;
+                background-position-x: 0px;
+                background-position-y: 0px;
+                background-size: 100% 100%;
+            }
+            #base {
+                background: black;
+                display: inline-block;
+                height: 20px;
+                margin-left: 20px;
+                margin-top: 45px;
+                position: absolute;
+                width: 40px;
+                right: 25px;
+            }
+            #base:before {
+                border-bottom: 30px solid black;
+                border-left: 30px solid transparent;
+                border-right: 30px solid transparent;
+                content: "";
+                height: 0;
+                right: -10px;
+                position: absolute;
+                top: -25px;
+                width: 0;
+            }
+        }
+        @media (min-width: 1000px) {
+            .container {
+                cursor: pointer;
+                margin: 25px;
+                position: absolute;
+            }
+            .subject {
+                position: absolute;
+                left: 45%;
+            }
+            .bar1,
+            .bar2,
+            .bar3 {
+                width: 35px;
+                height: 5px;
+                background-color: #333;
+                margin: 6px 0;
+                transition: 0.4s;
+            }
+
+            .change .bar1 {
+                -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+                transform: rotate(-45deg) translate(-9px, 6px);
+            }
+
+            .change .bar2 {
+                opacity: 0;
+            }
+
+            .change .bar3 {
+                -webkit-transform: rotate(45deg) translate(-8px, -8px);
+                transform: rotate(45deg) translate(-8px, -8px);
+            }
+            .left {
+                flex: 35%;
+                padding: 15px 0;
+            }
+
+            .left h2 {
+                padding-left: 8px;
+            }
+            #mySearch {
+                width: 100%;
+                font-size: 18px;
+                padding: 11px;
+                border: 1px solid #ddd;
+            }
+
+            #myMenu {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                text-align: center;
+            }
+
+            #myMenu li a {
+                padding: 12px;
+                text-decoration: none;
+                color: black;
+                display: block;
+            }
+
+            #myMenu li a:hover {
+                background-color: #eee;
+            }
+            .head {
+                height: 100px;
+                background-color: #81bef7;
+                width: 100%;
+            }
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                border: 0;
+            }
+            #A,
+            #B {
+                position: absolute;
+            }
+            #A {
+                top: 100px;
+                width: 200px;
+                bottom: 0px;
+            }
+            #B {
+                top: 100px;
+                left: 0px;
+                right: 0;
+                bottom: 0px;
+                background: white;
+            }
+
+            #upleft {
+                width: 50%;
+                height: 100%;
+                left: 0px;
+                background-position-x: 0px;
+                background-position-y: 0px;
+                background-size: 100% 100%;
+                position: absolute;
+            }
+            #downright {
+                width: 50%;
+                left: 50%;
+                height: 100%;
+                position: absolute;
+                background-position-x: 0px;
+                background-position-y: 0px;
+                background-size: 100% 100%;
+            }
+            #column_chart_upleft {
+                width: 100%;
+                height: 100%;
+                background-position-x: 0px;
+                background-position-y: 0px;
+                background-size: 100% 100%;
+            }
+            #column_chart_downright {
+                width: 100%;
+                height: 100%;
+                background-position-x: 0px;
+                background-position-y: 0px;
+                background-size: 100% 100%;
+            }
+            #base {
+                background: black;
+                display: inline-block;
+                height: 20px;
+                margin-left: 20px;
+                margin-top: 55px;
+                position: absolute;
+                width: 40px;
+                right: 25px;
+            }
+            #base:before {
+                border-bottom: 30px solid black;
+                border-left: 30px solid transparent;
+                border-right: 30px solid transparent;
+                content: "";
+                height: 0;
+                right: -10px;
+                position: absolute;
+                top: -25px;
+                width: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="head">
+    <div class="container" onclick="btnClick(this)" id="siteMapBtn">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </div>
+    <div class="subject">
+        <h1>상세 공기 상태</h1>
+    </div>
+    <div id="base" onclick= "location.href='/'" style="cursor: pointer"></div>
+</div>
+<div id="A" class="left" style="background-color:#bbb;">
+    <h2>Menu</h2>
+    <input
+            type="text"
+            id="mySearch"
+            onkeyup="myFunction()"
+            placeholder="Search.."
+            title="Type in a category"
+    />
+    <ul id="myMenu">
+        <li><a href="/main">메인 페이지</a></li>
+        <li><a href="/detailair">상세 공기 상태</a></li>
+        <li><a href="/dataHistory">누적 데이터</a></li>
+        <li><a href="/remoteControl">리모컨 기능</a></li>
+        <li><a href="/modeControl">모드 설정</a></li>
+    </ul>
+</div>
+<div id="B">
+    <div id="upleft">
+        <div id="column_chart_upleft"></div>
+    </div>
+    <div id="downright">
+        <div id="column_chart_downright"></div>
+    </div>
+</div>
+</body>
+</html>
