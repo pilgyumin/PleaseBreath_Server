@@ -1,6 +1,8 @@
 import express from 'express'
 
 const router = express.Router();
+const Sensor = require('./sensor.js');
+const db = require('./dbconnect.js');
 
 const status = {
     tempOuter : "",
@@ -17,7 +19,7 @@ const status = {
 
 /* GET home page. */
 router.get('', (req, res, next) => {
-
+    db();
     if(req.query.tempOuter){
         status.tempOuter = req.query.tempOuter;
     }
