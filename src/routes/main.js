@@ -18,7 +18,8 @@ const status = {
 };
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('', (req, res, next) => {
+
     //temp
     if(req.query.tempOuter){
         fs.writeFile('./data/tempOuter.txt', req.query.tempOuter, (err , data) =>  {
@@ -102,6 +103,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/whatstatus', (req, res, next) => {
+    console.log('main whatstatus in');
     //temp
     fs.readFile('./data/tempOuter.txt', (err,data) => {
         if (err) {
