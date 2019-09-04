@@ -13,7 +13,7 @@ import dataHistoryRouter from './routes/dataHistory'
 import remoteControlRouter from './routes/remoteControl'
 import modeControlRouter from './routes/modeControl'
 
-const app = express()
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

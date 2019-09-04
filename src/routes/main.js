@@ -16,6 +16,7 @@ const status = {
     vocOuter : "",
     vocInner : "",
 };
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
     //temp
@@ -97,7 +98,7 @@ router.get('/', (req, res, next) => {
             }
         });
     }
-  res.render('main');
+    res.render('main');
 });
 
 router.get('/whatstatus', (req, res, next) => {
