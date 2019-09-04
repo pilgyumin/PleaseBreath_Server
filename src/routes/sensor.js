@@ -4,4 +4,6 @@ const sensorSchema = new mongoose.Schema({
     tempOuter: Number,
     tempInner : Number
 });
-module.exports = mongoose.model('User',sensorSchema);
+
+module.exports = mongoose.model('Senser',sensorSchema);
+

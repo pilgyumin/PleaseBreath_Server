@@ -4,6 +4,8 @@ const router = express.Router();
 const Sensor = require('./sensor.js');
 const db = require('./dbconnect.js');
 
+
+
 const status = {
     tempOuter : "",
     tempInner : "",
