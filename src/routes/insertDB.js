@@ -72,9 +72,9 @@ router.get('', (req, res, next) => {
     if(mode == 0 || mode == 1){//0 : Outer 1 : Inner
         var Inputdata;
         if(mode == 1)
-            Inputdata = new InnerSensor({id:"Inner",temp:status.tempInner,humid:status.humidInner});
+            Inputdata = new InnerSensor({id:"Inner",temp:status.tempInner,humid:status.humidInner,pm25:status.pm25Inner,pm10:status.pm10Inner});
         else if(mode == 0)
-            Inputdata = new OuterSensor({id:"Outer",temp:status.tempOuter,humid:status.humidOuter});
+            Inputdata = new OuterSensor({id:"Outer",temp:status.tempOuter,humid:status.humidOuter,pm25:status.pm25Outer,pm10:status.pm10Outer});
         
     
     
