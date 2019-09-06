@@ -8,5 +8,6 @@ const sensorSchema = new mongoose.Schema({
     
 });
 
-module.exports = mongoose.model('Inner',sensorSchema,'Inner');
+
+module.exports = mongoose.model('Outer',sensorSchema,'Outer');
 
