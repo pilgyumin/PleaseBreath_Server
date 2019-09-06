@@ -5,7 +5,6 @@ const Sensor = require('./sensor.js');
 const db = require('./dbconnect.js');
 
 
-
 const status = {
     tempOuter : "",
     tempInner : "",
@@ -62,6 +61,7 @@ router.get('', (req, res, next) => {
     }
     console.log(JSON.stringify(status));
     res.json(JSON.stringify(status));
+    //res.json("TEST");
 });
 
 module.exports = router;
