@@ -14,7 +14,27 @@ import dataHistoryRouter from './routes/dataHistory'
 import remoteControlRouter from './routes/remoteControl'
 import modeControlRouter from './routes/modeControl'
 
+const mongoose = require('mongoose');
 const app = express();
+const DB_SERVICE = require('./routes/dbconnect.js');
+//service DB Connect
+DB_SERVICE();
+
+//Inner DB find()
+const DATA = require('./routes/Innersensor.js');
+const sensorSchema = new mongoose.Schema({
+  id : String,
+  temp: Number,
+  humid : Number,
+  pm2: Number,
+  pm10: Number,
+});
+const Todo = DATA;
+Todo.find({ }, function(err, todo) {
+  if(err) throw err;
+  console.log(todo);
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -5,8 +5,9 @@ const sensorSchema = new mongoose.Schema({
     humid : Number,
     pm2: Number,
     pm10: Number,
-    
 });
+
+
 
 module.exports = mongoose.model('Inner',sensorSchema,'Inner');
 

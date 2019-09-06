@@ -10,4 +10,3 @@ const sensorSchema = new mongoose.Schema({
 
 
 module.exports = mongoose.model('Inner',sensorSchema,'Inner');
-
