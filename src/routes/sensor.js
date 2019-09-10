@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 const sensorSchema = new mongoose.Schema({
     id : String,
-    tempOuter: Number,
-    tempInner : Number
+    temp: Number,
+    humid : Number,
+    pm2: Number,
+    pm10: Number,
 });
 
-module.exports = mongoose.model('Senser',sensorSchema);
 
+
+module.exports = mongoose.model('Inner',sensorSchema,'Inner');

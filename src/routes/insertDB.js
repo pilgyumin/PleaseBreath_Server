@@ -1,10 +1,12 @@
 import express from 'express'
 
 const router = express.Router();
-const Sensor = require('./sensor.js');
+
+const InnerSensor = require('./Innersensor.js');
+const OuterSensor = require('./Outersensor.js');
+
 const db = require('./dbconnect.js');
-
-
+let mode = -1;
 
 const status = {
     tempOuter : "",
@@ -21,11 +23,14 @@ const status = {
 
 /* GET home page. */
 router.get('', (req, res, next) => {
-    db();
+   // db();
+    mode = -1;
     if(req.query.tempOuter){
+        mode = 0;
         status.tempOuter = req.query.tempOuter;
     }
     if(req.query.tempInner){
+        mode = 1;
         status.tempInner = req.query.tempInner;
     }
 
@@ -62,6 +67,28 @@ router.get('', (req, res, next) => {
     }
     console.log(JSON.stringify(status));
     res.json(JSON.stringify(status));
+    console.log(mode);
+
+    if(mode == 0 || mode == 1){//0 : Outer 1 : Inner
+        var Inputdata;
+        if(mode == 1)
+            Inputdata = new InnerSensor({id:"Inner",temp:status.tempInner,humid:status.humidInner,pm25:status.pm25Inner,pm10:status.pm10Inner});
+        else if(mode == 0)
+            Inputdata = new OuterSensor({id:"Outer",temp:status.tempOuter,humid:status.humidOuter,pm25:status.pm25Outer,pm10:status.pm10Outer});
+        
+    
+    
+    Inputdata.save(function(error, data){
+        if(error){
+            console.log(error);
+        }else{
+            console.log(data);
+            console.log('Saved!')
+        }
+    });
+    mode = -1;
+    }
+
 });
 
 module.exports = router;
