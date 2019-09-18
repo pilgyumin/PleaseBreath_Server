@@ -47,6 +47,8 @@ router.get('', (req, res, next) => {
         status.pm10Outer = req.query.pm10Outer;
     }
     if(req.query.pm10Inner){
+
+
         status.pm10Inner = req.query.pm10Inner;
     }
 
@@ -63,7 +65,7 @@ router.get('', (req, res, next) => {
         status.vocOuter = req.query.vocOuter;
     }
     if(req.query.vocInner){
-        status.vocOuter = req.query.vocOuter;
+        status.vocInner = req.query.vocInner;
     }
     console.log(JSON.stringify(status));
     res.json(JSON.stringify(status));
@@ -72,9 +74,11 @@ router.get('', (req, res, next) => {
     if(mode == 0 || mode == 1){//0 : Outer 1 : Inner
         var Inputdata;
         if(mode == 1)
-            Inputdata = new InnerSensor({id:"Inner",temp:status.tempInner,humid:status.humidInner,pm25:status.pm25Inner,pm10:status.pm10Inner});
+            Inputdata = new InnerSensor({id:"Inner",temp:status.tempInner,humid:status.humidInner,pm25:status.pm25Inner,pm10:status.pm10Inner,voc:status.vocInner});
+
+
         else if(mode == 0)
-            Inputdata = new OuterSensor({id:"Outer",temp:status.tempOuter,humid:status.humidOuter,pm25:status.pm25Outer,pm10:status.pm10Outer});
+            Inputdata = new OuterSensor({id:"Outer",temp:status.tempOuter,humid:status.humidOuter,pm25:status.pm25Outer,pm10:status.pm10Outer,voc:status.vocOuter});
         
     
     

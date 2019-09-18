@@ -5,7 +5,7 @@ const sensorSchema = new mongoose.Schema({
     humid : Number,
     pm25: Number,
     pm10: Number,
-
+    voc: Number
 
 });
 
