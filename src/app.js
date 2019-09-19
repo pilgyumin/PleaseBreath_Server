@@ -30,10 +30,12 @@ const sensorSchema = new mongoose.Schema({
   pm10: Number,
 });
 const Todo = DATA;
+
+/* DATA terminal display
 Todo.find({ }, function(err, todo) {
   if(err) throw err;
   console.log(todo);
-});
+});*/
 
 
 // view engine setup

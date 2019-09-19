@@ -1,14 +1,15 @@
 import express from 'express'
-
 const router = express.Router();
 
 const InnerSensor = require('./Innersensor.js');
 const OuterSensor = require('./Outersensor.js');
 
 const db = require('./dbconnect.js');
+let status = require('./DATA.js');
+
 let mode = -1;
 
-const status = {
+/*const status = {
     tempOuter : "",
     tempInner : "",
     humidOuter : "",
@@ -19,7 +20,12 @@ const status = {
     pm25Inner : "",
     vocOuter : "",
     vocInner : "",
-};
+};*/
+
+router.get('/whatstatus', (req, res, next) => {
+    res.json(JSON.stringify(status));
+});
+
 
 /* GET home page. */
 router.get('', (req, res, next) => {
@@ -68,8 +74,7 @@ router.get('', (req, res, next) => {
         status.vocInner = req.query.vocInner;
     }
     console.log(JSON.stringify(status));
-    res.json(JSON.stringify(status));
-    console.log(mode);
+    
 
     if(mode == 0 || mode == 1){//0 : Outer 1 : Inner
         var Inputdata;
@@ -91,8 +96,9 @@ router.get('', (req, res, next) => {
         }
     });
     mode = -1;
+    res.render('main');
     }
-
+    
 });
 
 module.exports = router;
