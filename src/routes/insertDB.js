@@ -9,18 +9,6 @@ let status = require('./DATA.js');
 
 let mode = -1;
 
-/*const status = {
-    tempOuter : "",
-    tempInner : "",
-    humidOuter : "",
-    humidInner : "",
-    pm10Outer : "",
-    pm10Inner : "",
-    pm25Outer : "",
-    pm25Inner : "",
-    vocOuter : "",
-    vocInner : "",
-};*/
 
 router.get('/whatstatus', (req, res, next) => {
     res.json(JSON.stringify(status));
