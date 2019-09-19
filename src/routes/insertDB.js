@@ -1,14 +1,15 @@
 import express from 'express'
-
 const router = express.Router();
 
 const InnerSensor = require('./Innersensor.js');
 const OuterSensor = require('./Outersensor.js');
 
 const db = require('./dbconnect.js');
+let status = require('./DATA.js');
+
 let mode = -1;
 
-const status = {
+/*const status = {
     tempOuter : "",
     tempInner : "",
     humidOuter : "",
@@ -19,7 +20,12 @@ const status = {
     pm25Inner : "",
     vocOuter : "",
     vocInner : "",
-};
+};*/
+
+router.get('/whatstatus', (req, res, next) => {
+    res.json(JSON.stringify(status));
+});
+
 
 /* GET home page. */
 router.get('', (req, res, next) => {
@@ -47,6 +53,8 @@ router.get('', (req, res, next) => {
         status.pm10Outer = req.query.pm10Outer;
     }
     if(req.query.pm10Inner){
+
+
         status.pm10Inner = req.query.pm10Inner;
     }
 
@@ -63,18 +71,19 @@ router.get('', (req, res, next) => {
         status.vocOuter = req.query.vocOuter;
     }
     if(req.query.vocInner){
-        status.vocOuter = req.query.vocOuter;
+        status.vocInner = req.query.vocInner;
     }
     console.log(JSON.stringify(status));
-    res.json(JSON.stringify(status));
-    console.log(mode);
+    
 
     if(mode == 0 || mode == 1){//0 : Outer 1 : Inner
         var Inputdata;
         if(mode == 1)
-            Inputdata = new InnerSensor({id:"Inner",temp:status.tempInner,humid:status.humidInner,pm25:status.pm25Inner,pm10:status.pm10Inner});
+            Inputdata = new InnerSensor({id:"Inner",temp:status.tempInner,humid:status.humidInner,pm25:status.pm25Inner,pm10:status.pm10Inner,voc:status.vocInner});
+
+
         else if(mode == 0)
-            Inputdata = new OuterSensor({id:"Outer",temp:status.tempOuter,humid:status.humidOuter,pm25:status.pm25Outer,pm10:status.pm10Outer});
+            Inputdata = new OuterSensor({id:"Outer",temp:status.tempOuter,humid:status.humidOuter,pm25:status.pm25Outer,pm10:status.pm10Outer,voc:status.vocOuter});
         
     
     
@@ -87,8 +96,9 @@ router.get('', (req, res, next) => {
         }
     });
     mode = -1;
+    res.render('main');
     }
-
+    
 });
 
 module.exports = router;

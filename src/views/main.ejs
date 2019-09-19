@@ -49,7 +49,7 @@
         function getTemp() {
             $.ajax({
                 type: 'GET',
-                url : "/main/whatstatus",
+                url : "/insertdb/whatstatus",
                 async: true,
                 success : function (data) {
                     let status = JSON.parse(data);

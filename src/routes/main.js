@@ -4,6 +4,8 @@ import {main} from '../controllers/main.controller'
 import fs from 'fs'
 
 const router = express.Router()
+let status = require('./DATA.js');
+/*
 const status = {
     tempOuter : "",
     tempInner : "",
@@ -15,13 +17,13 @@ const status = {
     pm25Inner : "",
     vocOuter : "",
     vocInner : "",
-};
+};*/
 
 /* GET home page. */
 router.get('', (req, res, next) => {
-
+    
     //temp
-    if(req.query.tempOuter){
+   /* if(req.query.tempOuter){
         fs.writeFile('./data/tempOuter.txt', req.query.tempOuter, (err , data) =>  {
             if(err){
                 throw err;
@@ -98,14 +100,16 @@ router.get('', (req, res, next) => {
                 throw err;
             }
         });
-    }
+    }*/
+
+
     res.render('main');
 });
 
 router.get('/whatstatus', (req, res, next) => {
     console.log('main whatstatus in');
     //temp
-    fs.readFile('./data/tempOuter.txt', (err,data) => {
+    /*fs.readFile('./data/tempOuter.txt', (err,data) => {
         if (err) {
             throw err;
         }
@@ -173,9 +177,10 @@ router.get('/whatstatus', (req, res, next) => {
         }
         status.vocInner = data.toString();
     });
-
+*/
     //외부, 내부 공기 상태를 JSON화시켜서 응답함
     res.json(JSON.stringify(status));
+    
 });
 
 module.exports = router;
