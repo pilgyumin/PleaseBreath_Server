@@ -24,19 +24,23 @@ var Outer = new Object();
 router.get('/', (req, res, next) => {
     
     
-    Inner_Todo.find({ }, function(err, todo) {
+    Inner_Todo.find({ },{_id:0}, function(err, todo) {
         if(err) throw err;
         console.log(todo);
         Inner = todo;
     }).limit(3).sort({$natural:-1});
 
-    Outer_Todo.find({ }, function(err, todo) {
+    Outer_Todo.find({ },{_id:0}, function(err, todo) {
         if(err) throw err;
         console.log(todo);
         Outer = todo;
     }).limit(3).sort({$natural:-1});
 
-
+    let In = JSON.stringify(Inner);
+    let Out = JSON.stringify(Outer);
+    
+    res.json({In,Out});
+    
     res.render('detailair');
 });
 
@@ -45,7 +49,7 @@ router.get('/whatstatus', (req, res, next) => {
     
     let In = JSON.stringify(Inner);
     let Out = JSON.stringify(Outer);
-
+    
     res.json({In,Out});
     
 });
