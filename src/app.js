@@ -22,6 +22,8 @@ DB_SERVICE();
 
 //Inner DB find()
 const DATA = require('./routes/Innersensor.js');
+
+/*
 const sensorSchema = new mongoose.Schema({
   id : String,
   temp: Number,
@@ -31,12 +33,13 @@ const sensorSchema = new mongoose.Schema({
 });
 const Todo = DATA;
 
-/* DATA terminal display
+// DATA terminal display
+
 Todo.find({ }, function(err, todo) {
   if(err) throw err;
   console.log(todo);
-});*/
-
+}).limit(3).sort({$natural:-1});
+*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
