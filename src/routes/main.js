@@ -15,7 +15,6 @@ router.get('', (req, res, next) => {
 
 router.get('/whatstatus', (req, res, next) => {
     console.log('main whatstatus in');
-    
     //외부, 내부 공기 상태를 JSON화시켜서 응답함
     res.json(JSON.stringify(status));
     
