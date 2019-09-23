@@ -1,509 +1,224 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>숨좀쉬자</title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#siteMapBtn").toggle(
-                function() {
-                    $("#B").css({ left: 200 })
-                },
-                function() {
-                    $("#B").css({ left: 0 })
-                }
-            )
-        })
 
-        function btnClick(x) {
-            x.classList.toggle("change")
-        }
-
-        function myFunction() {
-            var input, filter, ul, li, a, i
-            input = document.getElementById("mySearch")
-            filter = input.value.toUpperCase()
-            ul = document.getElementById("myMenu")
-            li = ul.getElementsByTagName("li")
-            for (i = 0; i < li.length; i++) {
-                a = li[i].getElementsByTagName("a")[0]
-                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = ""
-                } else {
-                    li[i].style.display = "none"
-                }
-            }
-        }
-    </script>
     <style>
-        @media (max-width: 1000px) {
-            .container {
-                cursor: pointer;
-                margin: 15px;
-                position: absolute;
-            }
-            .subject {
-                position: absolute;
-                left: 40%;
-            }
-            .bar1,
-            .bar2,
-            .bar3 {
-                width: 35px;
-                height: 5px;
-                background-color: #333;
-                margin: 6px 0;
-                transition: 0.4s;
-            }
+      * {
+        box-sizing: border-box;
+      }
 
-            .change .bar1 {
-                -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-                transform: rotate(-45deg) translate(-9px, 6px);
-            }
+      body {
+        font-family: "Lato", sans-serif;
+        text-align: center;
+        background-color: #455a64;
+      }
 
-            .change .bar2 {
-                opacity: 0;
-            }
+      h1 {
+        color: white;
+        font-size: 3em;
+        font-weight: 300;
+        letter-spacing: 0.1em;
+      }
 
-            .change .bar3 {
-                -webkit-transform: rotate(45deg) translate(-8px, -8px);
-                transform: rotate(45deg) translate(-8px, -8px);
-            }
-            .left {
-                flex: 35%;
-                padding: 15px 0;
-            }
+      button {
+        display: block;
+        border-radius: 100%;
+        border: none;
+        outline: none;
+        margin: 32px;
+        padding: 32px;
+        background-color: #03a9f4;
+        box-shadow: 3px 3px 7px #333;
+      }
 
-            .left h2 {
-                padding-left: 8px;
-            }
-            #mySearch {
-                width: 100%;
-                font-size: 18px;
-                padding: 11px;
-                border: 1px solid #ddd;
-            }
+      button:active {
+        box-shadow: none;
+      }
 
-            #myMenu {
-                list-style-type: none;
-                padding: 0;
-                margin: 0;
-                text-align: center;
-            }
+      svg {
+        fill: white;
+        width: 64px;
+        height: 64px;
+      }
 
-            #myMenu li a {
-                padding: 12px;
-                text-decoration: none;
-                color: black;
-                display: block;
-            }
+      section {
+        display: inline-block;
+      }
 
-            #myMenu li a:hover {
-                background-color: #eee;
-            }
-            .head {
-                height: 80px;
-                width: 100%;
-                background-color: #81bef7;
-                position: absolute;
-            }
-            .tabs {
-                display: flex;
-                flex-wrap: wrap;
-                height: 100%;
-            }
-            .tabs label {
-                width: 33.333333%;
-                height: 50px;
-                line-height: 50px;
-                font-size: 20px;
-                padding: 10px 0px;
-                text-align: center;
-                display: block;
-                cursor: pointer;
-                background: white;
-                font-weight: bold;
-                transition: background ease 0.2s;
-            }
+      .remote-buttons {
+        position: relative;
+      }
 
-            /*박스배경*/
-            .tabs .tab {
-                top: 70px;
-                flex-grow: 1;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                background-image: url("remote2.png");
-                background-repeat: no-repeat;
-                background-position-x: 0px;
-                background-position-y: 0px;
-                background-size: 100% 100%;
-            }
-            .tabs input[type="radio"] {
-                display: none;
-            }
+      .vol-section :after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #517e8b;
+        width: 4px;
+        height: 65%;
+        box-shadow: 2px 2px 7px #333;
+        border-radius: 25px;
+      }
 
-            #one {
-                height: 25%;
-                width: 100%;
-                background-color: aqua;
-                position: absolute;
-                top: 100px;
-            }
+      .remote {
+        display: inline-block;
+        padding: 32px 0;
+      }
 
-            /*탭 눌렀을때 컬러*/
-            .tabs input[type="radio"]:checked + label {
-                background: #2a2b2c;
-                color: white;
-            }
-            .tabs input[type="radio"]:checked + label + .tab {
-                display: block;
-            }
+      .power {
+        background-color: #ff1538;
+      }
 
-            html,
-            body {
-                left: 50px;
-                right: 50px;
-                margin: 0;
-                padding: 0;
-                border: 0;
-            }
-            #A,
-            #B {
-                position: absolute;
-            }
-            #A {
-                top: 80px;
-                width: 200px;
-                bottom: 0px;
-            }
-            #B {
-                top: 80px;
-                left: 0px;
-                right: 0;
-                bottom: 0px;
-                background: white;
-            }
-            #outerinfo {
-                font-size: 20px;
-                padding: 15px;
-                text-align: center;
-                font-weight: bold;
-                color: skyblue;
-            }
-            #innerinfo {
-                font-size: 18px;
-                padding: 85px;
-                text-align: center;
-                font-weight: bold;
-                color: blueviolet;
-            }
-            #upleft {
-                width: 100%;
-                height: 50%;
-                top: 0%;
-                background: url("sky.png");
-                background-position-x: 0px;
-                background-position-y: 0px;
-                background-size: 100% 100%;
-                position: absolute;
-            }
-            #downright {
-                width: 100%;
-                top: 50%;
-                height: 50%;
-                background: url("house.png");
-                background-position-x: 0px;
-                background-position-y: 0px;
-                background-size: 100% 100%;
-                position: absolute;
-            }
-            #base {
-                background: black;
-                display: inline-block;
-                height: 20px;
-                margin-left: 20px;
-                margin-top: 45px;
-                position: absolute;
-                width: 40px;
-                right: 25px;
-            }
-            #base:before {
-                border-bottom: 30px solid black;
-                border-left: 30px solid transparent;
-                border-right: 30px solid transparent;
-                content: "";
-                height: 0;
-                right: -10px;
-                position: absolute;
-                top: -25px;
-                width: 0;
-            }
-        }
-        @media (min-width: 1000px) {
-            .container {
-                cursor: pointer;
-                margin: 25px;
-                position: absolute;
-            }
-            .subject {
-                position: absolute;
-                left: 45%;
-            }
-            .bar1,
-            .bar2,
-            .bar3 {
-                width: 35px;
-                height: 5px;
-                background-color: #333;
-                margin: 6px 0;
-                transition: 0.4s;
-            }
-
-            .change .bar1 {
-                -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-                transform: rotate(-45deg) translate(-9px, 6px);
-            }
-
-            .change .bar2 {
-                opacity: 0;
-            }
-
-            .change .bar3 {
-                -webkit-transform: rotate(45deg) translate(-8px, -8px);
-                transform: rotate(45deg) translate(-8px, -8px);
-            }
-            .left {
-                flex: 35%;
-                padding: 15px 0;
-            }
-
-            .left h2 {
-                padding-left: 8px;
-            }
-            #mySearch {
-                width: 100%;
-                font-size: 18px;
-                padding: 11px;
-                border: 1px solid #ddd;
-            }
-
-            #myMenu {
-                list-style-type: none;
-                padding: 0;
-                margin: 0;
-                text-align: center;
-            }
-
-            #myMenu li a {
-                padding: 12px;
-                text-decoration: none;
-                color: black;
-                display: block;
-            }
-
-            #myMenu li a:hover {
-                background-color: #eee;
-            }
-            .head {
-                height: 100px;
-                background-color: #81bef7;
-                width: 100%;
-            }
-            .tabs {
-                display: flex;
-                flex-wrap: wrap;
-            }
-            .tabs label {
-                width: 33.333333%;
-                height: 50px;
-                order: 1;
-                line-height: 50px;
-                font-size: 20px;
-                padding: 10px 0px;
-                text-align: center;
-                display: block;
-                cursor: pointer;
-                background: white;
-                font-weight: bold;
-                transition: background ease 0.2s;
-            }
-
-            /*박스배경*/
-            .tabs .tab {
-                top: 70px;
-                flex-grow: 1;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                background-image: url("remote2.png");
-                background-repeat: no-repeat;
-                background-position-x: 0px;
-                background-position-y: 0px;
-                background-size: 100% 100%;
-            }
-            .tabs input[type="radio"] {
-                display: none;
-            }
-
-            /*탭 눌렀을때 컬러*/
-            .tabs input[type="radio"]:checked + label {
-                background: #2a2b2c;
-                color: white;
-            }
-            .tabs input[type="radio"]:checked + label + .tab {
-                display: block;
-            }
-
-            html,
-            body {
-                margin: 0;
-                padding: 0;
-                border: 0;
-            }
-            #A,
-            #B {
-                position: absolute;
-            }
-            #A {
-                top: 100px;
-                width: 200px;
-                bottom: 0px;
-            }
-            #B {
-                top: 100px;
-                left: 0px;
-                right: 0;
-                bottom: 0px;
-                background: white;
-            }
-            #outerinfo {
-                font-size: 25px;
-                padding: 150px;
-                text-align: center;
-                font-weight: bold;
-                color: skyblue;
-            }
-            #innerinfo {
-                font-size: 25px;
-                padding: 250px;
-                text-align: center;
-                font-weight: bold;
-                color: blueviolet;
-            }
-            #upleft {
-                width: 50%;
-                height: 100%;
-                left: 0px;
-                background: url("sky.png");
-                background-position-x: 0px;
-                background-position-y: 0px;
-                background-size: 100% 100%;
-                position: absolute;
-            }
-            #downright {
-                width: 50%;
-                left: 50%;
-                height: 100%;
-                background: red;
-                position: absolute;
-                background: url("house.png");
-                background-position-x: 0px;
-                background-position-y: 0px;
-                background-size: 100% 100%;
-            }
-            #base {
-                background: black;
-                display: inline-block;
-                height: 20px;
-                margin-left: 20px;
-                margin-top: 55px;
-                position: absolute;
-                width: 40px;
-                right: 25px;
-            }
-            #base:before {
-                border-bottom: 30px solid black;
-                border-left: 30px solid transparent;
-                border-right: 30px solid transparent;
-                content: "";
-                height: 0;
-                right: -10px;
-                position: absolute;
-                top: -25px;
-                width: 0;
-            }
-            #one {
-                height: 25%;
-                width: 100%;
-                background-color: aqua;
-                top: 80px;
-                order: 1;
-                position: absolute;
-            }
-        }
+      .source {
+        background-color: #ff8f01;
+      }
     </style>
-</head>
+  </head>
+  <body>
+    <div class="remote">
+      <h1>Humid Remote Control</h1>
+      <div class="remote-buttons">
+        <section>
+            
+          <button id="power" class="power">
+            <svg
+              version="1.1"
+              id="Layer_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              viewBox="0 0 22.1 22.1"
+              style="enable-background:new 0 0 22.1 22.1;"
+              xml:space="preserve"
+            >
+              <path
+                d="M11.1,22.1C11.1,22.1,11.1,22.1,11.1,22.1c-2.7,0-5.2-1-7.1-2.9C0.1,15.2,0.1,8.9,4,5c0.4-0.4,1-0.4,1.4,0
+                c0.4,0.4,0.4,1,0,1.4c-3.1,3.1-3.1,8.2,0,11.3c1.5,1.5,3.5,2.3,5.7,2.3c0,0,0,0,0,0c2.1,0,4.1-0.8,5.7-2.3c3.1-3.1,3.1-8.2,0-11.3
+                c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0c3.9,3.9,3.9,10.2,0,14.1C16.2,21,13.7,22.1,11.1,22.1z"
+              />
+              <path
+                d="M11.1,12.1c-0.6,0-1-0.4-1-1v-10c0-0.6,0.4-1,1-1s1,0.4,1,1v10C12.1,11.6,11.6,12.1,11.1,12.1z"
+              />
+            </svg>
+          </button>
 
-<body>
-<div class="head">
-    <div class="container" onclick="btnClick(this)" id="siteMapBtn">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-    </div>
-    <div class="subject">
-        <h1>리모컨 기능</h1>
-    </div>
-    <div id="base" onclick="location.href='/'" style="cursor: pointer"></div>
-</div>
-<div id="A" class="left" style="background-color:#bbb;">
-    <h2>Menu</h2>
-    <input
-            type="text"
-            id="mySearch"
-            onkeyup="myFunction()"
-            placeholder="Search.."
-            title="Type in a category"
-    />
-    <ul id="myMenu">
-        <li><a href="/main">메인 페이지</a></li>
-        <li><a href="/detailair">상세 공기 상태</a></li>
-        <li><a href="/dataHistory">누적 데이터</a></li>
-        <li><a href="/remoteControl">리모컨 기능</a></li>
-        <li><a href="/modeControl">모드 설정</a></li>
-    </ul>
-</div>
-<div id="B">
-    <div class="tabs">
-        <input type="radio" name="tabs" id="tabone" checked="checked" />
-        <label for="tabone" onclick="alert('공기청정기를 제어합니다.')">공기청정기</label>
-        <div class="tab">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-            <div class="four"></div>
-        </div>
+          <button id="source" class="source">
+            <svg
+              version="1.1"
+              id="Layer_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              width="55.9"
+              height="55.9"
+              viewBox="0 0 55.9 55.9"
+              style="enable-background:new 0 0 55.9 55.9;"
+              xml:space="preserve"
+            >
+              <g id="XMLID_5_">
+                <path
+                  class="st0"
+                  d="M50.5,5.4h-45c-2.8,0-5,2.3-5,5v10h5v-10h45v35.1h-45V35.4h-5v10c0,2.8,2.3,5,5,5h45
+                c2.8,0,5-2.2,5-5v-35C55.5,7.7,53.2,5.4,50.5,5.4z M25.4,37.9l10-10l-10-10v7.5h-25v5h25V37.9z"
+                />
+              </g>
+            </svg>
+          </button>
+        </section>
 
-        <input type="radio" name="tabs" id="tabtwo" />
-        <label for="tabtwo" onclick="alert('에어컨을 제어합니다.')">에어컨</label>
-        <div class="tab">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-            <div class="four"></div>
-        </div>
-
-        <input type="radio" name="tabs" id="tabthree" />
-        <label for="tabthree" onclick="alert('가습기를 제어합니다.')">가습기</label>
-        <div class="tab">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-            <div class="four"></div>
-        </div>
+        <section class="vol-section">
+          <button id="vol-up">
+            <svg
+              version="1.1"
+              id="Layer_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              viewBox="0 0 82 82"
+              style="enable-background:new 0 0 82 82;"
+              xml:space="preserve"
+            >
+              <g class="st0">
+                <polygon
+                  class="st1"
+                  points="0,24.4 0,57.5 17.1,57.5 49.4,75.1 49.4,6.8 17.1,24.4    "
+                />
+                <rect x="56.3" y="37.4" class="st1" width="23.7" height="7" />
+              </g>
+              <g>
+                <polygon points="0,25.3 0,56.7 16.3,56.7 46.9,73.5 46.9,8.5 16.3,25.3    " />
+                <polygon
+                  points="69.8,37.2 69.8,26.5 62.1,26.5 62.1,37.2 51.8,37.2 51.8,44.7 62.1,44.7 62.1,55.5 69.8,55.5 69.8,44.7 80,44.7 
+            80,37.2    "
+                />
+              </g>
+            </svg>
+          </button>
+          <button id="vol-down">
+            <svg
+              version="1.1"
+              id="Layer_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              viewBox="0 0 82 82"
+              style="enable-background:new 0 0 82 82;"
+              xml:space="preserve"
+            >
+              <g>
+                <polygon points="0,24.4 0,57.5 17.1,57.5 49.4,75.1 49.4,6.8 17.1,24.4    " />
+                <rect x="56.3" y="37.4" width="23.7" height="7" />
+              </g>
+            </svg>
+          </button>
+        </section>
+      </div>
     </div>
-</div>
-</body>
+  </body>
+
+  <script>
+    const powerButton = document.getElementById("power")
+    const sourceButton = document.getElementById("source")
+    const volUpButton = document.getElementById("vol-up")
+    const volDownButton = document.getElementById("vol-down")
+
+    const sendCommand = command => {
+      fetch('remoteControl/Humid_Control/' + command, { method: "post", body: command })
+    }
+
+
+    const power = () => {
+      console.log("power")
+      sendCommand("power")
+    }
+
+    const source = () => {
+      console.log("source")
+      sendCommand("source")
+    }
+
+    const volUp = () => {
+      console.log("mist")
+      sendCommand("mist")
+    }
+    const volDown = () => {
+      console.log("volDown")
+      sendCommand("volDown")
+    }
+
+    powerButton.addEventListener("click", power)
+    sourceButton.addEventListener("click", source)
+    volUpButton.addEventListener("click", mist)
+    volDownButton.addEventListener("click", volDown)
+  </script>
 </html>

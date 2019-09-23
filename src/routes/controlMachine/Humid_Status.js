@@ -1,6 +1,7 @@
-let status = {
-    Power : "OFF"
+let Status = {
+    Power : ""
+   
 };
 
 
-module.exports = status;
+module.exports = Status;
