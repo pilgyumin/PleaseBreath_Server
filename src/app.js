@@ -8,6 +8,7 @@ import path from 'path'
 
 import loginRouter from './routes/login'
 import mainRouter from './routes/main'
+import aircleanerControlRouter from './routes/controlMachine/aircleanerControl'
 import insertDBRouter from './routes/insertDB'
 import detailairRouter from './routes/detailair'
 import dataHistoryRouter from './routes/dataHistory'
@@ -56,6 +57,7 @@ app.use('/detailair', detailairRouter);
 app.use('/modeControl', modeControlRouter);
 app.use('/remoteControl', remoteControlRouter);
 app.use('/dataHistory', dataHistoryRouter);
+app.use('/aircleanerControl', aircleanerControlRouter);
 
 
 // catch 404 and forward to error handler
