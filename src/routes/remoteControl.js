@@ -33,9 +33,6 @@ router.get('/', (req, res, next) => {
 router.post('/Humid_Control/power/', (req, res, next) => {
     //Power On / Off
     
-    if(status.Power == "") status.Power = "ON";
-    else if(status.Power == "ON") status.Power = "OFF";
-    else status.Power = "ON";
     piserverUrl.path += "Power";
     http.request(piserverUrl).end();
     res.render('remoteControl');
@@ -45,15 +42,20 @@ router.post('/Humid_Control/power/', (req, res, next) => {
 router.post('/Humid_Control/mist/', (req, res, next) => {
     //Power On / Off
     
-    if(status.Power == "") status.Power = "ON";
-    else if(status.Power == "ON") status.Power = "OFF";
-    else status.Power = "ON";
     piserverUrl.path += "mist";
     http.request(piserverUrl).end();
     res.render('remoteControl');
     piserverUrl.path = '/Humid_Control/';
 });
 
+router.post('/Humid_Control/humidity/', (req, res, next) => {
+    //Power On / Off
+    
+    piserverUrl.path += "humidity";
+    http.request(piserverUrl).end();
+    res.render('remoteControl');
+    piserverUrl.path = '/Humid_Control/';
+});
 
 
 module.exports = router;
