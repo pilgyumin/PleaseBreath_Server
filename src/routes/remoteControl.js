@@ -6,7 +6,7 @@ import express from 'express'
 
 const http = require('http');
 const router = express.Router()
-let status = require('./Humid_Status.js');
+
 
 let piserverUrl = {
     hostname: '192.168.0.9',
