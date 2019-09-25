@@ -16,6 +16,7 @@ import detailairRouter from './routes/detailair'
 import dataHistoryRouter from './routes/dataHistory'
 import remoteControlRouter from './routes/remoteControl'
 import modeControlRouter from './routes/modeControl'
+import aiSolutionCountrolRouter from './routes/aiSolutionControl'
 
 const mongoose = require('mongoose');
 const app = express();
@@ -65,6 +66,7 @@ app.use('/dataHistory', dataHistoryRouter);
 app.use('/aircleanercontrol', aircleanerControlRouter);
 app.use('/airconditionercontrol', airconditionerControlRouter);
 app.use('/humidifiercontrol', humidifierControlRouter);
+app.use('/aiSolutionControl', aiSolutionCountrolRouter);
 
 
 // catch 404 and forward to error handler

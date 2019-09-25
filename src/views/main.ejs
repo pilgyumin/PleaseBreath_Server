@@ -19,9 +19,15 @@
                 if (txt == "ON") {
                     $("#cirtext").text("OFF")
                     alert("System ON")
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.open( "GET", "/aiSolutionControl/ON", true); 
+                    xmlHttp.send( null );
                 } else {
                     $("#cirtext").text("ON")
                     alert("System OFF")
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.open( "GET", "/aiSolutionControl/OFF", true );
+                    xmlHttp.send( null );
                 }
             })
         })
