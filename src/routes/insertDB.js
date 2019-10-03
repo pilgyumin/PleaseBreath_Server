@@ -30,39 +30,45 @@ router.get('', (req, res, next) => {
 
     //humid
     if(req.query.humidOuter){
+        mode = 0;
         status.humidOuter = req.query.humidOuter;
     }
     if(req.query.humidInner){
+        mode = 1;
         status.humidInner = req.query.humidInner;
     }
 
     //pm10
     if(req.query.pm10Outer){
+        mode = 0;
         status.pm10Outer = req.query.pm10Outer;
     }
     if(req.query.pm10Inner){
-
-
+        mode = 1;
         status.pm10Inner = req.query.pm10Inner;
     }
 
     //pm2.5
     if(req.query.pm25Outer){
+        mode = 0;
         status.pm25Outer = req.query.pm25Outer;
     }
     if(req.query.pm25Inner){
+        mode = 1;
         status.pm25Inner = req.query.pm25Inner;
     }
 
     //voc
     if(req.query.vocOuter){
+        mode = 0;
         status.vocOuter = req.query.vocOuter;
     }
     if(req.query.vocInner){
+        mode = 1;
         status.vocInner = req.query.vocInner;
     }
     console.log(JSON.stringify(status));
-    
+
 
     if(mode == 0 || mode == 1){//0 : Outer 1 : Inner
         var Inputdata;
@@ -72,8 +78,8 @@ router.get('', (req, res, next) => {
 
         else if(mode == 0)
             Inputdata = new OuterSensor({id:"Outer",temp:status.tempOuter,humid:status.humidOuter,pm25:status.pm25Outer,pm10:status.pm10Outer,voc:status.vocOuter});
-        
-    
+
+
     
     Inputdata.save(function(error, data){
         if(error){
