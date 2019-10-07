@@ -10,5 +10,5 @@ module.exports = () => {
     }
     connect();
     mongoose.connection.on('disconnected', connect);
-    //require('./Innersensor.js'); // user.js는 나중에 만듭니다.
+    //require('./Inner_sensor.js'); // user.js는 나중에 만듭니다.
 };

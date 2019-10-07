@@ -20,13 +20,13 @@
                     $("#cirtext").text("OFF")
                     alert("System ON")
                     var xmlHttp = new XMLHttpRequest();
-                    xmlHttp.open( "GET", "/aiSolutionControl/ON", true); 
+                    xmlHttp.open( "GET", "/aiSolution_Control/ON", true);
                     xmlHttp.send( null );
                 } else {
                     $("#cirtext").text("ON")
                     alert("System OFF")
                     var xmlHttp = new XMLHttpRequest();
-                    xmlHttp.open( "GET", "/aiSolutionControl/OFF", true );
+                    xmlHttp.open( "GET", "/aiSolution_Control/OFF", true );
                     xmlHttp.send( null );
                 }
             })
@@ -59,27 +59,27 @@
                 async: true,
                 success : function (data) {
                     let status = JSON.parse(data);
-                    let tempOuter = status.tempOuter;
-                    let tempInner = status.tempInner;
-                    let humidOuter = status.humidOuter;
-                    let humidInner = status.humidInner;
-                    let pm10Outer = status.pm10Outer;
-                    let pm10Inner = status.pm10Inner;
-                    let pm25Outer = status.pm25Outer;
-                    let pm25Inner = status.pm25Inner;
-                    let vocOuter = status.vocOuter;
-                    let vocInner = status.vocInner;
+                    let temp_Outer = status.temp_Outer;
+                    let temp_Inner = status.temp_Inner;
+                    let humid_Outer = status.humid_Outer;
+                    let humid_Inner = status.humid_Inner;
+                    let pm10_Outer = status.pm10_Outer;
+                    let pm10_Inner = status.pm10_Inner;
+                    let pm25_Outer = status.pm25_Outer;
+                    let pm25_Inner = status.pm25_Inner;
+                    let voc_Outer = status.voc_Outer;
+                    let voc_Inner = status.voc_Inner;
 
-                    document.getElementById('tempOuter').innerHTML= '온도 : ' + tempOuter + "℃";
-                    document.getElementById('tempInner').innerHTML= '온도 : ' + tempInner + "℃";
-                    document.getElementById('humidOuter').innerHTML= '습도 : ' + humidOuter + "%";
-                    document.getElementById('humidInner').innerHTML= '습도 : ' + humidInner + "%";
-                    document.getElementById('pm10Outer').innerHTML= 'pm10 : ' + pm10Outer;
-                    document.getElementById('pm10Inner').innerHTML= 'pm10 : ' + pm10Inner;
-                    document.getElementById('pm25Outer').innerHTML= 'pm2.5 : ' + pm25Outer;
-                    document.getElementById('pm25Inner').innerHTML= 'pm2.5 : ' + pm25Inner;
-                    document.getElementById('vocOuter').innerHTML= 'VOC : ' + vocOuter;
-                    document.getElementById('vocInner').innerHTML= 'VOC : ' + vocInner;
+                    document.getElementById('temp_Outer').innerHTML= '온도 : ' + temp_Outer + "℃";
+                    document.getElementById('temp_Inner').innerHTML= '온도 : ' + temp_Inner + "℃";
+                    document.getElementById('humid_Outer').innerHTML= '습도 : ' + humid_Outer + "%";
+                    document.getElementById('humid_Inner').innerHTML= '습도 : ' + humid_Inner + "%";
+                    document.getElementById('pm10_Outer').innerHTML= 'pm10 : ' + pm10_Outer;
+                    document.getElementById('pm10_Inner').innerHTML= 'pm10 : ' + pm10_Inner;
+                    document.getElementById('pm25_Outer').innerHTML= 'pm2.5 : ' + pm25_Outer;
+                    document.getElementById('pm25_Inner').innerHTML= 'pm2.5 : ' + pm25_Inner;
+                    document.getElementById('voc_Outer').innerHTML= 'VOC : ' + voc_Outer;
+                    document.getElementById('voc_Inner').innerHTML= 'VOC : ' + voc_Inner;
 
                 },
                 error:function(request,status,error){
@@ -93,28 +93,28 @@
                     async: true,
                     success : function (data) {
                         let status = JSON.parse(data);
-                        let tempOuter = status.tempOuter;
-                        let tempInner = status.tempInner;
-                        let humidOuter = status.humidOuter;
-                        let humidInner = status.humidInner;
-                        let pm10Outer = status.pm10Outer;
-                        let pm10Inner = status.pm10Inner;
-                        let pm25Outer = status.pm25Outer;
-                        let pm25Inner = status.pm25Inner;
-                        let vocOuter = status.vocOuter;
-                        let vocInner = status.vocInner;
+                        let temp_Outer = status.temp_Outer;
+                        let temp_Inner = status.temp_Inner;
+                        let humid_Outer = status.humid_Outer;
+                        let humid_Inner = status.humid_Inner;
+                        let pm10_Outer = status.pm10_Outer;
+                        let pm10_Inner = status.pm10_Inner;
+                        let pm25_Outer = status.pm25_Outer;
+                        let pm25_Inner = status.pm25_Inner;
+                        let voc_Outer = status.voc_Outer;
+                        let voc_Inner = status.voc_Inner;
 
 
-                        document.getElementById('tempOuter').innerHTML= '온도 : ' + tempOuter + "℃";
-                        document.getElementById('tempInner').innerHTML= '온도 : ' + tempInner + "℃";
-                        document.getElementById('humidOuter').innerHTML= '습도 : ' + humidOuter + "%";
-                        document.getElementById('humidInner').innerHTML= '습도 : ' + humidInner + "%";
-                        document.getElementById('pm10Outer').innerHTML= 'pm10 : ' + pm10Outer;
-                        document.getElementById('pm10Inner').innerHTML= 'pm10 : ' + pm10Inner;
-                        document.getElementById('pm25Outer').innerHTML= 'pm2.5 : ' + pm25Outer;
-                        document.getElementById('pm25Inner').innerHTML= 'pm2.5 : ' + pm25Inner;
-                        document.getElementById('vocOuter').innerHTML= 'VOC : ' + vocOuter;
-                        document.getElementById('vocInner').innerHTML= 'VOC : ' + vocInner;
+                        document.getElementById('temp_Outer').innerHTML= '온도 : ' + temp_Outer + "℃";
+                        document.getElementById('temp_Inner').innerHTML= '온도 : ' + temp_Inner + "℃";
+                        document.getElementById('humid_Outer').innerHTML= '습도 : ' + humid_Outer + "%";
+                        document.getElementById('humid_Inner').innerHTML= '습도 : ' + humid_Inner + "%";
+                        document.getElementById('pm10_Outer').innerHTML= 'pm10 : ' + pm10_Outer;
+                        document.getElementById('pm10_Inner').innerHTML= 'pm10 : ' + pm10_Inner;
+                        document.getElementById('pm25_Outer').innerHTML= 'pm2.5 : ' + pm25_Outer;
+                        document.getElementById('pm25_Inner').innerHTML= 'pm2.5 : ' + pm25_Inner;
+                        document.getElementById('voc_Outer').innerHTML= 'VOC : ' + voc_Outer;
+                        document.getElementById('voc_Inner').innerHTML= 'VOC : ' + voc_Inner;
                     },
                     error:function(request,status,error){
                         alert(status + " " + error);
@@ -161,38 +161,38 @@
 <div id="B">
     <div id="upleft">
         <div id="outerinfo">
-            <div id="tempOuter">
+            <div id="temp_Outer">
                 온도 : 45℃
             </div>
-            <div id="humidOuter">
+            <div id="humid_Outer">
                 습도 : 80%
             </div>
-            <div id = "pm10Outer">
+            <div id = "pm10_Outer">
                 pm10 : ${ pm}
             </div>
-            <div id = "pm25Outer">
+            <div id = "pm25_Outer">
                 pm2.5 : Bad
             </div>
-            <div id = "vocOuter">
+            <div id = "voc_Outer">
                 VOC : Bad
             </div>
         </div>
     </div>
         <div id="downright">
             <div id="innerinfo">
-                <div id="tempInner">
+                <div id="temp_Inner">
                     온도 : 45℃
                 </div>
-                <div id="humidInner">
+                <div id="humid_Inner">
                     습도 : 80%
                 </div>
-                <div id = "pm10Inner">
+                <div id = "pm10_Inner">
                     pm10 : ${ pm}
                 </div>
-                <div id = "pm25Inner">
+                <div id = "pm25_Inner">
                     pm2.5 : Bad
                 </div>
-                <div id = "vocInner">
+                <div id = "voc_Inner">
                     VOC : Bad
                 </div>
             </div>

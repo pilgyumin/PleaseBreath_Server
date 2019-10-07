@@ -2,7 +2,7 @@ import express from 'express'
 const router = express.Router();
 const http = require('http');
 
-let piserverUrl = {
+let pi_server_Url = {
     hostname: '192.168.0.9',
     port: '3000',
     path : '/Humid_Control/'
@@ -12,30 +12,30 @@ let piserverUrl = {
 router.post('/power', (req, res, next) => {
     const aa = {};
     console.log('humidifier power');
-    piserverUrl.path += "power";
-    http.request(piserverUrl).end();
-    console.log(piserverUrl);
-    piserverUrl.path = '/Humid_Control/';
+    pi_server_Url.path += "power";
+    http.request(pi_server_Url).end();
+    console.log(pi_server_Url);
+    pi_server_Url.path = '/Humid_Control/';
     res.json(aa);
 });
 
 router.post('/speedup', (req, res, next) => {
     const aa = {};
     console.log('humidifier mist');
-    piserverUrl.path += "mist";
-    http.request(piserverUrl).end();
-    console.log(piserverUrl);
-    piserverUrl.path = '/Humid_Control/';
+    pi_server_Url.path += "mist";
+    http.request(pi_server_Url).end();
+    console.log(pi_server_Url);
+    pi_server_Url.path = '/Humid_Control/';
     res.json(aa);
 });
 
 router.post('/speeddown', (req, res, next) => {
     const aa = {};
     console.log('humidifier humidity');
-    piserverUrl.path += "humidity";
-    http.request(piserverUrl).end();
-    console.log(piserverUrl);
-    piserverUrl.path = '/Humid_Control/';
+    pi_server_Url.path += "humidity";
+    http.request(pi_server_Url).end();
+    console.log(pi_server_Url);
+    pi_server_Url.path = '/Humid_Control/';
     res.json(aa);
 });
 

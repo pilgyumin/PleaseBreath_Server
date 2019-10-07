@@ -2,7 +2,7 @@ import express from 'express'
 const router = express.Router();
 const http = require('http');
 
-let piserverUrl = {
+let pi_server_Url = {
     hostname: '192.168.0.9',
     port: '3000',
     path : '/Aircleaner_Control/'
@@ -12,30 +12,30 @@ let piserverUrl = {
 router.post('/power', (req, res, next) => {
     const aa = {};
     console.log('aircleaner power');
-    piserverUrl.path += "power";
-    http.request(piserverUrl).end();
-    console.log(piserverUrl);
-    piserverUrl.path = '/Aircleaner_Control/';
+    pi_server_Url.path += "power";
+    http.request(pi_server_Url).end();
+    console.log(pi_server_Url);
+    pi_server_Url.path = '/Aircleaner_Control/';
     res.json(aa);
 });
 
 router.post('/speedup', (req, res, next) => {
     const aa = {};
     console.log('aircleaner speedup');
-    piserverUrl.path += "speedup";
-    http.request(piserverUrl).end();
-    console.log(piserverUrl);
-    piserverUrl.path = '/Aircleaner_Control/';
+    pi_server_Url.path += "speedup";
+    http.request(pi_server_Url).end();
+    console.log(pi_server_Url);
+    pi_server_Url.path = '/Aircleaner_Control/';
     res.json(aa);
 });
 
 router.post('/speeddown', (req, res, next) => {
     const aa = {};
     console.log('aircleaner speeddown');
-    piserverUrl.path += "speeddown";
-    http.request(piserverUrl).end();
-    console.log(piserverUrl);
-    piserverUrl.path = '/Aircleaner_Control/';
+    pi_server_Url.path += "speeddown";
+    http.request(pi_server_Url).end();
+    console.log(pi_server_Url);
+    pi_server_Url.path = '/Aircleaner_Control/';
     res.json(aa);
 });
 

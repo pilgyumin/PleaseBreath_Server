@@ -8,24 +8,24 @@ import path from 'path'
 
 import loginRouter from './routes/login'
 import mainRouter from './routes/main'
-import aircleanerControlRouter from './routes/controlMachine/aircleanerControl'
-import humidifierControlRouter from './routes/controlMachine/humidifierControl'
-import airconditionerControlRouter from './routes/controlMachine/airconditionerControl'
-import insertDBRouter from './routes/insertDB'
-import detailairRouter from './routes/detailair'
-import dataHistoryRouter from './routes/dataHistory'
-import remoteControlRouter from './routes/remoteControl'
-import modeControlRouter from './routes/modeControl'
-import aiSolutionCountrolRouter from './routes/aiSolutionControl'
+import aircleaner_Control_Router from './routes/control_Machine/aircleaner_Control'
+import humidifier_Control_Router from './routes/control_Machine/humidifier_Control'
+import airconditioner_Control_Router from './routes/control_Machine/airconditioner_Control'
+import insert_DB_Router from './routes/insert_DB'
+import detail_air_Router from './routes/detail_air'
+import data_History_Router from './routes/data_history'
+import remote_Control_Router from './routes/remote_Control'
+import mode_Control_Router from './routes/mode_Control'
+import aiSolution_Countrol_Router from './routes/aiSolution_Control'
 
 const mongoose = require('mongoose');
 const app = express();
-const DB_SERVICE = require('./routes/dbconnect.js');
+const DB_SERVICE = require('./routes/db_connect.js');
 //service DB Connect
 DB_SERVICE();
 
 //Inner DB find()
-const DATA = require('./routes/Innersensor.js');
+const DATA = require('./routes/Inner_sensor.js');
 
 /*
 const sensorSchema = new mongoose.Schema({
@@ -58,15 +58,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', loginRouter);
 app.use('/main', mainRouter);
-app.use('/insertdb', insertDBRouter);
-app.use('/detailair', detailairRouter);
-app.use('/modeControl', modeControlRouter);
-app.use('/remoteControl', remoteControlRouter);
-app.use('/dataHistory', dataHistoryRouter);
-app.use('/aircleanercontrol', aircleanerControlRouter);
-app.use('/airconditionercontrol', airconditionerControlRouter);
-app.use('/humidifiercontrol', humidifierControlRouter);
-app.use('/aiSolutionControl', aiSolutionCountrolRouter);
+app.use('/insertdb', insert_DB_Router);
+app.use('/detailair', detail_air_Router);
+app.use('/modeControl', mode_Control_Router);
+app.use('/remoteControl', remote_Control_Router);
+app.use('/dataHistory', data_History_Router);
+app.use('/aircleanercontrol', aircleaner_Control_Router);
+app.use('/airconditionercontrol', airconditioner_Control_Router);
+app.use('/humidifiercontrol', humidifier_Control_Router);
+app.use('/aiSolutionControl', aiSolution_Countrol_Router);
 
 
 // catch 404 and forward to error handler

@@ -204,17 +204,17 @@
             }
 
 
-            .aircleanercontrol {
+            .aircleaner_control {
                 display: inline-block;
                 padding: 32px 0;
             }
 
-            .airconditionercontrol {
+            .airconditioner_control {
                 display: inline-block;
                 padding: 32px 0;
             }
 
-            .humidifiercontrol {
+            .humidifier_control {
                 display: inline-block;
                 padding: 32px 0;
             }
@@ -419,17 +419,17 @@
                 position: relative;
             }
 
-            .aircleanercontrol {
+            .aircleaner_control {
                  display: inline-block;
                  padding: 32px 0;
              }
 
-            .airconditionercontrol {
+            .airconditioner_control {
                 display: inline-block;
                 padding: 32px 0;
             }
 
-            .humidifiercontrol {
+            .humidifier_control {
                 display: inline-block;
                 padding: 32px 0;
             }
@@ -470,27 +470,27 @@
         <li><a href="/main">메인 페이지</a></li>
         <li><a href="/detailair">상세 공기 상태</a></li>
         <li><a href="/dataHistory">누적 데이터</a></li>
-        <li><a href="/remoteControl">리모컨 기능</a></li>
+        <li><a href="/remote_Control">리모컨 기능</a></li>
         <li><a href="/modeControl">모드 설정</a></li>
     </ul>
 </div>
 <div id="B">
     <div class="tabs">
-        <input type="radio" name="tabs" id="aircleanermode" checked="checked" />
-        <label for="aircleanermode" onclick="">공기청정기</label>
+        <input type="radio" name="tabs" id="aircleaner_mode" checked="checked" />
+        <label for="aircleaner_mode" onclick="">공기청정기</label>
 
-        <input type="radio" name="tabs" id="airconditionermode" />
-        <label for="airconditionermode" onclick="">에어컨</label>
+        <input type="radio" name="tabs" id="airconditioner_mode" />
+        <label for="airconditioner_mode" onclick="">에어컨</label>
 
-        <input type="radio" name="tabs" id="humidifiermode" />
-        <label for="humidifiermode" onclick="">가습기</label>
+        <input type="radio" name="tabs" id="humidifier_mode" />
+        <label for="humidifier_mode" onclick="">가습기</label>
     </div>
-    <div class="humidifiercontrol">
+    <div class="humidifier_control">
         <h1>Humidifier Remote Control</h1>
         <div class="remote-buttons">
             <section>
 
-                <button id="humidifierpower" class="power">
+                <button id="humidifier_power" class="power">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -513,7 +513,7 @@
             </svg>
                 </button>
 
-                <button id="humidifiersource" class="source">
+                <button id="humidifier_source" class="source">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -539,7 +539,7 @@
             </section>
 
             <section class="vol-section">
-                <button id="humidifierspeedup">
+                <button id="humidifier_speed_up">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -567,7 +567,7 @@
                         </g>
             </svg>
                 </button>
-                <button id="humidifierspeeddown">
+                <button id="humidifier_speed_down">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -589,12 +589,12 @@
         </div>
     </div>
 
-    <div class="airconditionercontrol">
+    <div class="airconditioner_control">
         <h1>Airconditioner Remote Control</h1>
         <div class="remote-buttons">
             <section>
 
-                <button id="airconditionerpower" class="power">
+                <button id="airconditioner_power" class="power">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -617,7 +617,7 @@
             </svg>
                 </button>
 
-                <button id="airconditionersource" class="source">
+                <button id="airconditioner_source" class="source">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -643,7 +643,7 @@
             </section>
 
             <section class="vol-section">
-                <button id="airconditionerspeedup">
+                <button id="airconditioner_speed_up">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -671,7 +671,7 @@
                         </g>
             </svg>
                 </button>
-                <button id="airconditionerspeeddown">
+                <button id="airconditioner_speed_down">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -693,11 +693,11 @@
         </div>
     </div>
 
-    <div class="aircleanercontrol">
+    <div class="aircleaner_control">
         <h1>AirCleaner Remote Control</h1>
         <div class="remote-buttons">
             <section>
-                <button id="aircleanerpower" class="power">
+                <button id="aircleaner_power" class="power">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -720,7 +720,7 @@
             </svg>
                 </button>
 
-                <button id="aircleanersource" class="source">
+                <button id="aircleaner_source" class="source">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -746,7 +746,7 @@
             </section>
 
             <section class="vol-section">
-                <button id="aircleanerspeedup">
+                <button id="aircleaner_speed_up">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -774,7 +774,7 @@
                         </g>
             </svg>
                 </button>
-                <button id="aircleanerspeeddown">
+                <button id="aircleaner_speed_down">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -807,30 +807,30 @@
             }
         )
 
-        $("#humidifiermode").click(function(){
-                $('.aircleanercontrol').hide();
-                $('.airconditionercontrol').hide();
-                $('.humidifiercontrol').show();
+        $("#humidifier_mode").click(function(){
+                $('.aircleaner_control').hide();
+                $('.airconditioner_control').hide();
+                $('.humidifier_control').show();
             }
         )
 
-        $("#aircleanermode").click(function(){
-            $('.aircleanercontrol').show();
-            $('.airconditionercontrol').hide();
-            $('.humidifiercontrol').hide();
+        $("#aircleaner_mode").click(function(){
+            $('.aircleaner_control').show();
+            $('.airconditioner_control').hide();
+            $('.humidifier_control').hide();
             }
         )
 
-        $("#airconditionermode").click(function(){
-                $('.aircleanercontrol').hide();
-                $('.airconditionercontrol').show();
-                $('.humidifiercontrol').hide();
+        $("#airconditioner_mode").click(function(){
+                $('.aircleaner_control').hide();
+                $('.airconditioner_control').show();
+                $('.humidifier_control').hide();
             }
         )
 
-        $('.aircleanercontrol').show();
-        $('.humidifiercontrol').hide();
-        $('.airconditionercontrol').hide();
+        $('.aircleaner_control').show();
+        $('.humidifier_control').hide();
+        $('.airconditioner_control').hide();
     })
 
 
@@ -854,94 +854,94 @@
         }
     }
 
-    const aircleanerpowerButton = document.getElementById("aircleanerpower")
-    const aircleanersourceButton = document.getElementById("aircleanersource")
-    const aircleanerspeedUpButton = document.getElementById("aircleanerspeedup")
-    const aircleanerspeedDownButton = document.getElementById("aircleanerspeeddown")
+    const aircleaner_power_Button = document.getElementById("aircleaner_power")
+    const aircleaner_source_Button = document.getElementById("aircleaner_source")
+    const aircleaner_speed_Up_Button = document.getElementById("aircleaner_speed_up")
+    const aircleaner_speed_Down_Button = document.getElementById("aircleaner_speed_down")
 
-    const airconditionerpowerButton = document.getElementById("airconditionerpower")
-    const airconditionersourceButton = document.getElementById("airconditionersource")
-    const airconditionerspeedUpButton = document.getElementById("airconditionerspeedup")
-    const airconditionerspeedDownButton = document.getElementById("airconditionerspeeddown")
+    const airconditioner_power_Button = document.getElementById("airconditioner_power")
+    const airconditioner_source_Button = document.getElementById("airconditioner_source")
+    const airconditioner_speed_Up_Button = document.getElementById("airconditioner_speed_up")
+    const airconditioner_speed_Down_Button = document.getElementById("airconditioner_speed_down")
 
-    const humidifierpowerButton = document.getElementById("humidifierpower")
-    const humidifiersourceButton = document.getElementById("humidifiersource")
-    const humidifierspeedUpButton = document.getElementById("humidifierspeedup")
-    const humidifierspeedDownButton = document.getElementById("humidifierspeeddown")
+    const humidifier_power_Button = document.getElementById("humidifier_power")
+    const humidifier_source_Button = document.getElementById("humidifier_source")
+    const humidifier_speed_Up_Button = document.getElementById("humidifier_speed_up")
+    const humidifier_speed_Down_Button = document.getElementById("humidifier_speed_down")
 
-    const sendCommand = command => {
+    const send_Command = command => {
         fetch('' + command, { method: "post", body: command })
     }
 
     /////////////////////////////공기청정기 제어 함수///////////////////////////////////////////
 
-    const aircleanerpower = () => {
-        sendCommand("aircleanercontrol/power")
+    const aircleaner_power = () => {
+        send_Command("aircleanercontrol/power")
     }
 
-    const aircleanersource = () => {
-        sendCommand("aircleanercontrol/source")
+    const aircleaner_source = () => {
+        send_Command("aircleanercontrol/source")
     }
 
 
-    const aircleanerspeedUp = () => {
-        sendCommand("aircleanercontrol/speedup")
+    const aircleaner_speed_Up = () => {
+        send_Command("aircleanercontrol/speedup")
     }
 
-    const aircleanerspeedDown = () => {
-        sendCommand("aircleanercontrol/speeddown")
+    const aircleaner_speed_Down = () => {
+        send_Command("aircleanercontrol/speeddown")
     }
 
     /////////////////////////////에어컨 제어 함수///////////////////////////////////////////
 
-    const airconditionerpower = () => {
-        sendCommand("airconditionercontrol/power")
+    const airconditioner_power = () => {
+        send_Command("airconditionercontrol/power")
     }
 
-    const airconditionersource = () => {
-        sendCommand("airconditionercontrol/source")
+    const airconditioner_source = () => {
+        send_Command("airconditionercontrol/source")
     }
 
-    const airconditionerspeedUp = () => {
-        sendCommand("airconditionercontrol/speedup")
+    const airconditioner_speed_Up = () => {
+        send_Command("airconditionercontrol/speedup")
     }
 
-    const airconditionerspeedDown = () => {
-        sendCommand("airconditionercontrol/speeddown")
+    const airconditioner_speed_Down = () => {
+        send_Command("airconditionercontrol/speeddown")
     }
 
     /////////////////////////////가습기 제어 함수///////////////////////////////////////////
 
-    const humidifierpower = () => {
-        sendCommand("humidifiercontrol/power")
+    const humidifier_power = () => {
+        send_Command("humidifiercontrol/power")
     }
 
-    const humidifiersource = () => {
-        sendCommand("humidifiercontrol/source")
+    const humidifier_source = () => {
+        send_Command("humidifiercontrol/source")
     }
 
-    const humidifierspeedUp = () => {
-        sendCommand("humidifiercontrol/speedup")
+    const humidifier_speed_Up = () => {
+        send_Command("humidifiercontrol/speedup")
     }
 
-    const humidifierspeedDown = () => {
-        sendCommand("humidifiercontrol/speeddown")
+    const humidifier_speed_Down = () => {
+        send_Command("humidifiercontrol/speeddown")
     }
 
-    aircleanerpowerButton.addEventListener("click", aircleanerpower)
-    aircleanersourceButton.addEventListener("click", aircleanersource)
-    aircleanerspeedUpButton.addEventListener("click", aircleanerspeedUp)
-    aircleanerspeedDownButton.addEventListener("click", aircleanerspeedDown)
+    aircleaner_power_Button.addEventListener("click", aircleaner_power)
+    aircleaner_source_Button.addEventListener("click", aircleaner_source)
+    aircleaner_speed_Up_Button.addEventListener("click", aircleaner_speed_Up)
+    aircleaner_speed_Down_Button.addEventListener("click", aircleaner_speed_Down)
 
-    humidifierpowerButton.addEventListener("click", humidifierpower)
-    humidifiersourceButton.addEventListener("click", humidifiersource)
-    humidifierspeedUpButton.addEventListener("click", humidifierspeedUp)
-    humidifierspeedDownButton.addEventListener("click", humidifierspeedDown)
+    humidifier_power_Button.addEventListener("click", humidifier_power)
+    humidifier_source_Button.addEventListener("click", humidifier_source)
+    humidifier_speed_Up_Button.addEventListener("click", humidifier_speed_Up)
+    humidifier_speed_Down_Button.addEventListener("click", humidifier_speed_Down)
 
-    airconditionerpowerButton.addEventListener("click", airconditionerpower)
-    airconditionersourceButton.addEventListener("click", airconditionersource)
-    airconditionerspeedUpButton.addEventListener("click", airconditionerspeedUp)
-    airconditionerspeedDownButton.addEventListener("click", airconditionerspeedDown)
+    airconditioner_power_Button.addEventListener("click", airconditioner_power)
+    airconditioner_source_Button.addEventListener("click", airconditioner_source)
+    airconditioner_speed_Up_Button.addEventListener("click", airconditioner_speed_Up)
+    airconditioner_speed_Down_Button.addEventListener("click", airconditioner_speed_Down)
 
 </script>
 </body>

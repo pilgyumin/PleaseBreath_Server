@@ -1,10 +1,10 @@
 import express from 'express'
 const router = express.Router();
 
-const InnerSensor = require('./Innersensor.js');
-const OuterSensor = require('./Outersensor.js');
+const Inner_Sensor = require('./Inner_sensor.js');
+const Outer_Sensor = require('./Outer_sensor.js');
 
-const db = require('./dbconnect.js');
+const db = require('./db_connect.js');
 let status = require('./DATA.js');
 
 let mode = -1;
@@ -21,67 +21,67 @@ router.get('', (req, res, next) => {
     mode = -1;
     if(req.query.tempOuter){
         mode = 0;
-        status.tempOuter = req.query.tempOuter;
+        status.temp_Outer = req.query.tempOuter;
     }
     if(req.query.tempInner){
         mode = 1;
-        status.tempInner = req.query.tempInner;
+        status.temp_Inner = req.query.tempInner;
     }
 
     //humid
     if(req.query.humidOuter){
         mode = 0;
-        status.humidOuter = req.query.humidOuter;
+        status.humid_Outer = req.query.humidOuter;
     }
     if(req.query.humidInner){
         mode = 1;
-        status.humidInner = req.query.humidInner;
+        status.humid_Inner = req.query.humidInner;
     }
 
     //pm10
     if(req.query.pm10Outer){
         mode = 0;
-        status.pm10Outer = req.query.pm10Outer;
+        status.pm10_Outer = req.query.pm10Outer;
     }
     if(req.query.pm10Inner){
         mode = 1;
-        status.pm10Inner = req.query.pm10Inner;
+        status.pm10_Inner = req.query.pm10Inner;
     }
 
     //pm2.5
     if(req.query.pm25Outer){
         mode = 0;
-        status.pm25Outer = req.query.pm25Outer;
+        status.pm25_Outer = req.query.pm25Outer;
     }
     if(req.query.pm25Inner){
         mode = 1;
-        status.pm25Inner = req.query.pm25Inner;
+        status.pm25_Inner = req.query.pm25Inner;
     }
 
     //voc
     if(req.query.vocOuter){
         mode = 0;
-        status.vocOuter = req.query.vocOuter;
+        status.voc_Outer = req.query.vocOuter;
     }
     if(req.query.vocInner){
         mode = 1;
-        status.vocInner = req.query.vocInner;
+        status.voc_Inner = req.query.vocInner;
     }
     console.log(JSON.stringify(status));
 
 
     if(mode == 0 || mode == 1){//0 : Outer 1 : Inner
-        var Inputdata;
+        var Input_data;
         if(mode == 1)
-            Inputdata = new InnerSensor({id:"Inner",temp:status.tempInner,humid:status.humidInner,pm25:status.pm25Inner,pm10:status.pm10Inner,voc:status.vocInner});
+            Input_data = new Inner_Sensor({id:"Inner",temp:status.temp_Inner,humid:status.humid_Inner,pm25:status.pm25_Inner,pm10:status.pm10_Inner,voc:status.voc_Inner});
 
 
         else if(mode == 0)
-            Inputdata = new OuterSensor({id:"Outer",temp:status.tempOuter,humid:status.humidOuter,pm25:status.pm25Outer,pm10:status.pm10Outer,voc:status.vocOuter});
+            Input_data = new Outer_Sensor({id:"Outer",temp:status.temp_Outer,humid:status.humid_Outer,pm25:status.pm25_Outer,pm10:status.pm10_Outer,voc:status.voc_Outer});
 
 
     
-    Inputdata.save(function(error, data){
+    Input_data.save(function(error, data){
         if(error){
             console.log(error);
         }else{

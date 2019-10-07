@@ -4,7 +4,7 @@ const http = require('http');
 
 let solution_status=-1;
 
-let piserverUrl={
+let pi_server_Url={
     hostname: '192.168.0.9',
     port: '3000',
     path : '/aiSolutionControl/'
@@ -14,10 +14,10 @@ router.get('/ON', (req, res, next) => {
     solution_status=1;
     const aa = {};
     console.log('aiSolution ON');
-    piserverUrl.path += "ON";
-    http.request(piserverUrl).end();
-    console.log(piserverUrl);
-    piserverUrl.path = '/aiSolutionControl/';
+    pi_server_Url.path += "ON";
+    http.request(pi_server_Url).end();
+    console.log(pi_server_Url);
+    pi_server_Url.path = '/aiSolutionControl/';
     res.json(aa);
 });
 
@@ -25,10 +25,10 @@ router.get('/OFF', (req, res, next) => {
     solution_status=0;
     const aa = {};
     console.log('aiSolution OFF');
-    piserverUrl.path += "OFF";
-    http.request(piserverUrl).end();
-    console.log(piserverUrl);
-    piserverUrl.path = '/aiSolutionControl/';
+    pi_server_Url.path += "OFF";
+    http.request(pi_server_Url).end();
+    console.log(pi_server_Url);
+    pi_server_Url.path = '/aiSolutionControl/';
     res.json(aa);
 });
 

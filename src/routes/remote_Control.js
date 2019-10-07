@@ -1,5 +1,5 @@
 import express from 'express'
-import {remoteControl} from '../controllers/remoteControl.controller'
+import {remote_Control} from '../controllers/remote_Control.controller'
 
 const http = require('http');
 const router = express.Router()
@@ -8,7 +8,7 @@ const router = express.Router()
 //Server -> Pi
 router.get('/', (req, res, next) => {
     //Power On / Off
-    res.render('remoteControl');
+    res.render('remote_Control');
 });
 
 module.exports = router;

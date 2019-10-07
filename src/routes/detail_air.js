@@ -1,22 +1,17 @@
 import express from 'express'
-import {detailair} from '../controllers/detailair.controller'
+import {detail_air} from '../controllers/detail_air.controller'
 
 const router = express.Router()
 
 const mongoose = require('mongoose');
 
-const Inner_DATA = require('./Innersensor.js');
+const Inner_DATA = require('./Inner_sensor.js');
 
-const Outer_DATA = require('./Outersensor.js');
-
-
+const Outer_DATA = require('./Outer_sensor.js');
 
 const Inner_Todo = Inner_DATA;
 const Outer_Todo = Outer_DATA;
 // DATA terminal display
-
-
-
 
 var Inner = new Object();
 var Outer = new Object();
@@ -41,7 +36,7 @@ router.get('/', (req, res, next) => {
     
     res.json({In,Out});
     
-    res.render('detailair');
+    res.render('detail_air');
 });
 
 
