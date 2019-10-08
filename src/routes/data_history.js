@@ -5,7 +5,8 @@ const router = express.Router()
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-    res.render('data_history');
+    
+    res.render('index.html');
 });
 
 module.exports = router;
