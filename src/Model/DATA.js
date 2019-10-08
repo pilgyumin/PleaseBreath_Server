@@ -9,6 +9,8 @@ let status = {
     pm25_Inner : "",
     voc_Outer : "",
     voc_Inner : "",
+    co2_Outer : "",
+    co2_Inner : ""
 };
 
 

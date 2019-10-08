@@ -5,7 +5,7 @@ const Inner_Sensor = require('./Inner_sensor.js');
 const Outer_Sensor = require('./Outer_sensor.js');
 
 const db = require('./db_connect.js');
-let status = require('./DATA.js');
+let status = require('../Model/DATA.js');
 
 let mode = -1;
 
@@ -67,17 +67,28 @@ router.get('', (req, res, next) => {
         mode = 1;
         status.voc_Inner = req.query.vocInner;
     }
+
+    //co2
+    if(req.query.co2Outer){
+        mode = 0;
+        status.co2_Outer = req.query.co2Outer;
+    }
+    if(req.query.co2Inner){
+        mode = 1;
+        status.co2_Inner = req.query.co2Inner;
+    }
+
     console.log(JSON.stringify(status));
 
 
     if(mode == 0 || mode == 1){//0 : Outer 1 : Inner
         var Input_data;
         if(mode == 1)
-            Input_data = new Inner_Sensor({id:"Inner",temp:status.temp_Inner,humid:status.humid_Inner,pm25:status.pm25_Inner,pm10:status.pm10_Inner,voc:status.voc_Inner});
+            Input_data = new Inner_Sensor({id:"Inner",temp:status.temp_Inner,humid:status.humid_Inner,pm25:status.pm25_Inner,pm10:status.pm10_Inner,voc:status.voc_Inner,co2:status.co2_Inner});
 
 
         else if(mode == 0)
-            Input_data = new Outer_Sensor({id:"Outer",temp:status.temp_Outer,humid:status.humid_Outer,pm25:status.pm25_Outer,pm10:status.pm10_Outer,voc:status.voc_Outer});
+            Input_data = new Outer_Sensor({id:"Outer",temp:status.temp_Outer,humid:status.humid_Outer,pm25:status.pm25_Outer,pm10:status.pm10_Outer,voc:status.voc_Outer,co2:status.co2_Outer});
 
 
     
