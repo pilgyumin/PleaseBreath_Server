@@ -2,11 +2,81 @@ import express from 'express'
 import {mode_Control} from '../controllers/mode_Control.controller'
 
 const router = express.Router()
+let Status = require('../Model/DATA');
+let Mode_Status = require('./Mode_Status/Mode_Status');
+
+const send_Command = command => {
+    fetch('' + command, { method: "post", body: command })
+}
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-    res.render('mode_Control');
+    res.render('mode_Control',{Status:Status});
 });
+
+router.post('/Senior', (req, res, next) => {
+    console.log('Senior Start..');
+    //노인 모드 시작
+    //???초 (현재 3초) 에 한번 데이터를 확인하고 IR를 전송한다.
+    if(Mode_Status == 1){
+        console.log('Senior Mode Cancel');
+    }
+    else {
+        Mode_Status = 1;
+        
+            Judgment();
+        
+    }
+});
+
+
+function Judgment(){
+    //setTimeout(function() {
+
+        //while(1){
+        //    if(Status.co2_Inner != " " && Status.co2_Outer != " ")
+         //       break;
+            Status = require('../Model/DATA');
+       // }
+    
+        console.log(Status.co2_Inner);
+        console.log(Status.co2_Outer);
+    
+        //실내 습도가 40 ~ 60%가 아닐 때
+        //Post 방식으로 가습기에 요청
+        if(parseInt(Status.humid_Inner) < 40){
+            command = "/remoteControl/humidifiercontrol/speedup";
+            send_Command(command);
+        }
+        else if (parseInt(Status.humid_Inner) > 60){
+            command = "/remoteControl/humidifiercontrol/speeddown";
+            send_Command(command);
+        }
+    
+        //적정량의 습도면 가습기의 세기를 ???로 조절
+        else if (parseInt(Status.humid_Inner) < 60 && parseInt(Status.humid_Inner) >= 40) {
+    
+        }
+    
+        //실내 온도가 26 ~ 28%이 아닐 때
+        //Post 방식으로 에어컨에 요청
+        if(parseInt(Status.humid_Inner) < 26){
+            command = "/remoteControl/airconditionercontrol/speeddown";
+            send_Command(command);
+        }
+    
+        else if (parseInt(Status.humid_Inner) > 28){
+            command = "/remoteControl/airconditionercontrol/speedup";
+            send_Command(command);
+        }
+        //적정량의 온도면 에어컨을 ???로 조절
+        else if(parseInt(Status.humid_Inner) <= 28 && parseInt(Status.humid_Inner) >= 26){
+    
+        }
+    
+    //    }, 3000);
+}
+
 
 module.exports = router;
 
