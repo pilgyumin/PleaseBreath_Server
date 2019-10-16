@@ -38,8 +38,9 @@
             if (x == "노인") {
                 alert("노인 모드가 시작됩니다.")
                 send_Command("modeControl/Senior")
-            } else if (x == "파워") {
-                alert("파워 모드가 시작됩니다.")
+            } else if (x == "영유아") {
+                alert("영유아 모드가 시작됩니다.")
+                send_Command("modeControl/Infants")
             } else if (x == "공부") {
                 alert("공부 모드가 시작됩니다.")
             } else if (x == "수면") {
@@ -458,8 +459,8 @@
     <div id="upleft" onclick="modeClick('노인')">
         노인 모드
     </div>
-    <div id="upright" onclick="modeClick('파워')">
-        파워 모드
+    <div id="upright" onclick="modeClick('영유아')">
+        영유아 모드
     </div>
     <div id="downleft" onclick="modeClick('수면')">
         수면 모드

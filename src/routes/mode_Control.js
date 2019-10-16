@@ -5,9 +5,11 @@ const router = express.Router()
 let Status = require('../Model/DATA');
 let Mode_Status = require('./Mode_Status/Mode_Status');
 
-const send_Command = command => {
-    fetch('' + command, { method: "post", body: command })
-}
+let pi_server_Url = {
+    hostname: '192.168.0.9',
+    port: '3000',
+    path : '/Mode/'
+};
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -16,27 +18,24 @@ router.get('/', (req, res, next) => {
 
 router.post('/Senior', (req, res, next) => {
     console.log('Senior Start..');
-    //노인 모드 시작
-    //???초 (현재 3초) 에 한번 데이터를 확인하고 IR를 전송한다.
-    if(Mode_Status == 1){
-        console.log('Senior Mode Cancel');
-    }
-    else {
-        Mode_Status = 1;
-        
-            Judgment();
-        
-    }
+    pi_server_Url.path += "Senior";
+    http.request(pi_server_Url).end();
 });
 
+router.post('/Infants', (req, res, next) => {
+    console.log('Infants Start..');
+    pi_server_Url.path += "Infants";
+    http.request(pi_server_Url).end();
+});
 
+/*
 function Judgment(){
     //setTimeout(function() {
 
         //while(1){
         //    if(Status.co2_Inner != " " && Status.co2_Outer != " ")
          //       break;
-            Status = require('../Model/DATA');
+        Status = require('../Model/DATA');
        // }
     
         console.log(Status.co2_Inner);
@@ -77,6 +76,6 @@ function Judgment(){
     //    }, 3000);
 }
 
-
+*/
 module.exports = router;
 
