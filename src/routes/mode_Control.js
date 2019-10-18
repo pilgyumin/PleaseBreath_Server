@@ -20,12 +20,14 @@ router.post('/Senior', (req, res, next) => {
     console.log('Senior Start..');
     pi_server_Url.path += "Senior";
     http.request(pi_server_Url).end();
+    pi_server_Url.path = '/Mode/';
 });
 
 router.post('/Infants', (req, res, next) => {
     console.log('Infants Start..');
     pi_server_Url.path += "Infants";
     http.request(pi_server_Url).end();
+    pi_server_Url.path = '/Mode/';
 });
 
 /*
