@@ -10,7 +10,13 @@ let status = {
     voc_Outer : "",
     voc_Inner : "",
     co2_Outer : "",
-    co2_Inner : ""
+    co2_Inner : "",
+    year : "",
+    month : "",
+    date : "",
+    hours : "",
+    minute : "", 
+    second : ""
 };
 
 
