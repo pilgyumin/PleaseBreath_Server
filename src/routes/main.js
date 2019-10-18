@@ -4,7 +4,7 @@ import {main} from '../controllers/main.controller'
 import fs from 'fs'
 
 const router = express.Router()
-let status = require('./DATA.js');
+let status = require('../Model/DATA');
 
 
 /* GET home page. */
