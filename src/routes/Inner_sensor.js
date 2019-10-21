@@ -6,6 +6,7 @@ const sensor_Schema = new mongoose.Schema({
     pm25: Number,
     pm10: Number,
     voc: Number,
+    co2: Number,
     year: Number,
     month: Number,
     date: Number,
