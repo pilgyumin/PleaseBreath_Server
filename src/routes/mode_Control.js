@@ -3,7 +3,6 @@ import {mode_Control} from '../controllers/mode_Control.controller'
 
 const router = express.Router()
 let Status = require('../Model/DATA');
-let Mode_Status = require('./Mode_Status/Mode_Status');
 
 let pi_server_Url = {
     hostname: '192.168.0.9',

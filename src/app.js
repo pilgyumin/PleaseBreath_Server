@@ -15,6 +15,7 @@ import insert_DB_Router from './routes/insert_DB'
 import detail_air_Router from './routes/detail_air'
 import data_History_Router from './routes/data_history'
 import remote_Control_Router from './routes/remote_Control'
+import reservation_Control_Router from './routes/reservation_control'
 import mode_Control_Router from './routes/mode_Control'
 import aiSolution_Countrol_Router from './routes/aiSolution_Control'
 
@@ -67,6 +68,7 @@ app.use('/aircleanercontrol', aircleaner_Control_Router);
 app.use('/airconditionercontrol', airconditioner_Control_Router);
 app.use('/humidifiercontrol', humidifier_Control_Router);
 app.use('/aiSolutionControl', aiSolution_Countrol_Router);
+app.use('/reservationcontrol', reservation_Control_Router);
 
 
 // catch 404 and forward to error handler
