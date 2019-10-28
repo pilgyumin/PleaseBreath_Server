@@ -7,7 +7,8 @@ const port = '3000'
 const path = '/AirconditionerControl/'
 
 let pi_server_Url = {
-    hostname: '192.168.0.9',
+    //hostname: '192.168.0.9,
+    hostname: '192.168.1.84',
     port: '3000',
     path : '/AirconditionerControl/'
 };
@@ -21,16 +22,16 @@ router.post('/power', (req, res, next) => {
     res.json(aa);
 });
 
-router.post('/speedup', (req, res, next) => {
+router.post('/speed', (req, res, next) => {
     const aa = {};
     console.log('Airconditioner speed');
-    pi_server_Url.path += "speedup";
+    pi_server_Url.path += "speed";
     http.request(pi_server_Url).end();
     pi_server_Url.path = '/AirconditionerControl/';
     res.json(aa);
 });
 
-router.post('/tempup', (req, res, next) => {
+router.post('/tempUp', (req, res, next) => {
     const aa = {};
     console.log('Airconditioner tempup');
     pi_server_Url.path += "tempup";
@@ -39,7 +40,7 @@ router.post('/tempup', (req, res, next) => {
     res.json(aa);
 });
 
-router.post('/tempdown', (req, res, next) => {
+router.post('/tempDown', (req, res, next) => {
     const aa = {};
     console.log('Airconditioner tempdown');
     pi_server_Url.path += "tempdown";

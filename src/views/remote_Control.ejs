@@ -617,7 +617,7 @@
             </svg>
                 </button>
 
-                <button id="airconditioner_source" class="source">
+                <button id="airconditioner_speed" class="speed">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -643,7 +643,7 @@
             </section>
 
             <section class="vol-section">
-                <button id="airconditioner_speed_up">
+                <button id="airconditioner_temp_Up">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -671,7 +671,7 @@
                         </g>
             </svg>
                 </button>
-                <button id="airconditioner_speed_down">
+                <button id="airconditioner_temp_Down">
                     <svg
                             version="1.1"
                             id="Layer_1"
@@ -860,9 +860,9 @@
     const aircleaner_speed_Down_Button = document.getElementById("aircleaner_speed_down")
 
     const airconditioner_power_Button = document.getElementById("airconditioner_power")
-    const airconditioner_source_Button = document.getElementById("airconditioner_source")
-    const airconditioner_speed_Up_Button = document.getElementById("airconditioner_speed_up")
-    const airconditioner_speed_Down_Button = document.getElementById("airconditioner_speed_down")
+    const airconditioner_speed_Button = document.getElementById("airconditioner_speed")
+    const airconditioner_temp_Up_Button = document.getElementById("airconditioner_temp_Up")
+    const airconditioner_temp_Down_Button = document.getElementById("airconditioner_temp_Down")
 
     const humidifier_power_Button = document.getElementById("humidifier_power")
     const humidifier_source_Button = document.getElementById("humidifier_source")
@@ -898,16 +898,16 @@
         send_Command("airconditionercontrol/power")
     }
 
-    const airconditioner_source = () => {
-        send_Command("airconditionercontrol/source")
+    const airconditioner_speed = () => {
+        send_Command("airconditionercontrol/speed")
     }
 
-    const airconditioner_speed_Up = () => {
-        send_Command("airconditionercontrol/speedup")
+    const airconditioner_temp_Up = () => {
+        send_Command("airconditionercontrol/tempUp")
     }
 
-    const airconditioner_speed_Down = () => {
-        send_Command("airconditionercontrol/speeddown")
+    const airconditioner_temp_Down = () => {
+        send_Command("airconditionercontrol/tempDown")
     }
 
     /////////////////////////////가습기 제어 함수///////////////////////////////////////////
@@ -939,9 +939,9 @@
     humidifier_speed_Down_Button.addEventListener("click", humidifier_speed_Down)
 
     airconditioner_power_Button.addEventListener("click", airconditioner_power)
-    airconditioner_source_Button.addEventListener("click", airconditioner_source)
-    airconditioner_speed_Up_Button.addEventListener("click", airconditioner_speed_Up)
-    airconditioner_speed_Down_Button.addEventListener("click", airconditioner_speed_Down)
+    airconditioner_speed_Button.addEventListener("click", airconditioner_speed)
+    airconditioner_temp_Up_Button.addEventListener("click", airconditioner_temp_Up)
+    airconditioner_temp_Down_Button.addEventListener("click", airconditioner_temp_Down)
 
 </script>
 </body>
