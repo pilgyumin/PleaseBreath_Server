@@ -22,14 +22,25 @@ router.post('/power', (req, res, next) => {
     res.json(aa);
 });
 
-router.post('/speed', (req, res, next) => {
+//바람세기
+router.post('/speeddown', (req, res, next) => {
     const aa = {};
-    console.log('Airconditioner speed');
-    pi_server_Url.path += "speed";
+    console.log('Airconditioner speeddown');
+    pi_server_Url.path += "speeddown";
     http.request(pi_server_Url).end();
     pi_server_Url.path = '/AirconditionerControl/';
     res.json(aa);
 });
+
+router.post('/speedup', (req, res, next) => {
+    const aa = {};
+    console.log('Airconditioner speed');
+    pi_server_Url.path += "speedup";
+    http.request(pi_server_Url).end();
+    pi_server_Url.path = '/AirconditionerControl/';
+    res.json(aa);
+});
+
 
 router.post('/tempUp', (req, res, next) => {
     const aa = {};
@@ -46,6 +57,33 @@ router.post('/tempDown', (req, res, next) => {
     pi_server_Url.path += "tempdown";
     http.request(pi_server_Url).end();
     pi_server_Url.path = '/Airconditioner_Control/';
+    res.json(aa);
+});
+
+router.post('/warm', (req, res, next) => {
+    const aa = {};
+    console.log('Airconditioner power');
+    pi_server_Url.path += "warm";
+    http.request(pi_server_Url).end();
+    pi_server_Url.path = '/AirconditionerControl/';
+    res.json(aa);
+});
+
+router.post('/cold', (req, res, next) => {
+    const aa = {};
+    console.log('Airconditioner power');
+    pi_server_Url.path += "cold";
+    http.request(pi_server_Url).end();
+    pi_server_Url.path = '/AirconditionerControl/';
+    res.json(aa);
+});
+
+router.post('/dehumidity', (req, res, next) => {
+    const aa = {};
+    console.log('Airconditioner power');
+    pi_server_Url.path += "dehumidity";
+    http.request(pi_server_Url).end();
+    pi_server_Url.path = '/AirconditionerControl/';
     res.json(aa);
 });
 
