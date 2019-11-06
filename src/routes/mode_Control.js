@@ -5,7 +5,7 @@ const router = express.Router()
 let Status = require('../Model/DATA');
 
 let pi_server_Url = {
-    hostname: '192.168.0.9',
+    hostname: '192.168.1.84',
     port: '3000',
     path : '/Mode/'
 };
@@ -20,6 +20,7 @@ router.post('/Senior', (req, res, next) => {
     pi_server_Url.path += "Senior";
     http.request(pi_server_Url).end();
     pi_server_Url.path = '/Mode/';
+    res.json({});
 });
 
 router.post('/Infants', (req, res, next) => {
