@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="309bca97-acf1-4dfc-806b-faa4a5d40e20" name="db_save_dev" url="http://192.168.0.14">
-        <fileTransfer host="192.168.0.14" port="22" rootFolder="/home/pi/dbserver" accessType="SFTP">
+      <webServer id="309bca97-acf1-4dfc-806b-faa4a5d40e20" name="db_save_dev" url="http://192.168.1.172">
+        <fileTransfer host="192.168.1.172" port="22" rootFolder="/home/pi/dbserver" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
