@@ -20,20 +20,42 @@
                     $("#cirtext").text("OFF")
                     alert("System ON")
                     var xmlHttp = new XMLHttpRequest();
-                    xmlHttp.open( "GET", "/aiSolution_Control/ON", true);
+                    xmlHttp.open( "GET", "/aiSolutionControl/ON", true);
                     xmlHttp.send( null );
                 } else {
                     $("#cirtext").text("ON")
                     alert("System OFF")
                     var xmlHttp = new XMLHttpRequest();
-                    xmlHttp.open( "GET", "/aiSolution_Control/OFF", true );
+                    xmlHttp.open( "GET", "/aiSolutionControl/OFF", true );
                     xmlHttp.send( null );
                 }
             })
+
+            $("#circle2").click(function() {
+                popup();
+            })
+
         })
 
         function btnClick(x) {
             x.classList.toggle("change")
+        }
+        function showDiv() {
+            if(document.getElementById('circle2').style.display == "block")
+                document.getElementById('circle2').style.display = "none";
+            else
+                document.getElementById('circle2').style.display = "block";
+
+        }
+
+        function popup(){
+            
+            var url = "/popup";
+            var name = "popup_test";
+            var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+            var w = window.open(url, name, option);
+          
+
         }
 
         function myFunction() {
@@ -196,9 +218,15 @@
                     VOC : Bad
                 </div>
             </div>
-        <div id="circle1">
+        <div id="circle1" onclick="showDiv()">
             <p id="cirtext">ON</p>
         </div>
+        <div id="circle2" style="display : none;">
+                <p id="cirtext2">상세설정</p>
+        </div>
+            
+
+        
     </div>
 </div>
 </body>
