@@ -10,18 +10,19 @@
 
     <table>
         <tr>
-            <td>이름 : </td>
-            <td><input type="text" name="userName" id="userName"></td>
-        </tr>
-        <tr>
-            <td>이메일 : </td>
-            <td><input type="text" name="userEmail" id= "userEmail"></td>
+            <td>ID : </td>
+            <td><input type="text" name="ID" id="ID"></td>
             <td><input type="button" value = "중복확인" id="check"> </td>
             <td><div id="TEXT" style="display : none">사용 가능</div></td>
         </tr>
         <tr>
+           
+            
+            
+        </tr>
+        <tr>
             <td>비번 : </td>
-            <td><input type="password" name="password"></td>
+            <td><input type="password" name="password" id="password"></td>
         </tr>
         <tr>
             <td><input type="submit" value="회원가입" id="OK"></td>
@@ -31,59 +32,63 @@
 <script>
 let CH = false;
 
-function Showpass(){
-    document.getElementById('TEXT').style.display = "block";
+function Showpass(status){
+    document.getElementById('TEXT').style.display = status;
 }
 
 $("#OK").click(function(){
-    if(CH){
-    $.ajax({
-        url: '/',
-        async: true,
-        type: 'POST',
-        data:{
-            name: $("#userName").val(),
-            Email : $("#userEmail").val(),
-            password : $("#password").val()
-        },
-        dataType: 'json',
-        success : function(data){
-            if(CH){
-                alert('회원가입 성공');
-                location.href='/';
-            }
-            else
-                alert('아이디 중복 확인 해주세요.');
-        },
-        error: function(err){
-            alert('오류 발생'+JSON.stringify(err));
-        }
-
-    });
-    }
+    if($("#password").val()== "") alert('비밀번호를 입력하세요.');
     else{
-        alert('아이디 중복 확인 해주세요');
+        if(CH){
+        $.ajax({
+            url: '/users/saved',
+            async: true,
+            type: 'POST',
+            data:{
+                id: $("#ID").val(),
+                password : $("#password").val()
+            },
+            dataType: 'json',
+            success : function(data){
+                if(CH){
+                    alert('회원가입 성공');
+                    location.href='/';
+                }
+                else
+                    alert('아이디 중복 확인 해주세요.');
+            },
+            error: function(err){
+                alert('오류 발생'+JSON.stringify(err));
+            }
+
+        });
+        }
+        else{
+            alert('아이디 중복 확인 해주세요');
+        }
     }
 });
 
 $("#check").click(function(){
     
-    if($("#userEmail").val()== "") alert('아이디를 입력하세요.');
+    if($("#ID").val()== "") alert('아이디를 입력하세요.');
     else{
         $.ajax({
-            url: '/check',
+            url: '/users/check',
             async: true,
             type: 'POST',
             data:{
-                Email: $("#userEmail").val()
+                ID: $("#ID").val()
             },
             dataType: 'json',
             success : function(data){
-                if(data.count == 1)                
+                if(data.count == 1){                
                     alert('이미 사용중인 ID입니다.');
+                    Showpass("None");
+                }
                 else {
                     CH = true;
-                    Showpass();
+                    Showpass("block");
                 }
             },
             error: function(err){
