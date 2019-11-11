@@ -38,8 +38,7 @@ router.post('/check',(req,res,next)=>{
 
 router.post('/saved', (req, res, next) => {
 
-  console.log(req.body);
-  console.log('!!!');
+  
   let Input = new User({id:req.body.id,  password : req.body.password});
   
 
