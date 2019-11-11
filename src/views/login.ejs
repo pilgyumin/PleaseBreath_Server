@@ -90,13 +90,13 @@
           async: 'true',
           type: 'POST',
           data:{
-            idinput : $("#idinput").val(),
+            id : $("#idinput").val(),
             password : $("#pwinput").val(),
           },
           dataType: 'json',
           success : function(data){
             
-            if(Number(data.count == 1)){
+            if(Number(data.isMatch == true)){
               location.href = '/main';
             }
             else{

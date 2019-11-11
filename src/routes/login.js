@@ -2,10 +2,10 @@ import express from 'express'
 import {login} from '../controllers/login.controller'
 
 const router = express.Router()
-
+const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const User = require('./User.js');
-
+let Pass = false;
 
 
 /* GET home page. */
@@ -18,19 +18,18 @@ router.post('/check',(req,res,next)=>{
   
   
 
+    User.findOne({ id: req.body.id }, function(err, user) {
+      if (err) throw err;
+      else if(user == null) res.json({Pass});
+      else{
+        user.comparePassword(req.body.password, function(err, isMatch) {
+            if (err) throw err;
+            res.json({isMatch});
+        });
+      }
+  });
 
-  let check_id = req.body.idinput;
-  console.log(check_id);
-  let check_password = req.body.pwinput;
 
-  User.countDocuments({id : check_id},function(err,count){
-    console.log("c" + count);
-    res.json({count});
-  })
-  
-  
-  console.log(req.body);
-  
 });
 module.exports = router;
 
