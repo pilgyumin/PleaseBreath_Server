@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
   <title>숨좀쉬자</title>
   <style>
     header {
@@ -67,7 +68,7 @@
             type="button"
             id="idlogin"
             value="ID 로그인"
-            onclick="location.href = '/main' "
+            
     />
     <input
             type="button"
@@ -78,4 +79,39 @@
   </center>
 </section>
 </body>
+
+
+<script>
+
+  $("#idlogin").click(function(){
+        
+        $.ajax({
+          url: '/check',
+          async: 'true',
+          type: 'POST',
+          data:{
+            idinput : $("#idinput").val(),
+            password : $("#pwinput").val(),
+          },
+          dataType: 'json',
+          success : function(data){
+            
+            if(Number(data.count == 1)){
+              location.href = '/main';
+            }
+            else{
+              alert('입력 정보가 틀렸습니다.');
+            }
+            window.close();
+          },
+          error: function(err){
+            alert("설정 오류 "+ JSON.stringify(err));
+            window.close();
+          }
+        });
+      });
+      
+  </script>
+
+
 </html>
