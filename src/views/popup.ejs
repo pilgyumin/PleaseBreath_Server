@@ -1,0 +1,76 @@
+<html>
+<head>
+  <title>Document</title>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+  
+</head>
+<body>
+<h1>공기청정기</h1>
+
+<select id="aircleaner" name="aircleaner">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+</select>
+
+<h1>가습기</h1>
+<select id="dehumidity" name="dehumidity">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+</select>
+
+<h1>에어컨</h1>
+<select id="airconditioner" name="airconditioner">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+</select>
+
+<select id="airconditioner_mode" name="airconditioner_mode">
+    <option value="0">냉방</option>
+    <option value="1">난방</option>
+    <option value="2">송풍</option>
+    
+</select>
+
+<br>
+<input type="submit" id="OK" value="설정"/>
+<button onclick=window.close()>취소</button>
+
+<script>th
+$("#OK").click(function(){
+      
+      $.ajax({
+        url: '/popup/Detail',
+        async: 'true',
+        type: 'POST',
+        data:{
+          
+          airconditioner : $("#airconditioner").val(),
+          aircleaner : $("#aircleaner").val(),
+          dehumidity : $("#dehumidity").val(),
+          airconditioner_mode : $("#airconditioner_mode").val()
+        },
+        dataType: 'json',
+        success : function(data){
+          alert('설정 완료');
+          window.close();
+        },
+        error: function(err){
+          alert("설정 오류 "+ JSON.stringify(err));
+          window.close();
+        }
+      });
+    });
+    
+</script>
+</body>
+</html>

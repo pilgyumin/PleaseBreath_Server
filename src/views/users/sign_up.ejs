@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+</head>
+<body>
+<h3>회원 가입</h3>
+
+    <table>
+        <tr>
+            <td>이름 : </td>
+            <td><input type="text" name="userName" id="userName"></td>
+        </tr>
+        <tr>
+            <td>이메일 : </td>
+            <td><input type="text" name="userEmail" id= "userEmail"></td>
+            <td><input type="button" value = "중복확인" id="check"> </td>
+            <td><div id="TEXT" style="display : none">사용 가능</div></td>
+        </tr>
+        <tr>
+            <td>비번 : </td>
+            <td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="회원가입" id="OK"></td>
+            <td><input type="button" onclick="location.href = '/' " value = "돌아가기"/></td>
+        </tr>
+    </table>
+<script>
+let CH = false;
+
+function Showpass(){
+    document.getElementById('TEXT').style.display = "block";
+}
+
+$("#OK").click(function(){
+    if(CH){
+    $.ajax({
+        url: '/',
+        async: true,
+        type: 'POST',
+        data:{
+            name: $("#userName").val(),
+            Email : $("#userEmail").val(),
+            password : $("#password").val()
+        },
+        dataType: 'json',
+        success : function(data){
+            if(CH){
+                alert('회원가입 성공');
+                location.href='/';
+            }
+            else
+                alert('아이디 중복 확인 해주세요.');
+        },
+        error: function(err){
+            alert('오류 발생'+JSON.stringify(err));
+        }
+
+    });
+    }
+    else{
+        alert('아이디 중복 확인 해주세요');
+    }
+});
+
+$("#check").click(function(){
+    
+    if($("#userEmail").val()== "") alert('아이디를 입력하세요.');
+    else{
+        $.ajax({
+            url: '/check',
+            async: true,
+            type: 'POST',
+            data:{
+                Email: $("#userEmail").val()
+            },
+            dataType: 'json',
+            success : function(data){
+                if(data.count == 1)                
+                    alert('이미 사용중인 ID입니다.');
+                else {
+                    CH = true;
+                    Showpass();
+                }
+            },
+            error: function(err){
+                alert('오류 발생'+JSON.stringify(err));
+            }
+
+        });
+    }
+});
+
+</script>
+</body>
+</html>
