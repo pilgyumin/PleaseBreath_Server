@@ -19,10 +19,13 @@ import reservation_Control_Router from './routes/reservation_control'
 import mode_Control_Router from './routes/mode_Control'
 import aiSolution_Countrol_Router from './routes/aiSolution_Control'
 import Register_Router from './routes/Register'
+import popupRouter from './routes/popup'
 
 const mongoose = require('mongoose');
 const app = express();
 const DB_SERVICE = require('./routes/db_connect.js');
+
+
 //service DB Connect
 DB_SERVICE();
 
@@ -52,6 +55,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -70,7 +74,11 @@ app.use('/airconditionercontrol', airconditioner_Control_Router);
 app.use('/humidifiercontrol', humidifier_Control_Router);
 app.use('/aiSolutionControl', aiSolution_Countrol_Router);
 app.use('/reservationcontrol', reservation_Control_Router);
+
 app.use('/users',Register_Router);
+
+app.use('/popup',popupRouter);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -87,5 +95,6 @@ app.use( (err, req, res, next) =>  {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
