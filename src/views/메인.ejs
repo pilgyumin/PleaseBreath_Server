@@ -29,6 +29,89 @@
 		}
 	}
 
+	function getTemp() {
+            $.ajax({
+                type: 'GET',
+                url : "/insertdb/whatstatus",
+                async: true,
+                success : function (data) {
+                    let status = JSON.parse(data);
+                    let temp_Outer = status.temp_Outer;
+                    let temp_Inner = status.temp_Inner;
+                    let humid_Outer = status.humid_Outer;
+                    let humid_Inner = status.humid_Inner;
+                    let pm10_Outer = status.pm10_Outer;
+                    let pm10_Inner = status.pm10_Inner;
+                    let pm25_Outer = status.pm25_Outer;
+                    let pm25_Inner = status.pm25_Inner;
+                    let voc_Outer = status.voc_Outer;
+                    let voc_Inner = status.voc_Inner;
+
+                    document.getElementById('temp_Outer').innerHTML= "온도 <strong> "+ temp_Outer + "℃</strong>";
+                    document.getElementById('temp_Inner').innerHTML= "온도 <strong> "+ temp_Inner + "℃</strong>";
+                    document.getElementById('humid_Outer').innerHTML= "습도 <strong>"+ humid_Outer+ "%</strong>";
+                    document.getElementById('humid_Inner').innerHTML= "습도 <strong>"+ humid_Inner+ "%</strong>";
+                    document.getElementById('pm10_Outer').innerHTML= "PM10 <strong>"+ pm10_Outer + "</strong>";
+                    document.getElementById('pm10_Inner').innerHTML= "PM10 <strong>"+ pm10_Inner + "</strong>";
+                    document.getElementById('pm25_Outer').innerHTML= "PM2.5 <strong>"+ pm25_Outer + "</strong>";
+                    document.getElementById('pm25_Inner').innerHTML= "PM2.5 <strong>"+ pm25_Inner + "</strong>";
+                    document.getElementById('voc_Outer').innerHTML= "VOC <strong>"+ voc_Outer + "</strong>";
+                    document.getElementById('voc_Inner').innerHTML= "CO2 <strong>"+ voc_Inner + "</strong>";
+
+                },
+                error:function(request,status,error){
+                    alert(status + " " + error);
+                }
+            });
+            setInterval(function() {
+                $.ajax({
+                    type: 'GET',
+                    url : "/main/whatstatus",
+                    async: true,
+                    success : function (data) {
+                        let status = JSON.parse(data);
+                        let temp_Outer = status.temp_Outer;
+                        let temp_Inner = status.temp_Inner;
+                        let humid_Outer = status.humid_Outer;
+                        let humid_Inner = status.humid_Inner;
+                        let pm10_Outer = status.pm10_Outer;
+                        let pm10_Inner = status.pm10_Inner;
+                        let pm25_Outer = status.pm25_Outer;
+                        let pm25_Inner = status.pm25_Inner;
+                        let voc_Outer = status.voc_Outer;
+                        let voc_Inner = status.voc_Inner;
+
+
+						document.getElementById('temp_Outer').innerHTML= "온도 <strong> "+ temp_Outer + "℃</strong>";
+						document.getElementById('temp_Inner').innerHTML= "온도 <strong> "+ temp_Inner + "℃</strong>";
+						document.getElementById('humid_Outer').innerHTML= "습도 <strong>"+ humid_Outer+ "%</strong>";
+						document.getElementById('humid_Inner').innerHTML= "습도 <strong>"+ humid_Inner+ "%</strong>";
+						document.getElementById('pm10_Outer').innerHTML= "PM10 <strong>"+ pm10_Outer + "</strong>";
+						document.getElementById('pm10_Inner').innerHTML= "PM10 <strong>"+ pm10_Inner + "</strong>";
+						document.getElementById('pm25_Outer').innerHTML= "PM2.5 <strong>"+ pm25_Outer + "</strong>";
+						document.getElementById('pm25_Inner').innerHTML= "PM2.5 <strong>"+ pm25_Inner + "</strong>";
+						document.getElementById('voc_Outer').innerHTML= "VOC <strong>"+ voc_Outer + "</strong>";
+						document.getElementById('voc_Inner').innerHTML= "CO2 <strong>"+ voc_Inner + "</strong>";
+                    },
+                    error:function(request,status,error){
+                        alert(status + " " + error);
+                    }
+                });
+            }, 3000);
+        }
+
+        getTemp();
+
+
+
+
+
+
+
+
+
+
+
 	</script> 
 </head>
 <body>
@@ -69,12 +152,12 @@
 						<span class="thum"></span>
 					</div>
 					<ul>
-						<li>온도 <strong>10℃</strong></li>
-						<li>습도 <strong>10%</strong></li>
-						<li>PM10 <strong>110</strong></li>
-						<li>PM2.5 <strong>98</strong></li>
-						<li>VOC <strong>10</strong></li>
-						<li>CO2 <strong>8</strong></li>
+						<li id="temp_Outer"> 온도 <strong>1℃</strong></li>
+						<li id="humid_Outer">습도 <strong>10%</strong></li>
+						<li id="pm10_Outer">PM10 <strong>110</strong></li>
+						<li id="pm25_Outer">PM2.5 <strong>98</strong></li>
+						<li id="voc_Outer">VOC <strong>20</strong></li>
+						<li id="temp_Outer">CO2 <strong>8</strong></li>
 					</ul>
 				</div>
 				<!-- // 실외 -->
@@ -85,12 +168,12 @@
 						<span class="thum"></span>
 					</div>
 					<ul>
-						<li>온도 <strong>10℃</strong></li>
-						<li>습도 <strong>10%</strong></li>
-						<li>PM10 <strong>110</strong></li>
-						<li>PM2.5 <strong>98</strong></li>
-						<li>VOC <strong>10</strong></li>
-						<li>CO2 <strong>8</strong></li>
+						<li id="temp_Inner">온도 <strong>10℃</strong></li>
+						<li id="humid_Inner">습도 <strong>10%</strong></li>
+						<li id="pm10_Inner">PM10 <strong>110</strong></li>
+						<li id="pm25_Inner">PM2.5 <strong>98</strong></li>
+						<li id="voc_Inner">VOC <strong>10</strong></li>
+						<li id="temp_Inner">CO2 <strong>8</strong></li>
 					</ul>
 				</div>
 				<!-- // 실내 -->
