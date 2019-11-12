@@ -18,6 +18,22 @@
 	<script src="./js/main.js"></script>
 
 	<script>
+	$(document).ready(function() {
+		$("#detail").click(function() {
+                popup();
+        })
+	})
+	function popup(){
+            
+            var url = "/popup";
+            var name = "popup_test";
+            var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+            var w = window.open(url, name, option);
+          
+
+        }
+	</script>
+	<script>
 	function showDiv() {
 		if(document.getElementById('detail').style.visibility == "hidden"){
 			document.getElementById('detail').style.visibility = "visible";
@@ -27,6 +43,16 @@
 			document.getElementById('detail').style.visibility = "hidden";
 			document.getElementById('reservation').style.visibility = "visible";
 		}
+	}
+
+	
+	
+
+	function popup(){
+            var url = "/popup";
+            var name = "popup_test";
+            var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+            var w = window.open(url, name, option);
 	}
 
 	function getTemp() {
