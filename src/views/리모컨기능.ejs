@@ -25,17 +25,24 @@
 				<div class="nav-wrap">
 					<h2 class="logo">로고</h2>
 					<div class="search-box">
-						<input type="text">
+						<input
+								type="text"
+								id="mySearch"
+								onkeyup="myFunction()"
+								placeholder="Search.."
+								title="메뉴를 입력하세요."
+						/>
 						<button type="button"></button>
 					</div>
-					<ul>
-							<li class="active"><a href="#">메인페이지</a></li>
+					<ul id="myMenu">
+							<li class="btn-choice-mode"><a href="#">메인페이지</a></li>
 							<li class="btn-air"><a href="#">상세 공기 상태</a></li>
 							<li class="btn-data"><a href="#">누적 데이터</a></li>
-							<li class="btn-remote"><a href="#">리모컨 기능</a></li>
+							<li class="active"><a href="#">리모컨 기능</a></li>
 							<li class="btn-mode"><a href="#">모드설정</a></li>
 					</ul>
 					<button type="button" class="btn-close">닫기</button>
+					<button type="button" class="btn-logout" ><a href="#">로그아웃</a></button>
 				</div>
 			</div>
 		</header>
