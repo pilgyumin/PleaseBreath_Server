@@ -66,7 +66,7 @@ router.post('/tempDown', (req, res, next) => {
 
 router.post('/warm', (req, res, next) => {
     const aa = {};
-    console.log('Airconditioner power');
+    console.log('Airconditioner warm');
     pi_server_Url.path += "warm";
     http.request(pi_server_Url).end();
     pi_server_Url.path = '/AirconditionerControl/';
@@ -75,7 +75,7 @@ router.post('/warm', (req, res, next) => {
 
 router.post('/cold', (req, res, next) => {
     const aa = {};
-    console.log('Airconditioner power');
+    console.log('Airconditioner cold');
     pi_server_Url.path += "cold";
     http.request(pi_server_Url).end();
     pi_server_Url.path = '/AirconditionerControl/';
@@ -84,7 +84,7 @@ router.post('/cold', (req, res, next) => {
 
 router.post('/dehumidity', (req, res, next) => {
     const aa = {};
-    console.log('Airconditioner power');
+    console.log('Airconditioner dehumidity');
     pi_server_Url.path += "dehumidity";
     http.request(pi_server_Url).end();
     pi_server_Url.path = '/AirconditionerControl/';

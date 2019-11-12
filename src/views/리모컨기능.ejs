@@ -56,15 +56,15 @@
 					<li>에어컨</li>
 					<li>가습기</li>
 				</ul>
-
+				
 				<div class="remote-control">
 					<!-- 공기청정기 -->
 					<div class="tab-item active">
-						<button type="button" class="btn-power"><strong>전원</strong></button>
+						<button type="button" class="btn-power"  id="aircleaner_power"><strong>전원</strong></button>
 						<div class="control-box">
-							<button type="button" class="btn-up">올림</button>
+							<button type="button" class="btn-up" id="aircleaner_speedup">올림</button>
 							<p>세기</p>
-							<button type="button" class="btn-down">내림</button>
+							<button type="button" class="btn-down" id="aircleaner_speeddown">내림</button>
 						</div>
 					</div>
 					<!-- 공기청정기 -->
@@ -72,21 +72,21 @@
 					<!-- 에어컨 -->
 					<div class="tab-item">
 						<ul class="btn-choice-mode">
-							<button type="button">냉방</button>
-							<button type="button">난방</button>
-							<button type="button">제습</button>
+							<button type="button" id="airconditioner_cold">냉방</button>
+							<button type="button" id="airconditioner_warm">난방</button>
+							<button type="button" id="airconditioner_dehumidity">제습</button>
 						</ul>
-						<button type="button" class="btn-power"><strong>전원</strong></button>
+						<button type="button" class="btn-power" id="airconditioner_power"><strong>전원</strong></button>
 						<div class="dual">
 							<div class="control-box">
-								<button type="button" class="btn-up">올림</button>
+								<button type="button" class="btn-up" id="airconditioner_tempup">올림</button>
 								<p>온도</p>
-								<button type="button" class="btn-down">내림</button>
+								<button type="button" class="btn-down"id="airconditioner_tempdown">내림</button>
 							</div>
 							<div class="control-box">
-								<button type="button" class="btn-up">올림</button>
+								<button type="button" class="btn-up" id="airconditioner_speedup">올림</button>
 								<p>세기</p>
-								<button type="button" class="btn-down">내림</button>
+								<button type="button" class="btn-down" id="airconditioner_speeddown">내림</button>
 							</div>
 						</div>
 					</div>
@@ -94,11 +94,11 @@
 
 					<!-- 가습기 -->
 					<div class="tab-item">
-						<button type="button" class="btn-power"><strong>전원</strong></button>
+						<button type="button" class="btn-power" id="humidifier_power"><strong>전원</strong></button>
 						<div class="control-box">
-							<button type="button" class="btn-up">올림</button>
+							<button type="button" class="btn-up" id="humidifier_speedup">올림</button>
 							<p>세기</p>
-							<button type="button" class="btn-down">내림</button>
+							<button type="button" class="btn-down" id="humidifier_speeddown">내림</button>
 						</div>
 					</div>
 					<!-- 가습기 -->
@@ -118,4 +118,269 @@
 		</div>
 	</div>
 </body>
+<!-- 공기청정기 -->
+<script>
+
+
+$("#aircleaner_power").click(function(){
+		
+		$.ajax({
+		url: '/aircleanercontrol/power',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+	
+$("#aircleaner_speedup").click(function(){
+		
+		$.ajax({
+		url: '/aircleanercontrol/speedup',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+	
+
+$("#aircleaner_speeddown").click(function(){
+		
+		$.ajax({
+		url: '/aircleanercontrol/speeddown',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+//공기 청정기
+
+//가습기
+$("#humidifier_power").click(function(){
+		
+		$.ajax({
+		url: '/humidifiercontrol/power',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+	
+$("#humidifier_speedup").click(function(){
+		
+		$.ajax({
+		url: '/humidifiercontrol/speedup',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+	
+
+$("#humidifier_speeddown").click(function(){
+		
+		$.ajax({
+		url: '/humidifiercontrol/speeddown',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+//가습기
+
+//에어컨
+$("#airconditioner_power").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/power',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+	
+$("#airconditioner_cold").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/cold',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+	
+
+$("#airconditioner_warm").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/warm',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+$("#airconditioner_dehumidity").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/dehumidity',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+$("#airconditioner_tempup").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/tempUp',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+$("#airconditioner_tempdown").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/tempDown',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+$("#airconditioner_speedup").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/speedup',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+$("#airconditioner_speeddown").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/speeddown',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+
+</script>
 </html>

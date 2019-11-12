@@ -551,7 +551,8 @@ h1.logo a {
     .remote-setting .remote-control .btn-power {
       position: relative;
       margin-top: 30px;
-      background: #ca1f0c url(../images/power.png) 50% no-repeat;
+      
+      background:#ca1f0c url(../images/power.png) 50% no-repeat;
       background-size: 65px;
       width: 90px;
       height: 90px;

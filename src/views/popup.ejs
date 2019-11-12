@@ -7,7 +7,7 @@
 <body>
 <h1>온도 설정</h1>
 
-<select id="aircleaner" name="aircleaner">
+<select id="temp" name="temp">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -27,7 +27,7 @@
 </select>
 
 <h1>미세먼지 설정</h1>
-<select id="airconditioner" name="airconditioner">
+<select id="air_status" name="air_status">
     <option value="1">매우 좋음</option>
     <option value="2">좋음</option>
     <option value="3">보통</option>
@@ -51,10 +51,9 @@ $("#OK").click(function(){
         type: 'POST',
         data:{
           
-          airconditioner : $("#airconditioner").val(),
-          aircleaner : $("#aircleaner").val(),
+          temp : $("#temp").val(),
           dehumidity : $("#dehumidity").val(),
-          airconditioner_mode : $("#airconditioner_mode").val()
+          air_status : $("#air_status").val()
         },
         dataType: 'json',
         success : function(data){

@@ -533,6 +533,7 @@ h1.logo a {
 
 /* 리모컨 기능 */
 .remote-setting {
+  
   position: relative;
   background: #ddd;
   border-radius: 15px 15px 0 0;
@@ -545,6 +546,7 @@ h1.logo a {
     border-radius: 15px 15px 0 0;
     padding: 0 15px; }
     .remote-setting .tab-list li {
+      cursor: pointer;
       display: flex;
       height: 60px;
       flex: 0 0 33%;
@@ -563,15 +565,18 @@ h1.logo a {
     .remote-setting .remote-control .tab-item {
       display: none; }
       .remote-setting .remote-control .tab-item.active {
+        
         display: block; }
     .remote-setting .remote-control .btn-power {
       position: relative;
       margin-top: 30px;
+      cursor: pointer;
       background: #ca1f0c url(../images/power.png) 50% no-repeat;
       background-size: 65px;
       width: 90px;
       height: 90px;
       border-radius: 50%; }
+      
       .remote-setting .remote-control .btn-power strong {
         position: absolute;
         top: -25px;
@@ -584,12 +589,14 @@ h1.logo a {
       margin-top: 20px; }
       .remote-setting .remote-control .control-box .btn-up {
         background: url(../images/arrow.svg) 0 0 no-repeat;
+        cursor: pointer;
         width: 65px;
         height: 65px;
         font: 0/0 a;
         transform: rotate(180deg); }
       .remote-setting .remote-control .control-box .btn-down {
         background: url(../images/arrow.svg) 0 0 no-repeat;
+        cursor: pointer;
         width: 65px;
         height: 65px;
         font: 0/0 a; }
@@ -598,12 +605,14 @@ h1.logo a {
         color: #333;
         font-size: 15px; }
     .remote-setting .remote-control .btn-choice-mode {
+      
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
       margin-bottom: 10px; }
       .remote-setting .remote-control .btn-choice-mode button {
+        cursor: pointer;
         background: #fff;
         height: 45px;
         margin: 0 10px;
