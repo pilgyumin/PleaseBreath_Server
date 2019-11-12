@@ -4,6 +4,7 @@ const http = require('http');
 
 const pi_server_Url = require('./Pi_Url');
 pi_server_Url.path = '/AircleanerControl/';
+const status = require('../../Model/Machine_Status')
 
 /*
 let pi_server_Url = {
@@ -20,17 +21,30 @@ router.post('/power', (req, res, next) => {
     http.request(pi_server_Url).end();
     console.log(pi_server_Url);
     pi_server_Url.path = '/AircleanerControl/';
-    res.json(aa);
+    if(status.aircleaner_power == 1){
+        status.aircleaner_power = 0;
+        res.json(0);
+    }
+    else{
+        status.aircleaner_power = 1;
+        res.json(1);
+    }
 });
 
 router.post('/speedup', (req, res, next) => {
     const aa = {};
-    console.log('aircleaner speedup');
+    console.log('aircleaner speedup' + status.aircleaner_speed);
     pi_server_Url.path += "speedup";
     http.request(pi_server_Url).end();
     console.log(pi_server_Url);
     pi_server_Url.path = '/AircleanerControl/';
-    res.json(aa);
+    console.log(status.aircleaner_speed);
+    if(status.aircleaner_speed == 4)
+        res.json(0);
+    else{
+        status.aircleaner_speed += 1;
+        res.json(status.aircleaner_speed);
+    }
 });
 
 router.post('/speeddown', (req, res, next) => {
@@ -40,7 +54,14 @@ router.post('/speeddown', (req, res, next) => {
     http.request(pi_server_Url).end();
     console.log(pi_server_Url);
     pi_server_Url.path = '/AircleanerControl/';
-    res.json(aa);
+
+    if(status.aircleaner_speed == 1)
+        res.json(0);
+    else{
+        status.aircleaner_speed -= 1;
+        res.json(status.aircleaner_speed);
+    }
+
 });
 
 module.exports = router;

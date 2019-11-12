@@ -11,15 +11,7 @@ router.get('/', (req, res, next) => {
     res.render('리모컨기능');
 });
 
-router.get('/airconditioner_power', (req, res, next) => {
-    //Power On / Off
-    res.render('리모컨기능');
-});
 
-router.get('/airconditioner_speedup', (req, res, next) => {
-    //Power On / Off
-    res.render('리모컨기능');
-});
 
 module.exports = router;
 

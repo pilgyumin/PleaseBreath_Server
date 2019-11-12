@@ -108,10 +108,10 @@
 				<div class="current-state">
 					<strong>현재상태</strong>
 					<ul>
-						<li>전원: <span>ON</span></li>
-						<li>전원: <span>23</span></li>
-						<li>모드: <span>냉방</span></li>
-						<li>세기: <span>2</span></li>
+						<li>전원: <span id="display_power"></span></li>
+						<li>온도: <span id="display_temp"></span></li>
+						<li>모드: <span id="display_mode"></span></li>
+						<li>세기: <span id="display_speed"></span></li>
 					</ul>
 				</div>
 			</div>
@@ -133,6 +133,10 @@ $("#aircleaner_power").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
+			if(data == 1)
+				$("#display_power").text("ON");
+			else
+				$("#display_power").text("OFF");
 		},
 		error: function(err){
 			throw(err);
@@ -151,6 +155,10 @@ $("#aircleaner_speedup").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
+			if(data == 0)
+				$("#display_speed").text("4");
+			else
+				$("#display_speed").text(data);
 		},
 		error: function(err){
 			throw(err);
@@ -170,6 +178,11 @@ $("#aircleaner_speeddown").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
+			if(data == 0)
+				$("#display_speed").text("1");
+			else
+				$("#display_speed").text(data);
+
 		},
 		error: function(err){
 			throw(err);
@@ -265,6 +278,7 @@ $("#airconditioner_cold").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
+			$("#display_mode").text("냉방");
 		},
 		error: function(err){
 			throw(err);
@@ -284,6 +298,7 @@ $("#airconditioner_warm").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
+			$("#display_mode").text("난방");
 		},
 		error: function(err){
 			throw(err);
@@ -302,6 +317,7 @@ $("#airconditioner_dehumidity").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
+			$("#display_mode").text("제습");
 		},
 		error: function(err){
 			throw(err);
