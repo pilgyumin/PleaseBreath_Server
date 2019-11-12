@@ -40,7 +40,7 @@ function menuClick(){
 	var main = $('header .btn-choice-mode');
 	var detail_air = $('header .btn-air');
 	var data = $('header .btn-data');
-
+	var home = $('header .btn-home');
 	menu.on('click' , function(){
 		$('.nav').fadeIn('fast');
 	})
@@ -69,7 +69,9 @@ function menuClick(){
 	data.on('click' ,function(){
 		location.href='/dataHistory';
 	})
-
+	home.on('click' ,function(){
+		location.href='/main';
+	})
 }
 
 function tabChange(){
