@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>숨좀쉬자</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+	<link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+	<div class="container">
+		<!--  -->
+		<div class="contents-wrap login">
+			<!-- 로고 -->
+			<h1 class="logo"><a href="#">로고</a></h1>
+			<!-- //로고 -->
+
+			<!-- 로그인 폼 -->
+			<div class="form-login">
+				<label for="user-id" class="user-id">
+					<input type="text" id="user-id" placeholder="아이디를 입력하세요">
+				</label>
+				<label for="user-pw" class="user-pw">
+					<input type="password" id="user-pw" placeholder="비밀번호를 입력하세요">
+				</label>
+				<!-- 회원가입 버튼 -->
+				<div class="btn-wrap">
+					<button type="button" class="btn-base" id="login">로그인</button>
+					<button type="button" class="btn-base" onclick="location.href = '/users/sign_up'  ">회원가입</button>
+				</div>
+				<!-- //회원가입 버튼 -->
+			</div>
+			<!-- //로그인 폼 -->
+
+		</div>
+	</div>
+</body>
+
+
+<script>
+
+	$("#login").click(function(){
+			
+			$.ajax({
+			url: '/check',
+			async: 'true',
+			type: 'POST',
+			data:{
+				id : $("#user-id").val(),
+				password : $("#user-pw").val(),
+			},
+			dataType: 'json',
+			success : function(data){
+				
+				if(Number(data.isMatch == true)){
+				location.href = '/main';
+				}
+				else{
+				alert('입력 정보가 틀렸습니다.');
+				}
+				window.close();
+			},
+			error: function(err){
+				alert("설정 오류 "+ JSON.stringify(err));
+				window.close();
+			}
+			});
+		});
+		
+</script>
+
+
+</html>

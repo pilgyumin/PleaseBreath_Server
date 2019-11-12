@@ -164,6 +164,8 @@
         text-align: center;
         vertical-align: center;
     }
+
+    
 }
 @media (min-width: 1000px) {
     .container {
@@ -324,6 +326,23 @@
         cursor: pointer;
     }
     #cirtext {
+        top: 50%;
+        font-size: 30px;
+        text-align: center;
+        vertical-align: center;
+    }
+    #circle2 {
+        background-color: #86efef;
+        width: 150px;
+        height: 150px;
+        right: 30%;
+        bottom: 5%;
+        border-radius: 75px;
+        line-height: 75px;
+        position: absolute;
+        cursor: pointer;
+    }
+    #cirtext2 {
         top: 50%;
         font-size: 30px;
         text-align: center;

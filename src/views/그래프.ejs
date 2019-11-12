@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>숨좀쉬자</title>
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+	<link rel="stylesheet" href="./css/main.css">
+
+	<script
+		src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.2/dist/Chart.min.js"></script>
+	<script src="./js/main.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		<header id="header">
+			<button type="button" class="btn-menu">메뉴</button>
+			<a href="#" class="btn-home">홈으로</a>
+
+			<div class="nav">
+				<div class="nav-wrap">
+					<h2 class="logo">로고</h2>
+					<div class="search-box">
+						<input type="text">
+						<button type="button"></button>
+					</div>
+					<ul>
+							<li class="active"><a href="#">메인페이지</a></li>
+							<li class="btn-air"><a href="#">상세 공기 상태</a></li>
+							<li class="btn-data"><a href="#">누적 데이터</a></li>
+							<li class="btn-remote"><a href="#">리모컨 기능</a></li>
+							<li class="btn-mode"><a href="#">모드설정</a></li>
+					</ul>
+					<button type="button" class="btn-close">닫기</button>
+				</div>
+			</div>
+		</header>
+		<div class="contents-wrap">
+			<h3 class="sub-title">그래프</h3>
+
+			<div class="chart-wrap">
+				<select name="" id="">
+					<option value="">온도</option>
+					<option value="">습도</option>
+					<option value="">PM2.5</option>
+					<option value="">PM10</option>
+					<option value="">VOC</option>
+					<option value="">CO2</option>
+				</select>
+
+				<!-- 차트 -->
+				<div class="chart-box">
+					<canvas id="myChart"></canvas>
+				</div>
+				<!-- 차트 -->
+
+				<div class="chart-info">
+					<div class="date">
+						<p>2019.11.03</p>
+					</div>
+					<ul>
+						<li>
+							<h4>온도<span>Temperature</span></h4>
+							<strong>100</strong>
+						</li>
+						<li>
+							<h4>습도<span>Humidity</span></h4>
+							<strong>100</strong>
+						</li>
+						<li>
+							<h4>PM2.5<span>Particulate Matter</span></h4>
+							<strong>100</strong>
+						</li>
+						<li>
+							<h4>PM10<span>Particulate Matter</span></h4>
+							<strong>100</strong>
+						</li>
+						<li>
+							<h4>VOC<span>Volatile Organic Compounds</span></h4>
+							<strong>100</strong>
+						</li>
+						<li>
+							<h4>CO2<span>Carbon dioxide</span></h4>
+							<strong>100</strong>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+</head>
+<body>
+<h3>회원 가입</h3>
+
+    <table>
+        <tr>
+            <td>ID : </td>
+            <td><input type="text" name="ID" id="ID"></td>
+            <td><input type="button" value = "중복확인" id="check"> </td>
+            <td><div id="TEXT" style="display : none">사용 가능</div></td>
+        </tr>
+        <tr>
+           
+            
+            
+        </tr>
+
+        <tr>
+            <td>비밀번호 : </td>
+            <td><input type="password" name="password" id="password" class="form-control" required ></td>
+        </tr>
+
+        <tr>
+            <td>비밀번호 확인 : </td>
+            <td><input type="password" name="password2" id="password2"class="form-control" required ></td>
+        </tr>
+        
+        
+        
+
+
+    </table>
+    <div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+    <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+    
+
+    <input type="submit" value="회원가입" id="OK">
+    <input type="button" onclick="location.href = '/' " value = "돌아가기"/>
+        
+   
+    
+
+<script>
+let CH = false;
+let CHECK_ID;
+let CHECK_PASS = false;
+
+function Showpass(status){
+    document.getElementById('TEXT').style.display = status;
+}
+
+$(function(){
+         $("#alert-success").hide(); 
+         $("#alert-danger").hide(); 
+         $("input").keyup(function(){
+              var pwd1=$("#password").val(); 
+              var pwd2=$("#password2").val(); 
+              if(pwd1 != "" || pwd2 != ""){ 
+                  if(pwd1 == pwd2){
+                   $("#alert-success").show(); 
+                   $("#alert-danger").hide();
+                   $("#submit").removeAttr("disabled"); 
+                   CHECK_PASS = true;
+                }
+                   else{ 
+
+                       $("#alert-success").hide();
+                       $("#alert-danger").show(); 
+                       $("#submit").attr("disabled", "disabled"); 
+                       CHECK_PASS = false;
+                    }
+                 } 
+                }); 
+});
+
+
+
+
+$("#OK").click(function(){
+    if($("#ID").val()== "" ) alert('ID를 입력하세요.');
+    else if($("#password").val()== "") alert('비밀번호를 입력하세요.');
+    else{
+        if(CH && CHECK_ID == $("#ID").val() && CHECK_PASS ){
+        $.ajax({
+            url: '/users/saved',
+            async: true,
+            type: 'POST',
+            data:{
+                id: $("#ID").val(),
+                password : $("#password").val()
+            },
+            dataType: 'json',
+            success : function(data){
+                if(CH){
+                    alert('회원가입 성공');
+                    location.href='/';
+                }
+                else{
+                    Showpass("None");
+                    alert('아이디 중복 확인 해주세요.');
+                    
+                }
+            },
+            error: function(err){
+                alert('오류 발생'+JSON.stringify(err));
+            }
+
+        });
+        }
+        else if(!CHECK_PASS) alert('비밀번호 확인 해주세요');
+        else{
+            Showpass("None");
+            alert('아이디 중복 확인 해주세요');
+        }
+    }
+});
+
+$("#check").click(function(){
+    
+    if($("#ID").val()== "") alert('아이디를 입력하세요.');
+    else{
+        $.ajax({
+            url: '/users/check',
+            async: true,
+            type: 'POST',
+            data:{
+                ID: $("#ID").val()
+            },
+            dataType: 'json',
+            success : function(data){
+                if(data.count == 1){                
+                    alert('이미 사용중인 ID입니다.');
+                    Showpass("None");
+                }
+                else {
+                    CH = true;
+                    CHECK_ID = $("#ID").val();
+                    Showpass("block");
+                }
+            },
+            error: function(err){
+                alert('오류 발생'+JSON.stringify(err));
+            }
+
+        });
+    }
+});
+
+</script>
+</body>
+</html>

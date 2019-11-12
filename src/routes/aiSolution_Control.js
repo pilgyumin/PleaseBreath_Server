@@ -13,7 +13,7 @@ let pi_server_Url={
 router.get('/ON', (req, res, next) => {
     solution_status.power = 1;
     console.log('aiSolution ON');
-    http.request(pi_server_Url).end();
+    //http.request(pi_server_Url).end();
     console.log(pi_server_Url);
     pi_server_Url.path = '/Mode/Normal';
     res.json({});
@@ -22,7 +22,7 @@ router.get('/ON', (req, res, next) => {
 router.get('/OFF', (req, res, next) => {
     solution_status.power = 0;
     console.log('aiSolution OFF');
-    http.request(pi_server_Url).end();
+    //http.request(pi_server_Url).end();
     console.log(pi_server_Url);
     pi_server_Url.path = '/Mode/Normal';
     res.json({});

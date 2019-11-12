@@ -4,14 +4,17 @@ import {main} from '../controllers/main.controller'
 import fs from 'fs'
 
 const router = express.Router()
+
 let status = require('../Model/DATA');
 
 
 /* GET home page. */
 router.get('', (req, res, next) => {
   
-    res.render('main');
+    res.render('메인');
 });
+
+
 
 router.get('/whatstatus', (req, res, next) => {
     console.log('main whatstatus in');

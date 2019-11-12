@@ -19,7 +19,7 @@ var Outer = new Object();
 router.get('/', (req, res, next) => {
     
     
-    Inner_Todo.find({ },{_id:0}, function(err, todo) {
+    /*Inner_Todo.find({ },{_id:0}, function(err, todo) {
         if(err) throw err;
         console.log(todo);
         Inner = todo;
@@ -34,9 +34,9 @@ router.get('/', (req, res, next) => {
     let In = JSON.stringify(Inner);
     let Out = JSON.stringify(Outer);
     
-    res.json({In,Out});
+    res.json({In,Out});*/
     
-    res.render('detail_air');
+    res.render('상세공기상태');
 });
 
 
