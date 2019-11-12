@@ -12,7 +12,7 @@ let pi_server_Url = {
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-    res.render('mode_Control',{Status:Status});
+    res.render('모드설정',{Status:Status});
 });
 
 router.post('/Senior', (req, res, next) => {

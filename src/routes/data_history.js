@@ -6,7 +6,7 @@ const router = express.Router()
 /* GET home page. */
 router.get('/', (req, res, next) => {
     
-    res.render('index.html');
+    res.render('그래프');
 });
 
 module.exports = router;

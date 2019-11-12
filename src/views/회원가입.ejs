@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>숨좀쉬자</title>
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+	<link rel="stylesheet" href=" ../css/main.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+</head>
+<body>
+	<div class="container">
+
+		<div class="contents-wrap">
+			<h2 class="sub-title">회원가입</h2>
+
+			<!-- 회원가입 폼 -->
+			<div class="form-regist">
+				<dl>
+					<dt>아이디 <span>*</span></dt>
+					<dd>
+						<input type="text" id = "ID" placeholder="아이디를 입력해주세요.">
+						<button type="button" id = "check_id">중복확인</button>
+					</dd>
+				</dl>
+				<dl>
+					<dt>비밀번호 <span>*</span></dt>
+					<dd>
+						<input type="password" id="password" placeholder="비밀번호를 입력해주세요." class="form-control" required>
+					</dd>
+				</dl>
+				<dl>
+					<dt>비밀번호 확인<span>*</span></dt>
+					<dd>
+						<input type="password" id="password2" placeholder="입력하신 비밀번호를 재입력 해주세요." class="form-control" required>
+					</dd>
+
+					
+				</dl>
+					<div class="alert alert-success" id="alert-success">비밀번호가 일치합니다.</div>
+				    <div class="alert alert-danger" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
+
+				<dl>
+					<dt>기기번호<span>*</span></dt>
+					<dd>
+						<input type="text" placeholder="기기번호를 입력해주세요">
+						<button type="button">인증</button>
+					</dd>
+				</dl>
+				<dl>
+					<dt>전화번호<span>*</span></dt>
+					<dd>
+						<input type="text" placeholder="-없이 입력해주세요.">
+					</dd>
+				</dl>
+
+				<div class="btn-wrap">
+					<button type="button" class="btn-base btn-normal" id="OK">가입</button>
+					<button type="button" class="btn-base btn-cancel" onclick="location.href = '/' ">취소</button>
+					
+				</div>
+			</div>
+			<!-- // 회원가입 폼 -->
+		</div>
+	</div>
+</body>
+
+<script>
+let CH = false;
+let CHECK_ID;
+let CHECK_PASS = false;
+$(function(){
+	$("#alert-success").hide(); 
+	$("#alert-danger").hide(); 
+	$("input").keyup(function(){
+		var pwd1=$("#password").val(); 
+		var pwd2=$("#password2").val(); 
+		if(pwd1 != "" || pwd2 != ""){ 
+			if(pwd1 == pwd2){
+			$("#alert-success").show(); 
+			$("#alert-danger").hide();
+			$("#submit").removeAttr("disabled"); 
+			CHECK_PASS = true;
+		}
+			else{ 
+
+				$("#alert-success").hide();
+				$("#alert-danger").show(); 
+				$("#submit").attr("disabled", "disabled"); 
+				CHECK_PASS = false;
+			}
+			} 
+		}); 
+});
+
+
+$("#check_id").click(function(){
+    
+    if($("#ID").val()== "") alert('아이디를 입력하세요.');
+    else{
+        $.ajax({
+            url: '/users/check',
+            async: true,
+            type: 'POST',
+            data:{
+                ID: $("#ID").val()
+            },
+            dataType: 'json',
+            success : function(data){
+                if(data.count == 1){                
+                    alert('이미 사용중인 ID입니다.');
+                    Showpass("None");
+                }
+                else {
+					CH = true;
+					alert('사용 가능한 ID입니다.');
+                    CHECK_ID = $("#ID").val();
+                    Showpass("block");
+                }
+            },
+            error: function(err){
+                alert('오류 발생'+JSON.stringify(err));
+            }
+
+        });
+    }
+});
+
+
+
+$("#OK").click(function(){
+    if($("#ID").val()== "" ) alert('ID를 입력하세요.');
+    else if($("#password").val()== "") alert('비밀번호를 입력하세요.');
+    else{
+        if(CH && CHECK_ID == $("#ID").val() && CHECK_PASS ){
+        $.ajax({
+            url: '/users/saved',
+            async: true,
+            type: 'POST',
+            data:{
+                id: $("#ID").val(),
+                password : $("#password").val()
+            },
+            dataType: 'json',
+            success : function(data){
+                if(CH){
+                    alert('회원가입 성공');
+                    location.href='/';
+                }
+                else{
+                    
+                    alert('아이디 중복 확인 해주세요.');
+                    
+                }
+            },
+            error: function(err){
+                alert('오류 발생'+JSON.stringify(err));
+            }
+
+        });
+        }
+        else if(!CHECK_PASS) alert('비밀번호 확인 해주세요');
+        else{
+            
+            alert('아이디 중복 확인 해주세요');
+        }
+    }
+});
+
+
+</script>
+
+
+</html>

@@ -5,7 +5,7 @@ const User = require("./User");
 
 
 router.get('/sign_up', function(req, res, next) {
-  res.render("users/sign_up");
+  res.render("회원가입");
 });
 
 //웹페이지에서 라즈베리로

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>숨좀쉬자</title>
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
+	<link rel="stylesheet" href="./css/main.css">
+
+	<script
+		src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+		crossorigin="anonymous">
+		
+	</script>
+	<script src="./js/main.js"></script>
+
+	<script>
+	function showDiv() {
+		if(document.getElementById('detail').style.visibility == "hidden"){
+			document.getElementById('detail').style.visibility = "visible";
+		}
+		else{
+			document.getElementById('detail').style.visibility = "hidden";
+		}
+	}
+
+	</script> 
+</head>
+<body>
+	<div class="container">
+		<header id="header">
+			<button type="button" class="btn-menu">메뉴</button>
+			<a href="#" class="btn-home" onclick = "location.href = '/'  ">홈으로</a>
+
+			<div class="nav">
+				<div class="nav-wrap">
+					<h2 class="logo">로고</h2>
+					<div class="search-box">
+						<input type="text">
+						<button type="button"></button>
+					</div>
+					<ul>
+						<li class="active"><a href="#">메인페이지</a></li>
+						<li class="btn-air"><a href="#">상세 공기 상태</a></li>
+						<li class="btn-data"><a href="#">누적 데이터</a></li>
+						<li class="btn-remote"><a href="#">리콘컨 기능</a></li>
+						<li class="btn-mode"><a href="#">모드설정</a></li>
+					</ul>
+					<button type="button" class="btn-close">닫기</button>
+
+					<button type="button" class="btn-logout" ><a href="#">로그아웃</a></button>
+				</div>
+			</div>
+		</header>
+		<div class="contents-wrap">
+			<h3 class="sub-title">메인화면</h3>
+
+			<!--  정보 -->
+			<div class="info-viewer">
+				<!-- 실외 -->
+				<div class="out-door">
+					<div>
+						<h4>실외</h4>
+						<span class="thum"></span>
+					</div>
+					<ul>
+						<li>온도 <strong>10℃</strong></li>
+						<li>습도 <strong>10%</strong></li>
+						<li>PM10 <strong>110</strong></li>
+						<li>PM2.5 <strong>98</strong></li>
+						<li>VOC <strong>10</strong></li>
+						<li>CO2 <strong>8</strong></li>
+					</ul>
+				</div>
+				<!-- // 실외 -->
+				<!-- 실내 -->
+				<div class="in-door">
+					<div>
+						<h4>실내</h4>
+						<span class="thum"></span>
+					</div>
+					<ul>
+						<li>온도 <strong>10℃</strong></li>
+						<li>습도 <strong>10%</strong></li>
+						<li>PM10 <strong>110</strong></li>
+						<li>PM2.5 <strong>98</strong></li>
+						<li>VOC <strong>10</strong></li>
+						<li>CO2 <strong>8</strong></li>
+					</ul>
+				</div>
+				<!-- // 실내 -->
+
+				<div class="btn-wrap">  
+					<div class="detail-wrap" id ="detail" style="visibility : hidden">
+						<a href="#">상세보기</a>
+						<a href="#">예약하기</a>
+					</div>
+					<div class="switch-box" >
+						<div class="switch">
+							<input type="checkbox" id="checkbox" onclick= showDiv()>
+							<label for="checkbox"><span></span></label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- // 정보 -->
+		</div>
+	</div>
+</body>
+</html>

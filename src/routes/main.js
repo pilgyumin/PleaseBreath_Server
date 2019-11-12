@@ -11,7 +11,7 @@ let status = require('../Model/DATA');
 /* GET home page. */
 router.get('', (req, res, next) => {
   
-    res.render('main');
+    res.render('메인');
 });
 
 
