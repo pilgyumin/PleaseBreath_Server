@@ -5,6 +5,7 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import path from 'path'
+import session from 'express-session'
 
 import loginRouter from './routes/login'
 import mainRouter from './routes/main'
@@ -56,6 +57,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'please!#@%breath09(0',
+  resave: false,
+  saveUninitialized: true,
+ 
+}));
 
 app.use('/', loginRouter);
 app.use('/main', mainRouter);
