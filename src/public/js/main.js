@@ -37,9 +37,9 @@ function menuClick(){
 	var logout = $('header .btn-logout');
 	var remote = $('header .btn-remote');
 	var mode = $('header .btn-mode');
-	var main = $('header .active');
+	var main = $('header .btn-choice-mode');
 	var detail_air = $('header .btn-air');
-	var date = $('header .btn-data');
+	var data = $('header .btn-data');
 
 	menu.on('click' , function(){
 		$('.nav').fadeIn('fast');
@@ -66,7 +66,7 @@ function menuClick(){
 		location.href='/detailair';
 	})
 
-	date.on('click' ,function(){
+	data.on('click' ,function(){
 		location.href='/dataHistory';
 	})
 
@@ -86,4 +86,19 @@ function tabChange(){
 	})
 }
 
+function myFunction() {
+	let input, filter, ul, li, a, i
+	input = document.getElementById("mySearch")
+	filter = input.value.toUpperCase()
+	ul = document.getElementById("myMenu")
+	li = ul.getElementsByTagName("li")
+	for (i = 0; i < li.length; i++) {
+		a = li[i].getElementsByTagName("a")[0]
+		if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+			li[i].style.display = ""
+		} else {
+			li[i].style.display = "none"
+		}
+	}
+}
 
