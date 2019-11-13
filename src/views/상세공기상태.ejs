@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8">   
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>숨좀쉬자</title>
@@ -57,43 +57,43 @@
 					<ul>
 						<li>
 							<div class="graph">
-								<div class="now" style="height:50%;"></div>
-								<div class="appropriate" style="height:100%;"></div>
+								<div id="Outer_temp" class="now" style="height:22%;"></div>
+								<div class="appropriate" style="height:22%;"></div>
 							</div>
 							<p>온도</p>
 						</li>
 						<li>
 							<div class="graph">
-								<div class="now" style="height:50%;"></div>
-								<div class="appropriate" style="height:40%;"></div>
+								<div id="Outer_humid" class="now" style="height:50%;"></div>
+								<div class="appropriate" style="height:50%;"></div>
 							</div>
 							<p>습도</p>
 						</li>
 						<li>
 							<div class="graph">
-								<div class="now" style="height:30%;"></div>
-								<div class="appropriate" style="height:55%;"></div>
+								<div id="Outer_pm10" class="now" style="height:30%;"></div>
+								<div class="appropriate" style="height:30%;"></div>
 							</div>
 							<p>PM10</p>
 						</li>
 						<li>
 							<div class="graph">
-								<div class="now" style="height:100%;"></div>
-								<div class="appropriate" style="height:50%;"></div>
+								<div id="Outer_voc" class="now" style="height:5%;"></div>
+								<div class="appropriate" style="height:5%;"></div>
 							</div>
 							<p>VOC</p>
 						</li>
 						<li>
 							<div class="graph">
-								<div class="now" style="height:30%;"></div>
-								<div class="appropriate" style="height:20%;"></div>
+								<div id="Outer_pm25" class="now" style="height:15%;"></div>
+								<div class="appropriate" style="height:15%;"></div>
 							</div>
 							<p>PM2.5</p>
 						</li>
 						<li>
 							<div class="graph">
-								<div class="now" style="height:80%;"></div>
-								<div class="appropriate" style="height:55%;"></div>
+								<div id="Outer_co2" class="now" style="height:7%;"></div>
+								<div class="appropriate" style="height:7%;"></div>
 							</div>
 							<p>CO2</p>
 						</li>
@@ -109,43 +109,43 @@
 					<ul>
 						<li>
 							<div class="graph">
-								<div class="now" style="height:50%;"></div>
-								<div class="appropriate" style="height:100%;"></div>
+								<div id="Inner_temp" class="now" style="height:22%;"></div>
+								<div class="appropriate" style="height:22%;"></div>
 							</div>
 							<p>온도</p>
 						</li>
 						<li>
 							<div class="graph">
-								<div class="now" style="height:50%;"></div>
-								<div class="appropriate" style="height:40%;"></div>
+								<div id="Inner_humid" class="now" style="height:50%;"></div>
+								<div class="appropriate" style="height:50%;"></div>
 							</div>
 							<p>습도</p>
 						</li>
 						<li>
 							<div class="graph">
-								<div class="now" style="height:30%;"></div>
-								<div class="appropriate" style="height:55%;"></div>
+								<div id="Inner_pm10" class="now" style="height:30%;"></div>
+								<div class="appropriate" style="height:30%;"></div>
 							</div>
 							<p>PM10</p>
 						</li>
 						<li>
 							<div class="graph">
-								<div class="now" style="height:100%;"></div>
-								<div class="appropriate" style="height:50%;"></div>
+								<div id="Inner_voc" class="now" style="height:100%;"></div>
+								<div class="appropriate" style="height:5%;"></div>
 							</div>
 							<p>VOC</p>
 						</li>
 						<li>
 							<div class="graph">
-								<div class="now" style="height:30%;"></div>
-								<div class="appropriate" style="height:20%;"></div>
+								<div id="Inner_pm25" class="now" style="height:30%;"></div>
+								<div class="appropriate" style="height:15%;"></div>
 							</div>
 							<p>PM2.5</p>
 						</li>
 						<li>
 							<div class="graph">
-								<div class="now" style="height:80%;"></div>
-								<div class="appropriate" style="height:55%;"></div>
+								<div id="Inner_co2" class="now" style="height:80%;"></div>
+								<div class="appropriate" style="height:7%;"></div>
 							</div>
 							<p>CO2</p>
 						</li>
@@ -158,5 +158,40 @@
 			</div>
 		</div>
 	</div>
+	<script>
+
+			var Inner_temp="<%= Inner_temp %>";
+  			var Inner_humid="<%= Inner_humid %>";
+    		var Inner_pm25="<%= Inner_pm25 %>";
+    		var Inner_pm10="<%= Inner_pm10 %>";
+    		var Inner_voc="<%= Inner_voc %>";
+    		var Inner_co2="<%= Inner_co2 %>";
+
+			var Outer_temp="<%= Outer_temp %>";
+  			var Outer_humid="<%= Outer_humid %>";
+    		var Outer_pm25="<%= Outer_pm25 %>";
+    		var Outer_pm10="<%= Outer_pm10 %>";
+    		var Outer_voc="<%= Outer_voc %>";
+			var Outer_co2="<%= Outer_co2 %>";
+			
+			console.log(Outer_voc);
+			//$("Outer_temp").css({height : "100%"});
+
+			document.getElementById("Inner_temp").style.height = parseInt(Inner_temp)+"%";
+			document.getElementById("Inner_humid").style.height = parseInt(Inner_humid)+"%";
+			document.getElementById("Inner_pm25").style.height = parseInt(Inner_pm25)+"%";
+			document.getElementById("Inner_pm10").style.height = parseInt(Inner_pm10)+"%";
+			document.getElementById("Inner_voc").style.height = parseInt(Inner_voc)*5+"%";
+			document.getElementById("Inner_co2").style.height = parseInt(Inner_co2)/100+"%";
+
+			document.getElementById("Outer_temp").style.height = parseInt(Outer_temp)+"%";
+			document.getElementById("Outer_humid").style.height = parseInt(Outer_humid)+"%";
+			document.getElementById("Outer_pm25").style.height = parseInt(Outer_pm25)+"%";
+			document.getElementById("Outer_pm10").style.height = parseInt(Outer_pm10)+"%";
+			document.getElementById("Outer_voc").style.height = parseInt(Outer_voc)*5+"%";
+			document.getElementById("Outer_co2").style.height = parseInt(Outer_co2)/100+"%";
+
+
+	</script>
 </body>
 </html>
