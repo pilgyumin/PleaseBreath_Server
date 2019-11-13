@@ -16,7 +16,9 @@ let status = {
     date : "",
     hours : "",
     minute : "", 
-    second : ""
+    second : "",
+    aircleanermode : "",
+    aircleanerspeed : ""
 };
 
 
