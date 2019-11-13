@@ -36,7 +36,34 @@ router.get('/', (req, res, next) => {
     
     res.json({In,Out});*/
     if(req.session.logined) {
-        res.render('상세공기상태', { id: req.session.user_id });
+
+        Inner_Todo.find({ },{_id:0}, function(err, todo) {
+            if(err) throw err;
+            console.log(todo);
+            Inner = todo;
+        }).limit(1).sort({$natural:-1}).select('temp');
+        Outer_Todo.find({ },{_id:0}, function(err, todo) {
+            if(err) throw err;
+            console.log(todo);
+            Outer = todo;
+        }).limit(1).sort({$natural:-1});
+        //res.json(Outer);
+        var Inner_temp= JSON.stringify(Inner[0].temp);
+        var Inner_humid= JSON.stringify(Inner[0].humid);
+        var Inner_pm25= JSON.stringify(Inner[0].pm25);
+        var Inner_pm10= JSON.stringify(Inner[0].pm10);
+        var Inner_voc= JSON.stringify(Inner[0].voc);
+        var Inner_co2= JSON.stringify(Inner[0].co2);
+    
+        var Outer_temp= JSON.stringify(Outer[0].temp);
+        var Outer_humid= JSON.stringify(Outer[0].humid);
+        var Outer_pm25= JSON.stringify(Outer[0].pm25);
+        var Outer_pm10= JSON.stringify(Outer[0].pm10);
+        var Outer_voc= JSON.stringify(Outer[0].voc);
+        var Outer_co2= JSON.stringify(Outer[0].co2);
+        
+        res.render('상세공기상태', {Inner_temp:Inner_temp,Inner_humid:Inner_humid,Inner_pm25:Inner_pm25,Inner_pm10:Inner_pm10,Inner_voc:Inner_voc,Inner_co2:Inner_co2,
+            Outer_temp:Outer_temp,Outer_humid:Outer_humid,Outer_pm25:Outer_pm25,Outer_pm10:Outer_pm10,Outer_voc:Outer_voc,Outer_co2:Outer_co2});
     } else {
         res.locals.message = '잘못된 경로로 접속하였습니다.';
 
