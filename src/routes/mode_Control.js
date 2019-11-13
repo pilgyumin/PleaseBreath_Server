@@ -1,6 +1,6 @@
 import express from 'express'
 import {mode_Control} from '../controllers/mode_Control.controller'
-
+import http from 'http';
 const router = express.Router()
 let Status = require('../Model/DATA');
 
@@ -25,7 +25,32 @@ router.get('/', (req, res, next) => {
     }
 });
 
-router.post('/Senior', (req, res, next) => {
+router.get('/:mode', (req, res, next) => {
+    let pi_path = '';
+    if(req.params.mode === 'normal'){
+        pi_path += "normal";
+    }
+    else if(req.params.mode === 'infacts'){
+        pi_path += "normal";
+    }
+    else if(req.params.mode === 'senior'){
+        pi_path += "normal";
+    }
+    else if(req.params.mode === 'sleep'){
+        pi_path += "normal";
+    }
+    else if(req.params.mode === 'turnOffSolution'){
+        pi_path += "normal";
+    }
+
+    http.request({
+
+    }).end();
+    pi_server_Url.path = '/Mode/';
+    res.json({});
+});
+
+router.get('/Senior', (req, res, next) => {
     console.log('Senior Start..');
     pi_server_Url.path += "Senior";
     http.request(pi_server_Url).end();
@@ -33,7 +58,7 @@ router.post('/Senior', (req, res, next) => {
     res.json({});
 });
 
-router.post('/Infants', (req, res, next) => {
+router.get('/Infants', (req, res, next) => {
     console.log('Infants Start..');
     pi_server_Url.path += "Infants";
     http.request(pi_server_Url).end();

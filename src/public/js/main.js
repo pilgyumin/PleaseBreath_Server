@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	menuClick();
 	tabChange();
+	tabActive();
 
 	var ctx = document.getElementById('myChart').getContext('2d');
 	var myLineChart = new Chart(ctx, {
@@ -104,3 +105,12 @@ function myFunction() {
 	}
 }
 
+function tabActive(){
+	var modeSettingList = $('.mode-setting ul li');
+
+	modeSettingList.on('click' , function(){
+		var idx = $(this).index();
+		modeSettingList.removeClass('active')
+		modeSettingList.eq(idx).addClass('active')
+	})
+}
