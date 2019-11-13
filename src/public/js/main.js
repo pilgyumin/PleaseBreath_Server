@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	menuClick();
 	tabChange();
-
+	
 	var ctx = document.getElementById('myChart').getContext('2d');
 	var myLineChart = new Chart(ctx, {
 		type: 'line',
@@ -80,8 +80,9 @@ function tabChange(){
 
 	tabList.on('click' , function(){
 		var idx = $(this).index();
+		
 		// console.log( tabItem.eq(idx))
-		console.log(tabItem);
+		
 		$(this).addClass('active').siblings().removeClass('active');
 		tabItem.removeClass('active')
 		tabItem.eq(idx).addClass('active')

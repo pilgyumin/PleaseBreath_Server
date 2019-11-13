@@ -23,12 +23,13 @@ router.post('/power', (req, res, next) => {
     pi_server_Url.path = '/AircleanerControl/';
     if(status.aircleaner_power == 1){
         status.aircleaner_power = 0;
-        res.json(0);
+        status.aircleaner_speed = 1;
     }
     else{
         status.aircleaner_power = 1;
-        res.json(1);
+        
     }
+    res.json(status);
 });
 
 router.post('/speedup', (req, res, next) => {
@@ -61,6 +62,16 @@ router.post('/speeddown', (req, res, next) => {
         status.aircleaner_speed -= 1;
         res.json(status.aircleaner_speed);
     }
+
+});
+
+
+router.post('/status', (req, res, next) => {
+    console.log("aircleaner_status");
+    
+    
+    res.json(status);
+    
 
 });
 
