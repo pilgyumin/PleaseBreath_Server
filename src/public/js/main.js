@@ -112,5 +112,102 @@ function tabActive(){
 		var idx = $(this).index();
 		modeSettingList.removeClass('active')
 		modeSettingList.eq(idx).addClass('active')
+		if(idx === 0){
+			$.ajax({
+				url: "/modeControl/normal", //url
+				type: "get", //get, post 방식
+				async: true, // true:비동기, false:동기
+				success: function(data){
+					alert('일반모드 구동!');
+				},
+				error: function(json){
+					alert('ajax error.');
+				}
+			});
+		}
+		else if(idx === 1){
+			$.ajax({
+				url: "/modeControl/infacts", //url
+				type: "get", //get, post 방식
+				async: true, // true:비동기, false:동기
+				success: function(data){
+					alert('영유아모드 구동!');
+				},
+				error: function(json){
+					alert('ajax error.');
+				}
+			});
+		}
+		else if(idx === 2){
+			$.ajax({
+				url: "/modeControl/senior", //url
+				type: "get", //get, post 방식
+				async: true, // true:비동기, false:동기
+				success: function(data){
+					alert('노인모드 구동!');
+				},
+				error: function(json){
+					alert('ajax error.');
+				}
+			});
+		}
+		else if(idx === 3){
+			$.ajax({
+				url: "/modeControl/sleep", //url
+				type: "get", //get, post 방식
+				async: true, // true:비동기, false:동기
+				success: function(data){
+					alert('수면모드 구동!');
+				},
+				error: function(json){
+					alert('ajax error.');
+				}
+			});
+		}
+
+	})
+}
+
+function modeClick(){
+
+	var menu = $('header .btn-menu');
+	var close = $('header .btn-close');
+	var logout = $('header .btn-logout');
+	var remote = $('header .btn-remote');
+	var mode = $('header .btn-mode');
+	var main = $('header .btn-choice-mode');
+	var detail_air = $('header .btn-air');
+	var data = $('header .btn-data');
+	var home = $('header .btn-home');
+	menu.on('click' , function(){
+		$('.nav').fadeIn('fast');
+	})
+	close.on('click' , function(){
+		$('.nav').fadeOut('fast');
+	});
+	logout.on('click' ,function(){
+		alert('로그아웃');
+		location.href='/logout';
+	})
+	remote.on('click' ,function(){
+		location.href='/remoteControl';
+	})
+	mode.on('click' ,function(){
+		location.href='/modeControl';
+	})
+
+	main.on('click' ,function(){
+		location.href='/main';
+	})
+
+	detail_air.on('click' ,function(){
+		location.href='/detailair';
+	})
+
+	data.on('click' ,function(){
+		location.href='/dataHistory';
+	})
+	home.on('click' ,function(){
+		location.href='/main';
 	})
 }

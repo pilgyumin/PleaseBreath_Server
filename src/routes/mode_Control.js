@@ -1,14 +1,13 @@
 import express from 'express'
 import {mode_Control} from '../controllers/mode_Control.controller'
 import http from 'http';
+const fetch = require('node-fetch');
 const router = express.Router()
 let Status = require('../Model/DATA');
 
-let pi_server_Url = {
-    hostname: '192.168.1.84',
-    port: '3000',
-    path : '/Mode/'
-};
+let pi_hostname = 'localhost';
+let pi_port = '3000';
+let pi_path = '/Mode/';
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -26,43 +25,25 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:mode', (req, res, next) => {
-    let pi_path = '';
+    let add_path = '';
     if(req.params.mode === 'normal'){
-        pi_path += "normal";
+        add_path += "normal";
     }
     else if(req.params.mode === 'infacts'){
-        pi_path += "normal";
+        add_path += "infacts";
     }
     else if(req.params.mode === 'senior'){
-        pi_path += "normal";
+        add_path += "senior";
     }
     else if(req.params.mode === 'sleep'){
-        pi_path += "normal";
+        add_path += "sleep";
     }
-    else if(req.params.mode === 'turnOffSolution'){
-        pi_path += "normal";
-    }
-
-    http.request({
-
-    }).end();
-    pi_server_Url.path = '/Mode/';
+    fetch("http://" + pi_hostname + ":" + pi_port + pi_path + add_path, {
+        method: 'get',
+    })
+        .then(res => res.json())
+        .then(json => console.log(json));
     res.json({});
-});
-
-router.get('/Senior', (req, res, next) => {
-    console.log('Senior Start..');
-    pi_server_Url.path += "Senior";
-    http.request(pi_server_Url).end();
-    pi_server_Url.path = '/Mode/';
-    res.json({});
-});
-
-router.get('/Infants', (req, res, next) => {
-    console.log('Infants Start..');
-    pi_server_Url.path += "Infants";
-    http.request(pi_server_Url).end();
-    pi_server_Url.path = '/Mode/';
 });
 
 /*
