@@ -5,6 +5,7 @@ import express from 'express'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 import path from 'path'
+import session from 'express-session'
 
 import loginRouter from './routes/login'
 import mainRouter from './routes/main'
@@ -20,6 +21,7 @@ import mode_Control_Router from './routes/mode_Control'
 import aiSolution_Countrol_Router from './routes/aiSolution_Control'
 import Register_Router from './routes/Register'
 import popupRouter from './routes/popup'
+const MongoStore = require('connect-mongo')(session);
 
 const mongoose = require('mongoose');
 const app = express();
@@ -62,6 +64,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({
+    url: "mongodb://hak:123@54.180.29.217:27017/machineStatus?authSource=admin",
+    collection: "sessions"
+  })
+}));
+
 app.use('/', loginRouter);
 app.use('/main', mainRouter);
 app.use('/insertdb', insert_DB_Router);
