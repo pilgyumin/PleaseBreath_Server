@@ -1,5 +1,5 @@
 const main = (req, res, next) => {
-    res.render('main.ejs');
+    res.render('메인');
 }
 
 export {

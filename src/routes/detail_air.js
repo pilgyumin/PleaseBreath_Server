@@ -35,8 +35,17 @@ router.get('/', (req, res, next) => {
     let Out = JSON.stringify(Outer);
     
     res.json({In,Out});*/
-    
-    res.render('상세공기상태');
+    if(req.session.logined) {
+        res.render('상세공기상태', { id: req.session.user_id });
+    } else {
+        res.locals.message = '잘못된 경로로 접속하였습니다.';
+
+        const myError = new Error('you connect wrong URL');
+        res.locals.error = myError;
+        // render the error page
+        res.status(404);
+        res.render('error');
+    }
 });
 
 

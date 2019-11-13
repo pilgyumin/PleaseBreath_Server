@@ -49,7 +49,7 @@ function menuClick(){
 	});
 	logout.on('click' ,function(){
 		alert('로그아웃');
-		location.href='/';
+		location.href='/logout';
 	})
 	remote.on('click' ,function(){
 		location.href='/remoteControl';

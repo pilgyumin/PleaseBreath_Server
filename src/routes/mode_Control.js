@@ -12,7 +12,17 @@ let pi_server_Url = {
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-    res.render('모드설정',{Status:Status});
+    if(req.session.logined) {
+        res.render('모드설정', { id: req.session.user_id, Status:Status });
+    } else {
+        res.locals.message = '잘못된 경로로 접속하였습니다.';
+
+        const myError = new Error('you connect wrong URL');
+        res.locals.error = myError;
+        // render the error page
+        res.status(404);
+        res.render('error');
+    }
 });
 
 router.post('/Senior', (req, res, next) => {
