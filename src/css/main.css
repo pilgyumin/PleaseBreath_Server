@@ -1,0 +1,708 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: middle; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+  font-family: 'NanumSquare', sans-serif; }
+
+html {
+  line-height: 1.2;
+  -webkit-text-size-adjust: 100%;
+  font-family: 'NanumSquare', sans-serif; }
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'NanumSquare', sans-serif; }
+
+ol, ul {
+  list-style: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a, a:link, a:focus, a:hover, a:active {
+  background: transparent;
+  text-decoration: none; }
+
+address, em {
+  font-stretch: normal; }
+
+fieldset, img {
+  max-width: 100%;
+  border: 0; }
+
+button, input, optgroup, select, textarea {
+  margin: 0;
+  padding: 0;
+  line-height: 1.15;
+  font-family: inherit;
+  font-size: 100%;
+  outline: none; }
+
+button, [type="button"], [type=reset], [type=submit] {
+  background: transparent;
+  border: 0;
+  -webkit-appearance: button; }
+
+button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner {
+  padding: 0;
+  border-style: none; }
+
+.blind {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: 0 0;
+  width: 0;
+  height: 0;
+  border: 0;
+  line-height: 0;
+  font-size: 0; }
+
+body {
+  background: #5fd0f6; }
+
+body, html {
+  height: 100%; }
+
+input[type=password] {
+  font-family: "serif"; }
+
+.container {
+  position: relative;
+  background: url(../images/bg.png) 0 0 no-repeat;
+  max-width: 760px;
+  height: 100vh;
+  margin: 0 auto; }
+
+.sub-title {
+  color: #fffefe;
+  font-size: 30px;
+  text-align: center;
+  padding-top: 60px; }
+
+button.btn-base {
+  background: #fff;
+  width: 100%;
+  height: 35px;
+  border-radius: 15px;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 1px 2px 9px 0 #8e8e8e; }
+
+.switch {
+  display: inline-block;
+  overflow: hidden; }
+  .switch input[type="checkbox"] {
+    position: absolute;
+    visibility: hidden; }
+  .switch label {
+    display: block;
+    position: relative;
+    background-color: #ddd;
+    width: 80px;
+    height: 40px;
+    border-radius: 20px;
+    transition-duration: 0.2s; }
+  .switch label span {
+    position: absolute;
+    top: 6px;
+    left: 3px;
+    background: url(../images/icon_switch.png) 0 0 no-repeat;
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    z-index: 1;
+    transition-duration: 0.2s; }
+  .switch label:before, .switch label:after {
+    position: absolute;
+    top: 0;
+    width: 40px;
+    color: #fff;
+    line-height: 44px;
+    text-align: center;
+    font-size: 18px;
+    visibility: hidden; }
+  .switch input + label:after {
+    content: "OFF";
+    right: 4px;
+    visibility: visible; }
+  .switch input:checked + label:before {
+    content: "ON";
+    left: 0;
+    visibility: visible; }
+  .switch input:checked + label:after {
+    visibility: hidden; }
+  .switch input:checked + label {
+    background-color: #48b4de; }
+  .switch input:checked + label span {
+    left: calc(100% - 34px); }
+
+/* 헤더 */
+#header {
+  display: flex;
+  height: 55px;
+  padding: 0 10px;
+  align-items: center;
+  justify-content: space-between; }
+  #header .btn-menu {
+    background: url(../images/icon_menu.png) 50% no-repeat;
+    background-size: 26px 22px;
+    width: 50px;
+    height: 100%;
+    font: 0/0 a; }
+  #header .btn-home {
+    background: url(../images/icon_home.png) 50% no-repeat;
+    background-size: 26px 22px;
+    width: 50px;
+    height: 100%;
+    font: 0/0 a; }
+  #header + .contents-wrap .sub-title {
+    padding-top: 0; }
+  #header .nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10; }
+    #header .nav .nav-wrap {
+      background: #fff;
+      width: 230px;
+      height: 100%;
+      padding: 0 30px;
+      box-sizing: border-box;
+      position: relative; }
+      #header .nav .nav-wrap .logo {
+        background: url(../images/logo_sub.png) 50% 100% no-repeat;
+        background-size: 75px 90px;
+        font: 0/0 a;
+        height: 90px;
+        padding-top: 75px; }
+      #header .nav .nav-wrap .search-box {
+        position: relative;
+        height: 30px;
+        margin-top: 15px;
+        border: solid 1px #b4b4b4;
+        border-radius: 15px;
+        box-sizing: border-box; }
+        #header .nav .nav-wrap .search-box input {
+          background: transparent;
+          width: 100%;
+          height: 30px;
+          padding-right: 40px;
+          border: 0;
+          box-sizing: border-box;
+          text-indent: 20px; }
+        #header .nav .nav-wrap .search-box button {
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: url(../images/icon_search.png) 0 0 no-repeat;
+          background-size: 100%;
+          width: 29px;
+          height: 29px; }
+      #header .nav .nav-wrap ul {
+        margin-top: 20px; }
+        #header .nav .nav-wrap ul li {
+          text-align: center; }
+          #header .nav .nav-wrap ul li a {
+            display: block;
+            padding: 7px 0;
+            color: #000;
+            font-size: 20px;
+            font-weight: bold; }
+          #header .nav .nav-wrap ul li.active a {
+            color: #0185e3; }
+      #header .nav .nav-wrap .btn-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: url(../images/icon_close.png) 50% no-repeat;
+        background-size: 28px;
+        width: 50px;
+        height: 50px;
+        font: 0/0 a; }
+      #header .nav .nav-wrap .btn-logout {
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+        width: 100%;
+        color: #333333;
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold; }
+        #header .nav .nav-wrap .btn-logout:before {
+          content: "";
+          display: inline-block;
+          background: url(../images/icon_logout.png) 0 0 no-repeat;
+          background-size: 22px 23px;
+          width: 25px;
+          height: 25px;
+          vertical-align: middle; }
+
+/* 로그인 */
+.contents-wrap.login::after {
+  content: "";
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  background: url(../images/bg_footer.png) 0 0 no-repeat;
+  width: 100%;
+  max-width: 760px;
+  height: 224px;
+  transform: translateX(-50%); }
+
+h1.logo a {
+  display: block;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  background: url(../images/logo.png) 0 0 no-repeat;
+  background-size: 100% 100%;
+  width: 145px;
+  height: 171px;
+  margin: 0 auto;
+  font: 0/0 a;
+  transform: translateX(-50%); }
+
+.form-login {
+  position: absolute;
+  top: 250px;
+  left: 0;
+  right: 0;
+  padding: 0 40px;
+  z-index: 10; }
+  .form-login label {
+    display: block;
+    margin-top: 30px;
+    padding: 7px 12px;
+    border-bottom: solid 1px #fff;
+    color: #fff; }
+    .form-login label input {
+      background: transparent;
+      margin-left: 10px;
+      border: 0;
+      box-sizing: border-box;
+      color: #fff;
+      font-size: 14px; }
+      .form-login label input::placeholder {
+        color: #fff; }
+    .form-login label.user-id::before {
+      content: "";
+      display: inline-block;
+      background: url(../images/login_user.png) 0 0 no-repeat;
+      background-size: 100%;
+      width: 12px;
+      height: 16px;
+      vertical-align: middle; }
+    .form-login label.user-pw::before {
+      content: "";
+      display: inline-block;
+      background: url(../images/login_pw.png) 0 0 no-repeat;
+      background-size: 100%;
+      width: 12px;
+      height: 16px;
+      vertical-align: middle; }
+  .form-login .btn-wrap {
+    margin-top: 60px; }
+    .form-login .btn-wrap button {
+      display: block;
+      background: #fff;
+      width: 100%;
+      height: 30px;
+      margin-top: 17px;
+      border: 0;
+      border-radius: 30px;
+      color: #333;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold; }
+
+/* 회원가입 */
+.form-regist {
+  margin-top: 40px;
+  padding: 0 40px; }
+  .form-regist dl {
+    font-size: 14px;
+    border-bottom: solid 1px #fff;
+    margin-bottom: 20px;
+    position: relative; }
+    .form-regist dl dt {
+      margin-bottom: 7px;
+      color: #333;
+      font-weight: bold; }
+      .form-regist dl dt span {
+        color: #fffefe; }
+    .form-regist dl dd {
+      color: #555555;
+      margin-bottom: 7px; }
+      .form-regist dl dd input {
+        background: transparent;
+        width: 100%;
+        border: 0;
+        color: #555; }
+    .form-regist dl button {
+      position: absolute;
+      right: 0;
+      bottom: 6px;
+      background: #fff;
+      padding: 3px 7px;
+      border: 0;
+      border-radius: 15px;
+      color: #333;
+      font-size: 12px; }
+  .form-regist .btn-wrap {
+    padding: 15px; }
+    .form-regist .btn-wrap .btn-cancel {
+      background: transparent;
+      border: solid 1px #fff;
+      color: #fff;
+      box-shadow: none;
+      margin-bottom: 15px; }
+
+.info-viewer {
+  padding: 0 20px; }
+  .info-viewer div[class$=-door] {
+    display: flex;
+    background: #fff;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    align-items: center;
+    margin-top: 15px;
+    box-shadow: 0px 0px 10px 1px #777; }
+    .info-viewer div[class$=-door] h4 {
+      color: #333;
+      font-size: 22px; }
+    .info-viewer div[class$=-door] div {
+      text-align: center;
+      flex: 0 0 50%; }
+      .info-viewer div[class$=-door] div .thum {
+        display: block;
+        background: url(../images/outdoor.png) 0 0 no-repeat;
+        background-size: 100%;
+        width: 120px;
+        height: 120px;
+        margin: 20px auto 0; }
+    .info-viewer div[class$=-door] ul {
+      display: flex;
+      text-align: center;
+      flex: 0 0 50%;
+      flex-wrap: wrap; }
+      .info-viewer div[class$=-door] ul li {
+        margin-top: 10px;
+        color: #030303;
+        font-size: 15px;
+        flex: 0 0 50%; }
+        .info-viewer div[class$=-door] ul li strong {
+          display: block;
+          margin-top: 2px;
+          color: #0c97fa;
+          font-size: 25px; }
+  .info-viewer .btn-wrap {
+    text-align: center;
+    margin-top: 10px; }
+    .info-viewer .btn-wrap .detail-wrap {
+      display: flex;
+      justify-content: space-between; }
+      .info-viewer .btn-wrap .detail-wrap a {
+        border-bottom: solid 2px #fffefe;
+        color: #fffefe;
+        font-size: 23px; }
+    .info-viewer .btn-wrap .switch-box {
+      text-align: right;
+      margin-top: 10px; }
+
+/*  상세 공기 상태 */
+.air-condition {
+  position: relative;
+  background: #fff;
+  border-radius: 15px 15px 0 0;
+  margin-top: 75px; }
+  .air-condition .time {
+    position: absolute;
+    top: -30px;
+    right: 20px;
+    color: #fff;
+    font-size: 12px;
+    text-align: right; }
+    .air-condition .time span {
+      font-size: 22px; }
+  .air-condition div[class$='-door'] {
+    text-align: center;
+    padding: 20px; }
+    .air-condition div[class$='-door'] h4 {
+      font-size: 20px;
+      font-weight: bold; }
+    .air-condition div[class$='-door'] ul {
+      display: flex;
+      flex-wrap: wrap;
+      height: 130px;
+      margin-top: 20px; }
+      .air-condition div[class$='-door'] ul li {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        flex: 0 0 16.6%; }
+        .air-condition div[class$='-door'] ul li p {
+          border-top: solid 1px #eee;
+          padding-top: 10px; }
+        .air-condition div[class$='-door'] ul li .graph {
+          display: flex;
+          height: 100%;
+          align-items: flex-end;
+          justify-content: center; }
+          .air-condition div[class$='-door'] ul li .graph div {
+            background: #e9e9ea;
+            width: 10px; }
+            .air-condition div[class$='-door'] ul li .graph div.appropriate {
+              background: #54d4f3;
+              margin-left: 5px; }
+    .air-condition div[class$='-door'] .warning-txt {
+      padding-left: 20px;
+      text-align: left;
+      text-indent: -20px;
+      margin-top: 15px;
+      color: #333333;
+      font-size: 11px; }
+      .air-condition div[class$='-door'] .warning-txt::before {
+        content: "";
+        display: inline-block;
+        background: url(../images/icon_waring.png) 0 0 no-repeat;
+        background-size: 100%;
+        width: 13px;
+        height: 13px;
+        margin-right: 4px;
+        vertical-align: middle; }
+
+/* 모드 설정*/
+.mode-setting ul {
+  padding: 0 40px;
+  margin-top: 30px; }
+  .mode-setting ul li {
+    position: relative;
+    background: #a1defb;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 30px;
+    text-align: center;
+    text-align: center; }
+    .mode-setting ul li button {
+      height: 40px;
+      font-weight: 900; }
+      .mode-setting ul li button img {
+        display: inline-block;
+        width: 20px;
+        margin-right: 10px;
+        vertical-align: -5px; }
+    .mode-setting ul li.active {
+      background: #ffffff; }
+      .mode-setting ul li.active button {
+        color: #0c97fa; }
+
+/* 리모컨 기능 */
+.remote-setting {
+  position: relative;
+  background: #ddd;
+  border-radius: 15px 15px 0 0;
+  margin-top: 10px;
+  height: calc(100vh - 101px); }
+  .remote-setting .tab-list {
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    border-radius: 15px 15px 0 0;
+    padding: 0 15px; }
+    .remote-setting .tab-list li {
+      display: flex;
+      height: 60px;
+      flex: 0 0 33%;
+      justify-content: center;
+      align-items: center;
+      border-bottom: solid 4px transparent;
+      box-sizing: border-box; }
+      .remote-setting .tab-list li.active {
+        border-color: #0c97fa;
+        color: #333333; }
+  .remote-setting .remote-control {
+    padding: 30px;
+    text-align: center;
+    background: #ddd;
+    min-height: 80vh; }
+    .remote-setting .remote-control .tab-item {
+      display: none; }
+      .remote-setting .remote-control .tab-item.active {
+        display: block; }
+    .remote-setting .remote-control .btn-power {
+      position: relative;
+      margin-top: 30px;
+      
+      background:#ca1f0c url(../images/power.png) 50% no-repeat;
+      background-size: 65px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%; }
+      .remote-setting .remote-control .btn-power strong {
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        color: rgba(51, 51, 51, 0.5);
+        font-size: 15px;
+        font-weight: bold;
+        transform: translateX(-50%); }
+    .remote-setting .remote-control .control-box {
+      margin-top: 20px; }
+      .remote-setting .remote-control .control-box .btn-up {
+        background: url(../images/arrow.svg) 0 0 no-repeat;
+        width: 65px;
+        height: 65px;
+        font: 0/0 a;
+        transform: rotate(180deg); }
+      .remote-setting .remote-control .control-box .btn-down {
+        background: url(../images/arrow.svg) 0 0 no-repeat;
+        width: 65px;
+        height: 65px;
+        font: 0/0 a; }
+      .remote-setting .remote-control .control-box p {
+        margin: 15px 0;
+        color: #333;
+        font-size: 15px; }
+    .remote-setting .remote-control .btn-choice-mode {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px; }
+      .remote-setting .remote-control .btn-choice-mode button {
+        background: #fff;
+        height: 45px;
+        margin: 0 10px;
+        border: solid 1px #333;
+        border-radius: 50%;
+        color: #333;
+        font-size: 17px;
+        flex: 0 0 70px; }
+    .remote-setting .remote-control .dual {
+      display: flex; }
+      .remote-setting .remote-control .dual .control-box {
+        flex: 0 0 50%; }
+  .remote-setting .btn-set {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background: #959595 url(../images/setting.png) 50% no-repeat;
+    background-size: 50px;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    font: 0/0 a;
+    box-shadow: 0 0 10px 0 #888; }
+  .remote-setting .current-state {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #fff;
+    width: 138px;
+    padding: 10px 15px 15px;
+    border-radius: 15px;
+    color: #333;
+    text-align: center;
+    box-shadow: 0 0 10px 0 #888; }
+    .remote-setting .current-state strong {
+      font-size: 15px; }
+    .remote-setting .current-state ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between; }
+      .remote-setting .current-state ul li {
+        margin: 0 5%;
+        margin-top: 5px;
+        box-sizing: border-box;
+        text-align: left;
+        font-size: 13px;
+        font-weight: bold;
+        flex: 0 0 40%; }
+        .remote-setting .current-state ul li span {
+          color: #2cadf9;
+          font-weight: bold; }
+
+.chart-wrap select {
+  background: transparent;
+  margin-left: 40px;
+  border: 0;
+  color: #fff;
+  font-size: 15px; }
+  .chart-wrap select option {
+    background: #fff;
+    color: #000;
+    font-size: 13px;
+    opacity: 0.5; }
+.chart-wrap #myChart {
+  margin-top: 20px;
+  padding: 0 40px;
+  box-sizing: border-box;
+  max-height: 300px; }
+.chart-wrap .chart-info {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  max-width: 760px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 30px;
+  border-radius: 15px 15px 0 0;
+  box-sizing: border-box; }
+  .chart-wrap .chart-info .date {
+    color: #333;
+    font-size: 15px;
+    font-weight: bold; }
+    .chart-wrap .chart-info .date p:before {
+      content: "";
+      display: inline-block;
+      background: url(../images/cal.png) 0 0 no-repeat;
+      background-size: 100%;
+      width: 15px;
+      height: 15px;
+      margin-right: 4px;
+      vertical-align: -2px; }
+  .chart-wrap .chart-info ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center; }
+    .chart-wrap .chart-info ul li {
+      padding: 20px 0 25px;
+      text-align: center;
+      flex: 0 0 33%; }
+      .chart-wrap .chart-info ul li h4 {
+        color: #333;
+        font-size: 17px; }
+        .chart-wrap .chart-info ul li h4 span {
+          display: block;
+          color: #898989;
+          font-size: 10px; }
+      .chart-wrap .chart-info ul li strong {
+        color: #0084f9;
+        font-size: 25px;
+        font-weight: 900; }
+      .chart-wrap .chart-info ul li:nth-child(1), .chart-wrap .chart-info ul li:nth-child(2), .chart-wrap .chart-info ul li:nth-child(3) {
+        border-bottom: solid 1px #e4e4e4; }
+
+/*# sourceMappingURL=main.css.map */
