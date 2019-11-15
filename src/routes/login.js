@@ -16,11 +16,11 @@ const UserSchema = mongoose.Schema({
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-    /*if(req.session.logined) {
+    if(req.session.logined) {
         res.render('메인', { id: req.session.user_id });
-    } else {*/
+    } else {
         res.render('로그인');
-    //}
+    }
 });
 
 router.get('/logout', (req, res, next) => {

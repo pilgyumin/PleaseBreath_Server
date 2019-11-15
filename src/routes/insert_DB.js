@@ -113,7 +113,7 @@ router.get('', (req, res, next) => {
         }
     });
     mode = -1;
-    res.render('main');
+    res.render('메인');
     }
     
 });
