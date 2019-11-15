@@ -96,7 +96,7 @@ router.post('/speedup', (req, res, next) => {
 });
 
 
-router.post('/tempUp', (req, res, next) => {
+router.post('/tempup', (req, res, next) => {
     const aa = {};
     console.log('Airconditioner tempup');
     pi_server_Url.path += "tempup";
@@ -119,7 +119,7 @@ router.post('/tempUp', (req, res, next) => {
     res.json(status);
 });
 
-router.post('/tempDown', (req, res, next) => {
+router.post('/tempdown', (req, res, next) => {
     const aa = {};
     console.log('Airconditioner tempdown');
     pi_server_Url.path += "tempdown";
