@@ -29,9 +29,11 @@ router.post('/power', (req, res, next) => {
     http.request(pi_server_Url).end();
     pi_server_Url.path = '/AirconditionerControl/';
     if(status.airconditioner_power == 0){
+        console.log('airconditioner pwoer on');
         status.airconditioner_power = 1;
     }
     else{
+        console.log('airconditioner pwoer off');
         status.airconditioner_power = 0;
     }
     res.json(status);
@@ -39,7 +41,7 @@ router.post('/power', (req, res, next) => {
 
 //바람세기
 router.post('/speeddown', (req, res, next) => {
-    const aa = {};
+    
     console.log('Airconditioner speeddown');
     pi_server_Url.path += "speeddown";
     http.request(pi_server_Url).end();
@@ -55,6 +57,11 @@ router.post('/speeddown', (req, res, next) => {
         status.airconditioner_mode = 1;
         if(status.airconditioner_speed.warm_speed !=1)
             status.airconditioner_speed.warm_speed-=1;
+    }
+    else if(current_mode == "제습"){
+        status.airconditioner_mode = 2;
+        if(status.airconditioner_speed.dehumidity_speed !=1)
+            status.airconditioner_speed.dehumidity_speed-=1;
     }
 
     res.json(status);
@@ -77,6 +84,11 @@ router.post('/speedup', (req, res, next) => {
         status.airconditioner_mode = 1;
         if(status.airconditioner_speed.warm_speed !=3)
             status.airconditioner_speed.warm_speed+=1;
+    }
+    else if(current_mode == "제습"){
+        status.airconditioner_mode = 2;
+        if(status.airconditioner_speed.dehumidity_speed !=3)
+            status.airconditioner_speed.dehumidity_speed+=1;
     }
 
 
@@ -102,6 +114,7 @@ router.post('/tempUp', (req, res, next) => {
         if(status.airconditioner_temp.warm_temp !=23)
             status.airconditioner_temp.warm_temp+=1;
     }
+    
     
     res.json(status);
 });

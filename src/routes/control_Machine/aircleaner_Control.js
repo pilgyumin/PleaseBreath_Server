@@ -33,36 +33,47 @@ router.post('/power', (req, res, next) => {
 });
 
 router.post('/speedup', (req, res, next) => {
-    const aa = {};
+    
     console.log('aircleaner speedup' + status.aircleaner_speed);
-    pi_server_Url.path += "speedup";
-    http.request(pi_server_Url).end();
-    console.log(pi_server_Url);
-    pi_server_Url.path = '/AircleanerControl/';
-    console.log(status.aircleaner_speed);
-    if(status.aircleaner_speed == 4)
-        res.json(0);
+    if(status.aircleaner_power == 1){
+        pi_server_Url.path += "speedup";
+        http.request(pi_server_Url).end();
+        console.log(pi_server_Url);
+        pi_server_Url.path = '/AircleanerControl/';
+        console.log(status.aircleaner_speed);
+        if(status.aircleaner_speed == 4)
+            res.json(0);
+        else{
+            status.aircleaner_speed += 1;
+            res.json(status.aircleaner_speed);
+        }
+    }
     else{
-        status.aircleaner_speed += 1;
-        res.json(status.aircleaner_speed);
+        console.log('aircleaner off');
+        res.json(-1);
     }
 });
 
 router.post('/speeddown', (req, res, next) => {
     const aa = {};
     console.log('aircleaner speeddown');
-    pi_server_Url.path += "speeddown";
-    http.request(pi_server_Url).end();
-    console.log(pi_server_Url);
-    pi_server_Url.path = '/AircleanerControl/';
+    if(status.aircleaner_power == 1){
+        pi_server_Url.path += "speeddown";
+        http.request(pi_server_Url).end();
+        console.log(pi_server_Url);
+        pi_server_Url.path = '/AircleanerControl/';
 
-    if(status.aircleaner_speed == 1)
-        res.json(0);
-    else{
-        status.aircleaner_speed -= 1;
-        res.json(status.aircleaner_speed);
+        if(status.aircleaner_speed == 1)
+            res.json(0);
+        else{
+            status.aircleaner_speed -= 1;
+            res.json(status.aircleaner_speed);
+        }
     }
-
+    else{
+        console.log('aircleaner off');
+        res.json(-1);
+    }
 });
 
 

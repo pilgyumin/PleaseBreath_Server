@@ -270,10 +270,13 @@ $("#aircleaner_speedup").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
-			if(data == 0)
-				$("#display_speed").text("4");
-			else
-				$("#display_speed").text(data);
+			if(data == -1){}
+			else{
+				if(data == 0)
+					$("#display_speed").text("4");
+				else
+					$("#display_speed").text(data);
+			}
 		},
 		error: function(err){
 			throw(err);
@@ -293,10 +296,13 @@ $("#aircleaner_speeddown").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
-			if(data == 0)
-				$("#display_speed").text("1");
-			else
-				$("#display_speed").text(data);
+			if(data == -1){}
+			else{
+				if(data == 0)
+					$("#display_speed").text("1");
+				else
+					$("#display_speed").text(data);
+			}
 
 		},
 		error: function(err){
@@ -348,10 +354,13 @@ $("#humidifier_speedup").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
-			if(data == 0)
-				$("#display_speed").text("4");
-			else
-				$("#display_speed").text(data);
+			if(data == -1){}
+			else{
+				if(data == 0)
+					$("#display_speed").text("4");
+				else
+					$("#display_speed").text(data);
+			}
 		},
 		error: function(err){
 			throw(err);
@@ -371,10 +380,13 @@ $("#humidifier_speeddown").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
-			if(data == 0)
-				$("#display_speed").text("1");
-			else
-				$("#display_speed").text(data);
+			if(data == -1){}
+			else{
+				if(data == 0)
+					$("#display_speed").text("1");
+				else
+					$("#display_speed").text(data);
+			}
 		},
 		error: function(err){
 			throw(err);
@@ -436,9 +448,11 @@ $("#airconditioner_cold").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
-			$("#display_temp").text(data.airconditioner_temp.cold_temp);
-			$("#display_mode").text("냉방");
-			$("#display_speed").text(data.airconditioner_speed.cold_speed);
+			if(data.aircleaner_power == 1){
+				$("#display_temp").text(data.airconditioner_temp.cold_temp);
+				$("#display_mode").text("냉방");
+				$("#display_speed").text(data.airconditioner_speed.cold_speed);
+			}
 		},
 		error: function(err){
 			throw(err);
@@ -458,9 +472,11 @@ $("#airconditioner_warm").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
-			$("#display_temp").text(data.airconditioner_temp.warm_temp);
-			$("#display_mode").text("난방");
-			$("#display_speed").text(data.airconditioner_speed.warm_speed);
+			if(data.airconditioner_power == 1){
+				$("#display_temp").text(data.airconditioner_temp.warm_temp);
+				$("#display_mode").text("난방");
+				$("#display_speed").text(data.airconditioner_speed.warm_speed);
+			}
 		},
 		error: function(err){
 			throw(err);
@@ -479,10 +495,11 @@ $("#airconditioner_dehumidity").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
-			$("#display_mode").text("제습");
-			$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
-			$("#display_temp").text('');
-
+			if(data.airconditioner_power == 1){
+				$("#display_mode").text("제습");
+				$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+				$("#display_temp").text('');
+			}
 
 		},
 		error: function(err){
@@ -502,23 +519,23 @@ $("#airconditioner_tempup").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
-			
-			if(data.airconditioner_mode == 0){
-				$("#display_temp").text(data.airconditioner_temp.cold_temp);
-				$("#display_mode").text("냉방");
-				$("#display_speed").text(data.airconditioner_speed.cold_speed);
-			}
-			else if(data.airconditioner_mode == 1){
-				$("#display_temp").text(data.airconditioner_temp.warm_temp);
-				$("#display_mode").text("난방");
-				$("#display_speed").text(data.airconditioner_speed.warm_speed);
-			}
-			else if(data.airconditioner_mode == 2){
-				$("#display_temp").text('');
-				$("#display_mode").text("제습");
-				$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
-			}
-
+			if(data.airconditioner_power == 1){
+				if(data.airconditioner_mode == 0){
+					$("#display_temp").text(data.airconditioner_temp.cold_temp);
+					$("#display_mode").text("냉방");
+					$("#display_speed").text(data.airconditioner_speed.cold_speed);
+				}
+				else if(data.airconditioner_mode == 1){
+					$("#display_temp").text(data.airconditioner_temp.warm_temp);
+					$("#display_mode").text("난방");
+					$("#display_speed").text(data.airconditioner_speed.warm_speed);
+				}
+				else if(data.airconditioner_mode == 2){
+					$("#display_temp").text('');
+					$("#display_mode").text("제습");
+					$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+				}
+		}
 
 		},
 		error: function(err){
@@ -538,22 +555,23 @@ $("#airconditioner_tempdown").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
-			if(data.airconditioner_mode == 0){
-				$("#display_temp").text(data.airconditioner_temp.cold_temp);
-				$("#display_mode").text("냉방");
-				$("#display_speed").text(data.airconditioner_speed.cold_speed);
+			if(data.airconditioner_power == 1){
+				if(data.airconditioner_mode == 0){
+					$("#display_temp").text(data.airconditioner_temp.cold_temp);
+					$("#display_mode").text("냉방");
+					$("#display_speed").text(data.airconditioner_speed.cold_speed);
+				}
+				else if(data.airconditioner_mode == 1){
+					$("#display_temp").text(data.airconditioner_temp.warm_temp);
+					$("#display_mode").text("난방");
+					$("#display_speed").text(data.airconditioner_speed.warm_speed);
+				}
+				else if(data.airconditioner_mode == 2){
+					$("#display_temp").text('');
+					$("#display_mode").text("제습");
+					$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+				}
 			}
-			else if(data.airconditioner_mode == 1){
-				$("#display_temp").text(data.airconditioner_temp.warm_temp);
-				$("#display_mode").text("난방");
-				$("#display_speed").text(data.airconditioner_speed.warm_speed);
-			}
-			else if(data.airconditioner_mode == 2){
-				$("#display_temp").text('');
-				$("#display_mode").text("제습");
-				$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
-			}
-
 
 		},
 		error: function(err){
@@ -573,23 +591,23 @@ $("#airconditioner_speedup").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
-
-			if(data.airconditioner_mode == 0){
-				$("#display_temp").text(data.airconditioner_temp.cold_temp);
-				$("#display_mode").text("냉방");
-				$("#display_speed").text(data.airconditioner_speed.cold_speed);
+			if(data.airconditioner_power == 1){
+				if(data.airconditioner_mode == 0){
+					$("#display_temp").text(data.airconditioner_temp.cold_temp);
+					$("#display_mode").text("냉방");
+					$("#display_speed").text(data.airconditioner_speed.cold_speed);
+				}
+				else if(data.airconditioner_mode == 1){
+					$("#display_temp").text(data.airconditioner_temp.warm_temp);
+					$("#display_mode").text("난방");
+					$("#display_speed").text(data.airconditioner_speed.warm_speed);
+				}
+				else if(data.airconditioner_mode == 2){
+					$("#display_temp").text('');
+					$("#display_mode").text("제습");
+					$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+				}
 			}
-			else if(data.airconditioner_mode == 1){
-				$("#display_temp").text(data.airconditioner_temp.warm_temp);
-				$("#display_mode").text("난방");
-				$("#display_speed").text(data.airconditioner_speed.warm_speed);
-			}
-			else if(data.airconditioner_mode == 2){
-				$("#display_temp").text('');
-				$("#display_mode").text("제습");
-				$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
-			}
-
 
 		},
 		error: function(err){
@@ -609,20 +627,22 @@ $("#airconditioner_speeddown").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
-			if(data.airconditioner_mode == 0){
-				$("#display_temp").text(data.airconditioner_temp.cold_temp);
-				$("#display_mode").text("냉방");
-				$("#display_speed").text(data.airconditioner_speed.cold_speed);
-			}
-			else if(data.airconditioner_mode == 1){
-				$("#display_temp").text(data.airconditioner_temp.warm_temp);
-				$("#display_mode").text("난방");
-				$("#display_speed").text(data.airconditioner_speed.warm_speed);
-			}
-			else if(data.airconditioner_mode == 2){
-				$("#display_temp").text('');
-				$("#display_mode").text("제습");
-				$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+			if(data.airconditioner_power == 1){
+				if(data.airconditioner_mode == 0){
+					$("#display_temp").text(data.airconditioner_temp.cold_temp);
+					$("#display_mode").text("냉방");
+					$("#display_speed").text(data.airconditioner_speed.cold_speed);
+				}
+				else if(data.airconditioner_mode == 1){
+					$("#display_temp").text(data.airconditioner_temp.warm_temp);
+					$("#display_mode").text("난방");
+					$("#display_speed").text(data.airconditioner_speed.warm_speed);
+				}
+				else if(data.airconditioner_mode == 2){
+					$("#display_temp").text('');
+					$("#display_mode").text("제습");
+					$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+				}
 			}
 		},
 		error: function(err){
