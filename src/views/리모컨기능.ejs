@@ -14,6 +14,7 @@
 	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 	crossorigin="anonymous"></script>
 	<script src="./js/main.js"></script>
+	
 </head>
 <body>
 	<div class="container">
@@ -52,19 +53,19 @@
 
 			<div class="remote-setting">
 				<ul class="tab-list">
-					<li class="active">공기청정기</li>
-					<li>에어컨</li>
-					<li>가습기</li>
+					<li class="active" id="aircleaner">공기청정기</li>
+					<li id="airconditioner">에어컨</li>
+					<li id="dehumidity">가습기</li>
 				</ul>
-
+				
 				<div class="remote-control">
 					<!-- 공기청정기 -->
 					<div class="tab-item active">
-						<button type="button" class="btn-power"><strong>전원</strong></button>
+						<button type="button" class="btn-power"  id="aircleaner_power"><strong>전원</strong></button>
 						<div class="control-box">
-							<button type="button" class="btn-up">올림</button>
+							<button type="button" class="btn-up" id="aircleaner_speedup">올림</button>
 							<p>세기</p>
-							<button type="button" class="btn-down">내림</button>
+							<button type="button" class="btn-down" id="aircleaner_speeddown">내림</button>
 						</div>
 					</div>
 					<!-- 공기청정기 -->
@@ -72,21 +73,21 @@
 					<!-- 에어컨 -->
 					<div class="tab-item">
 						<ul class="btn-choice-mode">
-							<button type="button">냉방</button>
-							<button type="button">난방</button>
-							<button type="button">제습</button>
+							<button type="button" id="airconditioner_cold">냉방</button>
+							<button type="button" id="airconditioner_warm">난방</button>
+							<button type="button" id="airconditioner_dehumidity">제습</button>
 						</ul>
-						<button type="button" class="btn-power"><strong>전원</strong></button>
+						<button type="button" class="btn-power" id="airconditioner_power"><strong>전원</strong></button>
 						<div class="dual">
 							<div class="control-box">
-								<button type="button" class="btn-up">올림</button>
+								<button type="button" class="btn-up" id="airconditioner_tempup">올림</button>
 								<p>온도</p>
-								<button type="button" class="btn-down">내림</button>
+								<button type="button" class="btn-down"id="airconditioner_tempdown">내림</button>
 							</div>
 							<div class="control-box">
-								<button type="button" class="btn-up">올림</button>
+								<button type="button" class="btn-up" id="airconditioner_speedup">올림</button>
 								<p>세기</p>
-								<button type="button" class="btn-down">내림</button>
+								<button type="button" class="btn-down" id="airconditioner_speeddown">내림</button>
 							</div>
 						</div>
 					</div>
@@ -94,11 +95,11 @@
 
 					<!-- 가습기 -->
 					<div class="tab-item">
-						<button type="button" class="btn-power"><strong>전원</strong></button>
+						<button type="button" class="btn-power" id="humidifier_power"><strong>전원</strong></button>
 						<div class="control-box">
-							<button type="button" class="btn-up">올림</button>
+							<button type="button" class="btn-up" id="humidifier_speedup">올림</button>
 							<p>세기</p>
-							<button type="button" class="btn-down">내림</button>
+							<button type="button" class="btn-down" id="humidifier_speeddown">내림</button>
 						</div>
 					</div>
 					<!-- 가습기 -->
@@ -108,14 +109,548 @@
 				<div class="current-state">
 					<strong>현재상태</strong>
 					<ul>
-						<li>전원: <span>ON</span></li>
-						<li>전원: <span>23</span></li>
-						<li>모드: <span>냉방</span></li>
-						<li>세기: <span>2</span></li>
+						<li>전원: <span id="display_power"></span></li>
+						<li>온도: <span id="display_temp"></span></li>
+						<li>모드: <span id="display_mode"></span></li>
+						<li>세기: <span id="display_speed"></span></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
+<!-- 공기청정기 -->
+<script>
+
+
+
+$("#aircleaner").click(function(){
+		
+		$.ajax({
+		url: '/aircleanercontrol/status',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.aircleaner_power == 0)
+				$("#display_power").text("OFF");
+			else {
+				$("#display_power").text("ON");
+				$("#display_temp").text('');
+				$("#display_mode").text('');
+				$("#display_speed").text(data.aircleaner_speed);
+			}
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+
+$("#airconditioner").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/status',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.airconditioner_power == 0){
+				$("#display_power").text("OFF");
+				$("#display_temp").text('');
+				$("#display_mode").text('');
+				$("#display_speed").text('');
+			}
+			else {
+				$("#display_power").text("ON");
+				if(data.airconditioner_mode == 0){
+					$("#display_temp").text(data.airconditioner_temp.cold_temp);
+					$("#display_mode").text("냉방");
+					$("#display_speed").text(data.airconditioner_speed.cold_speed);
+				}
+				else if(data.airconditioner_mode == 1){
+					$("#display_temp").text(data.airconditioner_temp.warm_temp);
+					$("#display_mode").text("난방");
+					$("#display_speed").text(data.airconditioner_speed.warm_speed);
+				}
+				else if(data.airconditioner_mode == 2){
+					$("#display_temp").text('');
+					$("#display_mode").text("제습");
+					$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+				}
+				
+			}
+
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+
+$("#dehumidity").click(function(){
+		
+		$.ajax({
+		url: '/humidifiercontrol/status',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.dehumidifier_power == 1){
+				$("#display_power").text("ON");
+				$("#display_temp").text(' ');
+				$("#display_mode").text(' ');
+				$("#display_speed").text(data.dehumidity_speed);
+			}
+			else if(data.dehumidifier_power == 0){
+				$("#display_power").text("OFF");
+				$("#display_temp").text(' ');
+				$("#display_mode").text(' ');
+				$("#display_speed").text(' ');
+			}
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+
+
+
+$("#aircleaner_power").click(function(){
+		
+		$.ajax({
+		url: '/aircleanercontrol/power',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.aircleaner_power == 0){
+				$("#display_power").text("OFF");
+				$("#display_temp").text('');
+				$("#display_mode").text('');
+				$("#display_speed").text('');
+			}
+			else {
+				$("#display_power").text("ON");
+				$("#display_temp").text('');
+				$("#display_mode").text(' ');
+				$("#display_speed").text(data.aircleaner_speed);
+			}
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+	
+$("#aircleaner_speedup").click(function(){
+		
+		$.ajax({
+		url: '/aircleanercontrol/speedup',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data == -1){}
+			else{
+				if(data == 0)
+					$("#display_speed").text("4");
+				else
+					$("#display_speed").text(data);
+			}
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+	
+
+$("#aircleaner_speeddown").click(function(){
+		
+		$.ajax({
+		url: '/aircleanercontrol/speeddown',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data == -1){}
+			else{
+				if(data == 0)
+					$("#display_speed").text("1");
+				else
+					$("#display_speed").text(data);
+			}
+
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+//공기 청정기
+
+//가습기
+$("#humidifier_power").click(function(){
+		
+		$.ajax({
+		url: '/humidifiercontrol/power',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.dehumidifier_power == 1){
+				$("#display_power").text("ON");
+				$("#display_temp").text('');
+				$("#display_mode").text(' ');
+				$("#display_speed").text(data.dehumidifier_speed);
+			}
+			else{
+				$("#display_power").text("OFF");
+				$("#display_temp").text('');
+				$("#display_mode").text(' ');
+				$("#display_speed").text(' ');
+			}
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+	
+$("#humidifier_speedup").click(function(){
+		
+		$.ajax({
+		url: '/humidifiercontrol/speedup',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data == -1){}
+			else{
+				if(data == 0)
+					$("#display_speed").text("4");
+				else
+					$("#display_speed").text(data);
+			}
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+	
+
+$("#humidifier_speeddown").click(function(){
+		
+		$.ajax({
+		url: '/humidifiercontrol/speeddown',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data == -1){}
+			else{
+				if(data == 0)
+					$("#display_speed").text("1");
+				else
+					$("#display_speed").text(data);
+			}
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+//가습기
+
+//에어컨
+$("#airconditioner_power").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/power',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.airconditioner_power == 1){
+				$("#display_power").text("ON");
+				if(data.airconditioner_mode == 0){
+					$("#display_temp").text(data.airconditioner_temp.cold_temp);
+					$("#display_mode").text("냉방");
+					$("#display_speed").text(data.airconditioner_speed.cold_speed);
+				}
+				else if(data.airconditioner_mode == 1){
+					$("#display_temp").text(data.airconditioner_temp.warm_temp);
+					$("#display_mode").text("난방");
+					$("#display_speed").text(data.airconditioner_speed.warm_speed);
+				}
+				else if(data.airconditioner_mode == 2){
+					$("#display_temp").text('');
+					$("#display_mode").text("제습");
+					$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+				}
+			}
+			else if(data.airconditioner_power == 0){
+				$("#display_power").text("OFF");
+				$("#display_temp").text('');
+				$("#display_mode").text("");
+				$("#display_speed").text('');
+			}
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+	
+$("#airconditioner_cold").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/cold',
+		async: 'true',
+		type: 'POST',
+		data:{
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.aircleaner_power == 1){
+				$("#display_temp").text(data.airconditioner_temp.cold_temp);
+				$("#display_mode").text("냉방");
+				$("#display_speed").text(data.airconditioner_speed.cold_speed);
+			}
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+	
+
+$("#airconditioner_warm").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/warm',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.airconditioner_power == 1){
+				$("#display_temp").text(data.airconditioner_temp.warm_temp);
+				$("#display_mode").text("난방");
+				$("#display_speed").text(data.airconditioner_speed.warm_speed);
+			}
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+$("#airconditioner_dehumidity").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/dehumidity',
+		async: 'true',
+		type: 'POST',
+		data:{
+			
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.airconditioner_power == 1){
+				$("#display_mode").text("제습");
+				$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+				$("#display_temp").text('');
+			}
+
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+$("#airconditioner_tempup").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/tempup',
+		async: 'true',
+		type: 'POST',
+		data:{
+			mode :$("#display_mode").text()
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.airconditioner_power == 1){
+				if(data.airconditioner_mode == 0){
+					$("#display_temp").text(data.airconditioner_temp.cold_temp);
+					$("#display_mode").text("냉방");
+					$("#display_speed").text(data.airconditioner_speed.cold_speed);
+				}
+				else if(data.airconditioner_mode == 1){
+					$("#display_temp").text(data.airconditioner_temp.warm_temp);
+					$("#display_mode").text("난방");
+					$("#display_speed").text(data.airconditioner_speed.warm_speed);
+				}
+				else if(data.airconditioner_mode == 2){
+					$("#display_temp").text('');
+					$("#display_mode").text("제습");
+					$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+				}
+		}
+
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+$("#airconditioner_tempdown").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/tempdown',
+		async: 'true',
+		type: 'POST',
+		data:{
+			mode :$("#display_mode").text()
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.airconditioner_power == 1){
+				if(data.airconditioner_mode == 0){
+					$("#display_temp").text(data.airconditioner_temp.cold_temp);
+					$("#display_mode").text("냉방");
+					$("#display_speed").text(data.airconditioner_speed.cold_speed);
+				}
+				else if(data.airconditioner_mode == 1){
+					$("#display_temp").text(data.airconditioner_temp.warm_temp);
+					$("#display_mode").text("난방");
+					$("#display_speed").text(data.airconditioner_speed.warm_speed);
+				}
+				else if(data.airconditioner_mode == 2){
+					$("#display_temp").text('');
+					$("#display_mode").text("제습");
+					$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+				}
+			}
+
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+$("#airconditioner_speedup").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/speedup',
+		async: 'true',
+		type: 'POST',
+		data:{
+			mode :$("#display_mode").text()
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.airconditioner_power == 1){
+				if(data.airconditioner_mode == 0){
+					$("#display_temp").text(data.airconditioner_temp.cold_temp);
+					$("#display_mode").text("냉방");
+					$("#display_speed").text(data.airconditioner_speed.cold_speed);
+				}
+				else if(data.airconditioner_mode == 1){
+					$("#display_temp").text(data.airconditioner_temp.warm_temp);
+					$("#display_mode").text("난방");
+					$("#display_speed").text(data.airconditioner_speed.warm_speed);
+				}
+				else if(data.airconditioner_mode == 2){
+					$("#display_temp").text('');
+					$("#display_mode").text("제습");
+					$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+				}
+			}
+
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+$("#airconditioner_speeddown").click(function(){
+		
+		$.ajax({
+		url: '/airconditionercontrol/speeddown',
+		async: 'true',
+		type: 'POST',
+		data:{
+			mode :$("#display_mode").text()
+		},
+		dataType: 'json',
+		success : function(data){
+			if(data.airconditioner_power == 1){
+				if(data.airconditioner_mode == 0){
+					$("#display_temp").text(data.airconditioner_temp.cold_temp);
+					$("#display_mode").text("냉방");
+					$("#display_speed").text(data.airconditioner_speed.cold_speed);
+				}
+				else if(data.airconditioner_mode == 1){
+					$("#display_temp").text(data.airconditioner_temp.warm_temp);
+					$("#display_mode").text("난방");
+					$("#display_speed").text(data.airconditioner_speed.warm_speed);
+				}
+				else if(data.airconditioner_mode == 2){
+					$("#display_temp").text('');
+					$("#display_mode").text("제습");
+					$("#display_speed").text(data.airconditioner_speed.dehumidity_speed);
+				}
+			}
+		},
+		error: function(err){
+			throw(err);
+		}
+		});
+});
+
+
+</script>
 </html>
