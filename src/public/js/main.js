@@ -2,6 +2,7 @@ $(document).ready(function(){
 	menuClick();
 	tabChange();
 	tabActive();
+	turn_off_solution();
 
 	var ctx = document.getElementById('myChart').getContext('2d');
 	var myLineChart = new Chart(ctx, {
@@ -164,50 +165,46 @@ function tabActive(){
 				}
 			});
 		}
-
+		else if(idx === 4){
+			location.href='/modeControl/turnOffSolution';
+		}
 	})
 }
 
-function modeClick(){
+function turn_off_solution(command){
+	let year = $('#reservation-year').val();
+	let month = $('#reservation-month').val();
+	let day = $('#reservation-day').val();
+	let hour = $('#reservation-hour').val();
+	let minute = $('#reservation-minute').val();
 
-	var menu = $('header .btn-menu');
-	var close = $('header .btn-close');
-	var logout = $('header .btn-logout');
-	var remote = $('header .btn-remote');
-	var mode = $('header .btn-mode');
-	var main = $('header .btn-choice-mode');
-	var detail_air = $('header .btn-air');
-	var data = $('header .btn-data');
-	var home = $('header .btn-home');
-	menu.on('click' , function(){
-		$('.nav').fadeIn('fast');
-	})
-	close.on('click' , function(){
-		$('.nav').fadeOut('fast');
-	});
-	logout.on('click' ,function(){
-		alert('로그아웃');
-		location.href='/logout';
-	})
-	remote.on('click' ,function(){
-		location.href='/remoteControl';
-	})
-	mode.on('click' ,function(){
-		location.href='/modeControl';
-	})
+	let data = {
+		year : year,
+		month : month,
+		day : day,
+		hour : hour,
+		minute : minute
+	}
+	if(command === 'reservation'){
 
-	main.on('click' ,function(){
-		location.href='/main';
-	})
+		$.ajax({
+			url: "/reservationcontrol/turnOffSolution/on", //url
+			type: "post", //get, post 방식
+			async: false, // true:비동기, false:동기
+			body : JSON.stringify(data),
+			headers : {
+				'Content-Type' : 'application/json',
+				'Accept' : 'application/json',
+			},
+			success: function(data){
+				alert('예약 완료!');
+			},
+			error: function(json){
+				alert('예약 에러!');
+			}
+		});
+	}
+	else {
 
-	detail_air.on('click' ,function(){
-		location.href='/detailair';
-	})
-
-	data.on('click' ,function(){
-		location.href='/dataHistory';
-	})
-	home.on('click' ,function(){
-		location.href='/main';
-	})
+	}
 }

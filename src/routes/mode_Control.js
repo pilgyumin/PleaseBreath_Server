@@ -38,12 +38,19 @@ router.get('/:mode', (req, res, next) => {
     else if(req.params.mode === 'sleep'){
         add_path += "sleep";
     }
-    fetch("http://" + pi_hostname + ":" + pi_port + pi_path + add_path, {
-        method: 'get',
-    })
-        .then(res => res.json())
-        .then(json => console.log(json));
-    res.json({});
+    else if(req.params.mode === 'turnOffSolution'){
+        res.render('팝업_꺼짐예약설정', { id: req.session.user_id });
+    }
+    
+    if(add_path != ''){
+        fetch("http://" + pi_hostname + ":" + pi_port + pi_path + add_path, {
+            method: 'get',
+        })
+            .then(res => res.json())
+            .then(json => console.log(json));
+        res.json({});
+    }
+    
 });
 
 /*
