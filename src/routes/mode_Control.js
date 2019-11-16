@@ -11,6 +11,7 @@ let pi_path = '/Mode/';
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
+    console.log('모드설정 진입');
     if(req.session.logined) {
         res.render('모드설정', { id: req.session.user_id, Status:Status });
     } else {

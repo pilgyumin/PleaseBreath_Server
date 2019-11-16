@@ -122,7 +122,7 @@ function tabActive(){
 					alert('일반모드 구동!');
 				},
 				error: function(json){
-					alert('ajax error.');
+					alert('일반모드 구동 에러');
 				}
 			});
 		}
@@ -135,7 +135,7 @@ function tabActive(){
 					alert('영유아모드 구동!');
 				},
 				error: function(json){
-					alert('ajax error.');
+					alert('영유아모드 구동 에러');
 				}
 			});
 		}
@@ -148,7 +148,7 @@ function tabActive(){
 					alert('노인모드 구동!');
 				},
 				error: function(json){
-					alert('ajax error.');
+					alert('노인모드 구동 에러');
 				}
 			});
 		}
@@ -161,7 +161,7 @@ function tabActive(){
 					alert('수면모드 구동!');
 				},
 				error: function(json){
-					alert('ajax error.');
+					alert('수면모드 구동 에러');
 				}
 			});
 		}
@@ -184,27 +184,51 @@ function turn_off_solution(command){
 		day : day,
 		hour : hour,
 		minute : minute
-	}
+	};
 	if(command === 'reservation'){
+        fetch("http://localhost" + '/reservationcontrol/turnOffSolution/on', {
+            method: 'post',
+            body:    JSON.stringify(data),
+            headers: {
+                'Content-Type' : 'application/json',
+                'Accept' : 'application/json',
+                "Access-Control-Allow-Origin": "*",
+            },
 
-		$.ajax({
-			url: "/reservationcontrol/turnOffSolution/on", //url
-			type: "post", //get, post 방식
-			async: false, // true:비동기, false:동기
-			body : JSON.stringify(data),
-			headers : {
+        })
+            .then(res => {
+					alert('예약 완료!');
+					res.json({});
+			})
+            .then(json => {
+            	console.log(json);
+			})
+			.catch(res => {
+				alert('예약 실패!');
+			})
+		location.href='/modeControl';
+	}
+	else if(command === 'cancel'){
+		fetch("http://localhost" + '/reservationcontrol/turnOffSolution/off', {
+			method: 'post',
+			body:    JSON.stringify(data),
+			headers: {
 				'Content-Type' : 'application/json',
 				'Accept' : 'application/json',
+				"Access-Control-Allow-Origin": "*",
 			},
-			success: function(data){
-				alert('예약 완료!');
-			},
-			error: function(json){
-				alert('예약 에러!');
-			}
-		});
-	}
-	else {
 
+		})
+			.then(res => {
+				alert('예약 취소!');
+			})
+			.then(json => {
+				console.log(json);
+			})
+			.catch(res => {
+				alert('예약 취소 실패!');
+			})
+		location.href='/modeControl';
 	}
+
 }
