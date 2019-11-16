@@ -3,9 +3,7 @@ $(document).ready(function(){
 	tabChange();
 	tabActive();
 	turn_off_solution();
-
-
-	
+	set_current_date();
 
 	var ctx = document.getElementById('myChart').getContext('2d');
 	var myLineChart = new Chart(ctx, {
@@ -255,5 +253,22 @@ function turn_off_solution(command){
 		location.href='/modeControl';
 	}
 
+}
+
+function set_current_date(){
+
+	let date = new Date();
+
+	let year = date.getFullYear();
+	let month = date.getMonth() + 1;
+	let day = date.getDate();
+	let hour = date.getHours();
+	let minute = (date.getMinutes() + 1) % 60;
+
+	$("#reservation-year").val(year.toString()).prop("selected", true);
+	$("#reservation-month").val(month.toString()).prop("selected", true);
+	$("#reservation-day").val(day.toString()).prop("selected", true);
+	$("#reservation-hour").val(hour.toString()).prop("selected", true);
+	$("#reservation-minute").val(minute.toString()).prop("selected", true);
 }
 
