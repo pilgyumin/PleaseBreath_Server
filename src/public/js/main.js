@@ -113,11 +113,18 @@ function myFunction() {
 
 function tabActive(){
 	var modeSettingList = $('.mode-setting ul li');
+	var popupList = $('.reservation ul li');
 
 	modeSettingList.on('click' , function(){
 		var idx = $(this).index();
 		modeSettingList.removeClass('active')
 		modeSettingList.eq(idx).addClass('active')
+	})
+	
+	popupList.on('click' , function(){
+		var idx = $(this).index();
+		popupList.removeClass('active')
+		popupList.eq(idx).addClass('active')
 	})
 }
 

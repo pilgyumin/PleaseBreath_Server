@@ -840,6 +840,10 @@ h1.logo a {
             border-color: #25a8f9; }
             .pop-up .pop-body .reservation ul li.active button {
               color: #fff; }
+              
+
+                  
+             
       .pop-up .pop-body .reservation .timer div {
         display: flex;
         margin-top: 10px;
@@ -902,10 +906,14 @@ h1.logo a {
         flex: 0 0 90px;
         margin-left: 10px; }
         .pop-up .pop-body .btn-wrap button:first-child {
-          margin-left: 0; }
-        .pop-up .pop-body .btn-wrap button.blue {
+          margin-left: 0; 
+        }
+        
+        .pop-up .pop-body .btn-wrap button:hover {
+          cursor:pointer;
           color: #fff;
-          background: #25a8f9; }
+          background: #25a8f9; 
+        }
   .pop-up .btn-close {
     position: absolute;
     top: 10px;

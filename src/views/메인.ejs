@@ -22,11 +22,11 @@
 	function showDiv() {
 		if(document.getElementById('detail').style.visibility == "hidden"){
 			document.getElementById('detail').style.visibility = "visible";
-			document.getElementById('reservation').style.visibility = "hidden";
+			document.getElementById('btn-reservation').style.visibility = "hidden";
 		}
 		else{
 			document.getElementById('detail').style.visibility = "hidden";
-			document.getElementById('reservation').style.visibility = "visible";
+			document.getElementById('btn-reservation').style.visibility = "visible";
 		}
 	}
 
@@ -197,7 +197,7 @@
 				<div class="btn-wrap">  
 					<div class="detail-wrap">
 						<a href="javascript:void(0)" id="detail" style="visibility : hidden" onclick="showPopup('Detail_popup')">상세보기</a>
-						<a href="javascript:void(0)" id="reservation" style="visibility : visible" onclick="showPopup('Exit_popup')">예약하기</a>
+						<a href="javascript:void(0)" id="btn-reservation" style="visibility : visible" onclick="showPopup('Reservation_popup')">예약하기</a>
 					</div>
 					<div class="switch-box" >
 						<div class="switch">
@@ -264,13 +264,18 @@
 	</div>
 
 
-	<div class="pop-up" id="Exit_popup">
+	<div class="pop-up" id="Reservation_popup">
 			<div class="pop-wrap">
 				<div class="pop-header">
-					<h3>꺼짐 예약 설정</h3>
+					<h3>예약설정</h3>
 				</div>
 				<div class="pop-body">
 					<div class="reservation">
+						<ul>
+							<li class="active"><button type="button"><img src="./images/mode-1.svg" alt="">일반모드</button></li>
+							<li><button type="button"><img src="./images/mode-2.svg" alt="">영유아모드</button></li>
+							<li><button type="button"><img src="./images/mode-3.svg" alt="">노인모드</button></li>
+						</ul>
 	
 						<div class="timer">
 							<div>
@@ -320,17 +325,15 @@
 						</div>
 	
 						<div class="btn-wrap">
-							<button type="button" class="blue">예약</button>
-							<button type="button" onclick="hidePopup('Exit_popup')">취소</button>
+							<button type="button" class="blue" onclick="showPopup('Reservation_popup')">예약</button>
+							<button type="button" onclick="hidePopup('Reservation_popup')">취소</button>
 						</div>
 					</div>
 				</div>
 	
-				<button type="button" class="btn-close" onclick="hidePopup('Exit_popup')">닫기</button>
+				<button type="button" class="btn-close" onclick="hidePopup('Reservation_popup')">닫기</button>
 			</div>
 		</div>
-
-
 	
 </body>
 </html>
