@@ -405,6 +405,13 @@ h1.logo a {
         width: 120px;
         height: 120px;
         margin: 20px auto 0; }
+.info-viewer div[class$=-door] div .thum2 {
+  display: block;
+  background: url(../images/indoor.png) 0 0 no-repeat;
+  background-size: 100%;
+  width: 120px;
+  height: 120px;
+  margin: 20px auto 0; }
     .info-viewer div[class$=-door] ul {
       display: flex;
       text-align: center;
