@@ -777,6 +777,7 @@ h1.logo a {
         border-bottom: solid 1px #e4e4e4; }
 
 .pop-up {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;

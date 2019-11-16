@@ -120,3 +120,14 @@ function tabActive(){
 		modeSettingList.eq(idx).addClass('active')
 	})
 }
+
+function showPopup(pop_id){
+	var popup = $('#'+pop_id);
+	popup.show()
+}
+
+function hidePopup(pop_id){
+	var popup = $('#'+pop_id);
+	popup.hide()
+}
+
