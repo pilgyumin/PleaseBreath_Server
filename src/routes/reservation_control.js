@@ -24,7 +24,7 @@ router.post('/:mode/:power', (req, res, next) => {
     let reservation_data = {
         data : new Date(req.body.year, req.body.month - 1, req.body.day, req.body.hour, req.body.minute , 0 ).getTime() / 1000
     };
-
+    console.log(req.body);
     fetch("http://" + pi_hostname + ":" + pi_port + pi_path + req.params.mode + '/' + req.params.power, {
         method: 'post',
         body:    JSON.stringify(reservation_data),

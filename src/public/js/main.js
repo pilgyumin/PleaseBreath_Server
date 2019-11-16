@@ -2,6 +2,7 @@ $(document).ready(function(){
 	menuClick();
 	tabChange();
 	tabActive();
+	turn_off_solution();
 
 
 	
@@ -119,6 +120,61 @@ function tabActive(){
 		var idx = $(this).index();
 		modeSettingList.removeClass('active')
 		modeSettingList.eq(idx).addClass('active')
+		if(idx === 0){
+			$.ajax({
+				url: "/modeControl/normal", //url
+				type: "get", //get, post 방식
+				async: true, // true:비동기, false:동기
+				success: function(data){
+					alert('일반모드 구동!');
+				},
+				error: function(json){
+					alert('일반모드 구동 에러');
+				}
+			});
+		}
+		else if(idx === 1){
+			$.ajax({
+				url: "/modeControl/infacts", //url
+				type: "get", //get, post 방식
+				async: true, // true:비동기, false:동기
+				success: function(data){
+					alert('영유아모드 구동!');
+				},
+				error: function(json){
+					alert('영유아모드 구동 에러');
+				}
+			});
+		}
+		else if(idx === 2){
+			$.ajax({
+				url: "/modeControl/senior", //url
+				type: "get", //get, post 방식
+				async: true, // true:비동기, false:동기
+				success: function(data){
+					alert('노인모드 구동!');
+				},
+				error: function(json){
+					alert('노인모드 구동 에러');
+				}
+			});
+		}
+		else if(idx === 3){
+			$.ajax({
+				url: "/modeControl/sleep", //url
+				type: "get", //get, post 방식
+				async: true, // true:비동기, false:동기
+				success: function(data){
+					alert('수면모드 구동!');
+				},
+				error: function(json){
+					alert('수면모드 구동 에러');
+				}
+			});
+		}
+		else if(idx === 4){
+			location.href='/modeControl/turnOffSolution';
+		}
 	})
 	
 	popupList.on('click' , function(){
@@ -136,5 +192,68 @@ function showPopup(pop_id){
 function hidePopup(pop_id){
 	var popup = $('#'+pop_id);
 	popup.hide()
+}
+
+
+function turn_off_solution(command){
+	let year = $('#reservation-year').val();
+	let month = $('#reservation-month').val();
+	let day = $('#reservation-day').val();
+	let hour = $('#reservation-hour').val();
+	let minute = $('#reservation-minute').val();
+
+	let data = {
+		year : year,
+		month : month,
+		day : day,
+		hour : hour,
+		minute : minute
+	};
+	if(command === 'reservation'){
+        fetch("http://localhost" + '/reservationcontrol/turnOffSolution/on', {
+            method: 'post',
+            body:    JSON.stringify(data),
+            headers: {
+                'Content-Type' : 'application/json',
+                'Accept' : 'application/json',
+                "Access-Control-Allow-Origin": "*",
+            },
+
+        })
+            .then(res => {
+					alert('예약 완료!');
+					res.json({});
+			})
+            .then(json => {
+            	console.log(json);
+			})
+			.catch(res => {
+				alert('예약 실패!');
+			})
+		location.href='/modeControl';
+	}
+	else if(command === 'cancel'){
+		fetch("http://localhost" + '/reservationcontrol/turnOffSolution/off', {
+			method: 'post',
+			body:    JSON.stringify(data),
+			headers: {
+				'Content-Type' : 'application/json',
+				'Accept' : 'application/json',
+				"Access-Control-Allow-Origin": "*",
+			},
+
+		})
+			.then(res => {
+				alert('예약 취소!');
+			})
+			.then(json => {
+				console.log(json);
+			})
+			.catch(res => {
+				alert('예약 취소 실패!');
+			})
+		location.href='/modeControl';
+	}
+
 }
 
