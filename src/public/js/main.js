@@ -2,8 +2,8 @@ $(document).ready(function(){
 	menuClick();
 	tabChange();
 	tabActive();
-	turn_off_solution();
-	set_current_date();
+	//turn_off_solution();
+	//set_current_date();
 
 	var ctx = document.getElementById('myChart').getContext('2d');
 	var myLineChart = new Chart(ctx, {
@@ -255,8 +255,8 @@ function turn_off_solution(command){
 
 }
 
-function set_current_date(){
-
+function set_current_date(pop_id){
+	
 	let date = new Date();
 
 	let year = date.getFullYear();
@@ -270,5 +270,6 @@ function set_current_date(){
 	$("#reservation-day").val(day.toString()).prop("selected", true);
 	$("#reservation-hour").val(hour.toString()).prop("selected", true);
 	$("#reservation-minute").val(minute.toString()).prop("selected", true);
+	showPopup(pop_id);
 }
 
