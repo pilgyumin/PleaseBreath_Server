@@ -1,3 +1,5 @@
+let solution_mode = 2;
+
 $(document).ready(function(){
 	menuClick();
 	tabChange();
@@ -310,5 +312,75 @@ function Main_Ai(){
 	}
 
 	
+
+}
+
+function reservation_mode_click(mode) {
+	solution_mode = mode;
+}
+
+function turn_on_solution(command){
+
+	let year = $('#reservation-year').val();
+	let month = $('#reservation-month').val();
+	let day = $('#reservation-day').val();
+	let hour = $('#reservation-hour').val();
+	let minute = $('#reservation-minute').val();
+
+	let data = {
+		year : year,
+		month : month,
+		day : day,
+		hour : hour,
+		minute : minute,
+		mode : solution_mode
+	};
+
+	if(command === 'reservation'){
+		fetch("http://localhost" + '/reservationcontrol/turnOnSolution/on', {
+			method: 'post',
+			body:    JSON.stringify(data),
+			headers: {
+				'Content-Type' : 'application/json',
+				'Accept' : 'application/json',
+				"Access-Control-Allow-Origin": "*",
+			},
+
+		})
+			.then(res => {
+				//alert('예약 완료!');
+				alert(solution_mode);
+				res.json({});
+			})
+			.then(json => {
+				console.log(json);
+			})
+			.catch(res => {
+				alert('예약 실패!');
+			});
+		$('#Reservation_popup').fadeOut('fast');
+	}
+	else if(command === 'cancel'){
+		fetch("http://localhost" + '/reservationcontrol/turnOnSolution/off', {
+			method: 'post',
+			body:    JSON.stringify(data),
+			headers: {
+				'Content-Type' : 'application/json',
+				'Accept' : 'application/json',
+				"Access-Control-Allow-Origin": "*",
+			},
+
+		})
+			.then(res => {
+				alert('예약 취소!');
+			})
+			.then(json => {
+				console.log(json);
+			})
+			.catch(res => {
+				alert('예약 취소 실패!');
+			})
+		$('#Reservation_popup').fadeOut('fast');
+	}
 
 }

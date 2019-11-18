@@ -111,7 +111,7 @@
             }, 3000);
         }
 
-        getTemp();
+        //getTemp();
 
 
 
@@ -196,8 +196,8 @@
 
 				<div class="btn-wrap">  
 					<div class="detail-wrap">
-						<a href="javascript:void(0)" id="detail" style="visibility : hidden" onclick="showPopup('Detail_popup')">상세보기</a>
-						<a href="javascript:void(0)" id="btn-reservation" style="visibility : visible" onclick="showPopup('Reservation_popup')">예약하기</a>
+						<a href="javascript:void(0)" id="detail" style="visibility : hidden" onclick="set_current_date('Detail_popup')">상세보기</a>
+						<a href="javascript:void(0)" id="btn-reservation" style="visibility : visible" onclick="set_current_date('Reservation_popup')">예약하기</a>
 					</div>
 					<div class="switch-box" >
 						<div class="switch">
@@ -272,9 +272,9 @@
 				<div class="pop-body">
 					<div class="reservation">
 						<ul>
-							<li class="active"><button type="button"><img src="./images/mode-1.svg" alt="">일반모드</button></li>
-							<li><button type="button"><img src="./images/mode-2.svg" alt="">영유아모드</button></li>
-							<li><button type="button"><img src="./images/mode-3.svg" alt="">노인모드</button></li>
+							<li class="active"><button type="button" onclick="reservation_mode_click(1)"><img src="./images/mode-1.svg" alt="">일반모드</button></li>
+							<li><button type="button" onclick="reservation_mode_click(2)"><img src="./images/mode-2.svg" alt="">영유아모드</button></li>
+							<li><button type="button" onclick="reservation_mode_click(3)"><img src="./images/mode-3.svg" alt="">노인모드</button></li>
 						</ul>
 	
 						<div class="timer">
@@ -450,8 +450,8 @@
 						</div>
 	
 						<div class="btn-wrap">
-							<button type="button" class="blue" onclick="showPopup('Reservation_popup')">예약</button>
-							<button type="button" onclick="$('#Reservation_popup').fadeOut('fast')">취소</button>
+							<button type="button" class="blue" onclick="turn_on_solution('reservation')">예약</button>
+							<button type="button" onclick="turn_on_solution('cancel')">취소</button>
 						</div>
 					</div>
 				</div>
