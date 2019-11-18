@@ -34,37 +34,20 @@ router.get('/', async (req, res, next) => {
         var yyyy = today.getFullYear();
         var hour = today.getHours();
         var minute = today.getMinutes();
-        if (dd < 10) {
-            dd = '0' + dd;
-        }
-        if (mm < 10) {
-            mm = '0' + mm;
-        }
-        if (hour < 10) {
-            hour = '0' + hour;
-        }
-        if (minute < 10) {
-            minute = '0' + minute;
-        }
 
-
-        var ttime = Number(hour * 60) + Number(minute);
-
-        ttime -= (minute % 30);
         var time_data = [[],[],[],[],[],[]];
+
+        var temp_stamp = new Date();
+        temp_stamp.setMinutes(today.getMinutes() - (minute%30));
+        console.log(today, temp_stamp);
+
 
         for (var i = 11; i >= 0; i--) {
 
-            var h = parseInt(ttime / 60);
-            var m = (ttime % 60);
-
-            if (ttime < 0) {
-                ttime = 24 * 60;
-            }
-
-            console.log(i + ":" + yyyy + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + h);
-            if (m == 0) {
-                await Inner_Todo.findOne({ "year": yyyy, "month": today.getMonth() + 1, "date": today.getDate(), "hours": h, "minute": { $gte: 0, $lte: 29 } }, { _id: 0 }, function (err, todo) {
+            //now is temp_stamp. find temp_stamp ~ temp_stamp+30m data average
+            var start = temp_stamp.getTime();
+            var end = start + 1800000
+                await Inner_Todo.findOne({ "id": "Inner", "timestamp": { $gte: start, $lt: end } }, { _id: 0 }, function (err, todo) {
                     if (err) throw err;
                     if (todo != null && todo.length != 0) {
 
@@ -83,35 +66,27 @@ router.get('/', async (req, res, next) => {
 
                     }
                 });
-            } else {
-                await Inner_Todo.findOne({ "year": yyyy, "month": today.getMonth() + 1, "date": today.getDate(), "hours": h, "minute": { $gte: 30, $lte: 59 } }, { _id: 0 }, function (err, todo) {
-                    if (err) throw err;
-
-                    if (todo != null && todo.length != 0) {
-
-                        time_data[0].unshift(todo.temp);
-                        time_data[1].unshift(todo.humid);
-                        time_data[2].unshift(todo.pm25);
-                        time_data[3].unshift(todo.pm10);
-                        time_data[4].unshift(todo.voc);
-                        time_data[5].unshift(todo.co2);
-                    }
-                    else{
-
-                        for(var j=0; j<6; j++){
-                            time_data[j].unshift("null");
-                        }
-
-                    }
-                });
-            }
-            ttime -= 30;
+                
+                temp_stamp.setMinutes(temp_stamp.getMinutes() - 30); // 30분 전으로
         }
 
         setTimeout(() => {
             console.log('SET TIME OUT CONFIRM');
             console.log(time_data);
         }, 3000);
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        if (hour < 10) {
+            hour = '0' + hour;
+        }
+        if (minute < 10) {
+            minute = '0' + minute;
+        }
 
         res.render('그래프', {
             id: req.session.user_id, dd: dd, mm: mm, yyyy: yyyy, hour: hour, minute: minute, time_data: time_data,
