@@ -50,7 +50,7 @@
 			<h3 class="sub-title">상세 공기 상태</h3>
 
 			<div class="air-condition">
-				<p class="time"><span>07:30</span> 기준</p>
+				<p class="time"><span><%=Inner_hh%>:<%=Inner_mm%></span> 기준</p>
 
 				<div class="out-door">
 					<h4>실외</h4>
@@ -159,7 +159,8 @@
 		</div>
 	</div>
 	<script>
-
+		console.log("<%= Inner_hh %>");
+		console.log("<%= Inner_mm %>");
 			var Inner_temp="<%= Inner_temp %>";
   			var Inner_humid="<%= Inner_humid %>";
     		var Inner_pm25="<%= Inner_pm25 %>";
