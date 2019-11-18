@@ -8,6 +8,8 @@ const User = require('./User.js');
 let Pass = false;
 const session = require('express-session');
 const Status = require('../Model/DATA');
+const machine_status = require('../Model/Machine_Status');
+
 const UserSchema = mongoose.Schema({
     user_id: String,
     password: String
@@ -47,7 +49,21 @@ router.get('/logout', (req, res, next) => {
     Status.second = "",
     Status.aircleanermode = "",
     Status.aircleanerspeed = "";
-    
+
+    machine_status.aircleaner_power = 0,
+    machine_status.airconditioner_power = 0,
+    machine_status.dehumidifier_power = 0,
+    machine_status.airconditioner_mode = 0,
+
+    machine_status.airconditioner_temp.cold_temp = 18,
+    machine_status.airconditioner_temp.warm_temp = 13,
+     
+    machine_status.airconditioner_speed.cold_speed = 1,
+    machine_status.airconditioner_speed.warm_speed = 1,
+    machine_status.airconditioner_speed.dehumidity_speed = 1,
+    machine_status.aircleaner_speed = 1,
+    machine_status.dehumidifier_speed = 1,
+
     res.redirect('/');
 });
 

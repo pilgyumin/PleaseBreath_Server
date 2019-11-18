@@ -4,7 +4,7 @@ let status = {
     dehumidifier_power : 0,
 
     
-    airconditioner_mode : Number,
+    airconditioner_mode : 0,
 
     airconditioner_temp : {
         cold_temp : 18,
