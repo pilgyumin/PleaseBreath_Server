@@ -24,10 +24,11 @@ router.post('/power', (req, res, next) => {
     const aa = {};
     console.log('Airconditioner power');
     
-
+    pi_server_Url.path = '/AirconditionerControl/';
     pi_server_Url.path += "power";
     http.request(pi_server_Url).end();
-    pi_server_Url.path = '/AirconditionerControl/';
+    console.log(pi_server_Url);
+    pi_server_Url.path = '';
     if(status.airconditioner_power == 0){
         console.log('airconditioner pwoer on');
         status.airconditioner_power = 1;
@@ -35,17 +36,23 @@ router.post('/power', (req, res, next) => {
     else{
         console.log('airconditioner pwoer off');
         status.airconditioner_power = 0;
+        status.airconditioner_mode = 0;
+        status.airconditioner_temp.warm_temp = 13;
+        status.airconditioner_temp.cold_temp = 18;
+        status.airconditioner_speed.cold_speed = 1;
+        status.airconditioner_speed.warm_speed = 1;
+        status.airconditioner_speed.dehumidity_speed = 1;
     }
     res.json(status);
 });
 
 //바람세기
 router.post('/speeddown', (req, res, next) => {
-    
+    pi_server_Url.path = '/AirconditionerControl/';
     console.log('Airconditioner speeddown');
     pi_server_Url.path += "speeddown";
     http.request(pi_server_Url).end();
-    pi_server_Url.path = '/AirconditionerControl/';
+    pi_server_Url.path = '';
 
     let current_mode = req.body.mode;
     if(current_mode == "냉방"){
@@ -70,9 +77,10 @@ router.post('/speeddown', (req, res, next) => {
 router.post('/speedup', (req, res, next) => {
     const aa = {};
     console.log('Airconditioner speed');
+    pi_server_Url.path = '/AirconditionerControl/';
     pi_server_Url.path += "speedup";
     http.request(pi_server_Url).end();
-    pi_server_Url.path = '/AirconditionerControl/';
+    pi_server_Url.path = '';
 
     let current_mode = req.body.mode;
     if(current_mode == "냉방"){
@@ -98,10 +106,11 @@ router.post('/speedup', (req, res, next) => {
 
 router.post('/tempup', (req, res, next) => {
     const aa = {};
+    pi_server_Url.path = '/AirconditionerControl/';
     console.log('Airconditioner tempup');
     pi_server_Url.path += "tempup";
     http.request(pi_server_Url).end();
-    pi_server_Url.path = '/AirconditionerControl/';
+    pi_server_Url.path = '';
     
     let current_mode = req.body.mode;
     if(current_mode == "냉방"){
@@ -122,9 +131,10 @@ router.post('/tempup', (req, res, next) => {
 router.post('/tempdown', (req, res, next) => {
     const aa = {};
     console.log('Airconditioner tempdown');
+    pi_server_Url.path = '/AirconditionerControl/';
     pi_server_Url.path += "tempdown";
     http.request(pi_server_Url).end();
-    pi_server_Url.path = '/AirconditionerControl/';
+    pi_server_Url.path = '';
 
     let current_mode = req.body.mode;
     if(current_mode == "냉방"){
@@ -143,9 +153,10 @@ router.post('/tempdown', (req, res, next) => {
 router.post('/warm', (req, res, next) => {
     const aa = {};
     console.log('Airconditioner warm');
+    pi_server_Url.path = '/AirconditionerControl/';
     pi_server_Url.path += "warm";
     http.request(pi_server_Url).end();
-    pi_server_Url.path = '/AirconditionerControl/';
+    pi_server_Url.path = '';
     status.airconditioner_mode = 1;
     
     res.json(status);
@@ -154,9 +165,10 @@ router.post('/warm', (req, res, next) => {
 router.post('/cold', (req, res, next) => {
     const aa = {};
     console.log('Airconditioner cold');
+    pi_server_Url.path = '/AirconditionerControl/';
     pi_server_Url.path += "cold";
     http.request(pi_server_Url).end();
-    pi_server_Url.path = '/AirconditionerControl/';
+    pi_server_Url.path = '';
     status.airconditioner_mode = 0;
     res.json(status);
 });
@@ -164,9 +176,10 @@ router.post('/cold', (req, res, next) => {
 router.post('/dehumidity', (req, res, next) => {
     const aa = {};
     console.log('Airconditioner dehumidity');
+    pi_server_Url.path = '/AirconditionerControl/';
     pi_server_Url.path += "dehumidity";
     http.request(pi_server_Url).end();
-    pi_server_Url.path = '/AirconditionerControl/';
+    pi_server_Url.path = '';
     status.airconditioner_mode = 2;
     res.json(status);
 });
