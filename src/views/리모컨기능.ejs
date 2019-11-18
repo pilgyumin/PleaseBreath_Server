@@ -466,7 +466,7 @@ $("#airconditioner_cold").click(function(){
 		},
 		dataType: 'json',
 		success : function(data){
-			if(data.aircleaner_power == 1){
+			if(data.airconditioner_power == 1){
 				$("#display_temp").text(data.airconditioner_temp.cold_temp);
 				$("#display_mode").text("냉방");
 				$("#display_speed").text(data.airconditioner_speed.cold_speed);

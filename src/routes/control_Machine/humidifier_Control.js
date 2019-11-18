@@ -16,10 +16,11 @@ let pi_server_Url = {
 router.post('/power', (req, res, next) => {
     
     console.log('humidifier power');
+    pi_server_Url.path = '/HumidControl/';
     pi_server_Url.path += "power";
     http.request(pi_server_Url).end();
     console.log(pi_server_Url);
-    pi_server_Url.path = '/HumidControl/';
+    pi_server_Url.path = '';
     if(status.dehumidifier_power == 0){
         status.dehumidifier_power = 1;
         status.dehumidifier_speed = 1;
@@ -36,11 +37,12 @@ router.post('/speedup', (req, res, next) => {
     
     if(status.dehumidifier_power == 1){
         console.log('humidifier speed');
+        pi_server_Url.path = '/HumidControl/';
         pi_server_Url.path += "speedup";
         http.request(pi_server_Url).end();
         console.log(pi_server_Url);
-        pi_server_Url.path = '/HumidControl/';
-        if(status.dehumidifier_speed == 4)
+        pi_server_Url.path = '';
+        if(status.dehumidifier_speed == 8)
             res.json(0);
         else{
             status.dehumidifier_speed += 1;
@@ -58,10 +60,11 @@ router.post('/speeddown', (req, res, next) => {
     
     if(status.dehumidifier_power == 1){
         console.log('humidifier speed');
+        pi_server_Url.path = '/HumidControl/';
         pi_server_Url.path += "speeddown";
         http.request(pi_server_Url).end();
         console.log(pi_server_Url);
-        pi_server_Url.path = '/HumidControl/';
+        pi_server_Url.path = '';
         if(status.dehumidifier_speed == 1)
             res.json(0);
         else{
