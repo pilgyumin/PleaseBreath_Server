@@ -34,6 +34,16 @@ $(document).ready(function(){
 })
 
 
+function showPopup(pop_id){
+	var popup = $('#'+pop_id);
+	popup.show()
+}
+
+function hidePopup(pop_id){
+	var popup = $('#'+pop_id);
+	popup.hide()
+}
+
 function menuClick(){
 	var menu = $('header .btn-menu');
 	var close = $('header .btn-close');
@@ -51,8 +61,9 @@ function menuClick(){
 		$('.nav').fadeOut('fast');
 	});
 	logout.on('click' ,function(){
-		alert('로그아웃');
-		location.href='/logout';
+		$('.nav').fadeOut('fast');
+		showPopup('Logout');
+		
 	})
 	remote.on('click' ,function(){
 		location.href='/remoteControl';
@@ -180,16 +191,6 @@ function tabActive(){
 		popupList.removeClass('active')
 		popupList.eq(idx).addClass('active')
 	})
-}
-
-function showPopup(pop_id){
-	var popup = $('#'+pop_id);
-	popup.show()
-}
-
-function hidePopup(pop_id){
-	var popup = $('#'+pop_id);
-	popup.hide()
 }
 
 
