@@ -18,7 +18,8 @@ let status = {
     minute : "", 
     second : "",
     aircleanermode : "",
-    aircleanerspeed : ""
+    aircleanerspeed : "",
+    timestamp : ""
 };
 
 

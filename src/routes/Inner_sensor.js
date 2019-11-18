@@ -14,7 +14,8 @@ const sensor_Schema = new mongoose.Schema({
     minute: Number,
     second: Number,
     aircleanermode : Number,
-    aircleanerspeed: Number
+    aircleanerspeed: Number,
+    timestamp: Number
 });
 
 

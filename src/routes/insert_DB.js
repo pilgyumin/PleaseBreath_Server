@@ -87,6 +87,7 @@ router.get('', (req, res, next) => {
     status.second = req.query.second;
     status.aircleanermode = req.query.aircleanermode;
     status.aircleanerspeed = req.query.aircleanerspeed;
+    status.timestamp = req.query.timestamp;
 
     console.log(JSON.stringify(status));
 
@@ -95,7 +96,7 @@ router.get('', (req, res, next) => {
         var Input_data;
         if(mode == 1)
             Input_data = new Inner_Sensor({id:"Inner",temp:status.temp_Inner,humid:status.humid_Inner,pm25:status.pm25_Inner,pm10:status.pm10_Inner,voc:status.voc_Inner,co2:status.co2_Inner,year:status.year,month:status.month,date:status.date,hours:status.hours,minute:status.minute,second:status.second
-            ,aircleanermode: status.aircleanermode, aircleanerspeed: status.aircleanerspeed});
+            ,aircleanermode: status.aircleanermode, aircleanerspeed: status.aircleanerspeed, timestamp: status.timestamp});
 
 
         else if(mode == 0)
