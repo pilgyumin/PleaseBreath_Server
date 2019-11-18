@@ -16,7 +16,7 @@ const Outer_Todo = Outer_DATA;
 var Inner = new Object();
 var Outer = new Object();
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('/', async(req, res, next) => {
     
     
     /*Inner_Todo.find({ },{_id:0}, function(err, todo) {
@@ -37,12 +37,12 @@ router.get('/', (req, res, next) => {
     res.json({In,Out});*/
     if(req.session.logined) {
 
-        Inner_Todo.find({ },{_id:0}, function(err, todo) {
+        await Inner_Todo.find({ },{_id:0}, function(err, todo) {
             if(err) throw err;
             console.log(todo);
             Inner = todo;
         }).limit(1).sort({$natural:-1}).select('temp');
-        Outer_Todo.find({ },{_id:0}, function(err, todo) {
+        await Outer_Todo.find({ },{_id:0}, function(err, todo) {
             if(err) throw err;
             console.log(todo);
             Outer = todo;
