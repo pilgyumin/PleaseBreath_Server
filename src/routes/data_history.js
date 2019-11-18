@@ -16,7 +16,7 @@ var Inner = new Object();
 router.get('/', async (req, res, next) => {
     if (req.session.logined) {
 
-        Inner_Todo.find({}, { _id: 0 }, function (err, todo) {
+        await Inner_Todo.find({}, { _id: 0 }, function (err, todo) {
             if (err) throw err;
             Inner = todo;
         }).limit(1).sort({ $natural: -1 });
@@ -55,10 +55,8 @@ router.get('/', async (req, res, next) => {
 
         for (var i = 11; i >= 0; i--) {
 
-            var now_data = new Object();
             var h = parseInt(ttime / 60);
             var m = (ttime % 60);
-
 
             if (ttime < 0) {
                 ttime = 24 * 60;
@@ -66,54 +64,46 @@ router.get('/', async (req, res, next) => {
 
             console.log(i + ":" + yyyy + "-" + (today.getMonth() + 1) + "-" + today.getDate() + "-" + h);
             if (m == 0) {
-                await Inner_Todo.find({ "year": yyyy, "month": today.getMonth() + 1, "date": today.getDate(), "hours": h, "minute": { $gte: 0, $lte: 29 } }, { _id: 0 }, function (err, todo) {
+                await Inner_Todo.findOne({ "year": yyyy, "month": today.getMonth() + 1, "date": today.getDate(), "hours": h, "minute": { $gte: 0, $lte: 29 } }, { _id: 0 }, function (err, todo) {
                     if (err) throw err;
                     if (todo.length != 0) {
 
-                        console.log(i+":"+todo[0].temp+">");
-                        now_data = todo;
-                        time_data[0].unshift(todo[0].temp);
-                        time_data[1].unshift(todo[0].humid);
-                        time_data[2].unshift(todo[0].pm25);
-                        time_data[3].unshift(todo[0].pm10);
-                        time_data[4].unshift(todo[0].voc);
-                        time_data[5].unshift(todo[0].co2);
+                        time_data[0].unshift(todo.temp);
+                        time_data[1].unshift(todo.humid);
+                        time_data[2].unshift(todo.pm25);
+                        time_data[3].unshift(todo.pm10);
+                        time_data[4].unshift(todo.voc);
+                        time_data[5].unshift(todo.co2);
                     }
                     else{
                         
-                        time_data[0].unshift(null);
-                        time_data[1].unshift(null);
-                        time_data[2].unshift(null);
-                        time_data[3].unshift(null);
-                        time_data[4].unshift(null);
-                        time_data[5].unshift(null);
+                        for(var j=0; j<6; j++){
+                            time_data[j].unshift("null");
+                        }
+
                     }
-                }).limit(1).sort({ $natural: -1 });
+                });
             } else {
-                await Inner_Todo.find({ "year": yyyy, "month": today.getMonth() + 1, "date": today.getDate(), "hours": h, "minute": { $gte: 30, $lte: 59 } }, { _id: 0 }, function (err, todo) {
+                await Inner_Todo.findOne({ "year": yyyy, "month": today.getMonth() + 1, "date": today.getDate(), "hours": h, "minute": { $gte: 30, $lte: 59 } }, { _id: 0 }, function (err, todo) {
                     if (err) throw err;
 
                     if (todo.length != 0) {
 
-                        now_data = todo;
-
-                        time_data[0].unshift(todo[0].temp);
-                        time_data[1].unshift(todo[0].humid);
-                        time_data[2].unshift(todo[0].pm25);
-                        time_data[3].unshift(todo[0].pm10);
-                        time_data[4].unshift(todo[0].voc);
-                        time_data[5].unshift(todo[0].co2);
+                        time_data[0].unshift(todo.temp);
+                        time_data[1].unshift(todo.humid);
+                        time_data[2].unshift(todo.pm25);
+                        time_data[3].unshift(todo.pm10);
+                        time_data[4].unshift(todo.voc);
+                        time_data[5].unshift(todo.co2);
                     }
                     else{
 
-                        time_data[0].unshift(null);
-                        time_data[1].unshift(null);
-                        time_data[2].unshift(null);
-                        time_data[3].unshift(null);
-                        time_data[4].unshift(null);
-                        time_data[5].unshift(null);
+                        for(var j=0; j<6; j++){
+                            time_data[j].unshift("null");
+                        }
+
                     }
-                }).limit(1).sort({ $natural: -1 });
+                });
             }
             ttime -= 30;
         }
