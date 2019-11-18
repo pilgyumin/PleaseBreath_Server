@@ -277,3 +277,38 @@ function set_current_date(pop_id){
 	showPopup(pop_id);
 }
 
+function Main_Ai(){
+	if(document.getElementById('detail').style.visibility == "hidden"){
+		document.getElementById('detail').style.visibility = "visible";
+		document.getElementById('btn-reservation').style.visibility = "hidden";
+		$.ajax({
+			url: "/modeControl/normal", //url
+			type: "get", //get, post 방식
+			async: true, // true:비동기, false:동기
+			success: function(data){
+				alert('일반모드 구동!');
+			},
+			error: function(json){
+				alert('일반모드 구동 에러');
+			}
+		});
+	}
+	else{
+		document.getElementById('detail').style.visibility = "hidden";
+		document.getElementById('btn-reservation').style.visibility = "visible";
+		$.ajax({
+			url: "/modeControl/off", //url
+			type: "get", //get, post 방식
+			async: true, // true:비동기, false:동기
+			success: function(data){
+				alert('일반모드 종료!');
+			},
+			error: function(json){
+				alert('일반모드 구동 에러!');
+			}
+		});
+	}
+
+	
+
+}
