@@ -50,7 +50,7 @@
 			<h3 class="sub-title">상세 공기 상태</h3>
 
 			<div class="air-condition">
-				<p class="time"><span>07:30</span> 기준</p>
+				<p class="time"><span><%=Inner_hh%>:<%=Inner_mm%></span> 기준</p>
 
 				<div class="out-door">
 					<h4>실외</h4>
@@ -159,7 +159,8 @@
 		</div>
 	</div>
 	<script>
-
+		console.log("<%= Inner_hh %>");
+		console.log("<%= Inner_mm %>");
 			var Inner_temp="<%= Inner_temp %>";
   			var Inner_humid="<%= Inner_humid %>";
     		var Inner_pm25="<%= Inner_pm25 %>";
@@ -193,5 +194,23 @@
 
 
 	</script>
+	<div class="pop-up" id="Logout">
+		<div class="pop-wrap">
+			<div class="pop-header">
+				<h3>로그아웃</h3>
+			</div>
+			<div class="pop-body">
+				<p>정말 로그아웃 하시겠습니까?</p>
+	
+				<div class="btn-wrap">
+					<button type="button" class="blue" onclick="location.href='/logout'">네</button>
+					<button type="button" onclick="$('#Logout').fadeOut('fast')">아니오</button>
+				</div>
+			</div>
+	
+			<button type="button" class="btn-close" onclick="$('#Logout').fadeOut('fast')">닫기</button>
+		</div>
+	</div>
 </body>
+
 </html>

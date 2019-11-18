@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const User = require('./User.js');
 let Pass = false;
 const session = require('express-session');
-
+const Status = require('../Model/DATA');
 const UserSchema = mongoose.Schema({
     user_id: String,
     password: String
@@ -27,6 +27,27 @@ router.get('/logout', (req, res, next) => {
     if(req.session.logined) {
         req.session.destroy();
     }
+    Status.temp_Outer="",
+    Status.temp_Inner= "",
+    Status.humid_Outer= "",
+    Status.humid_Inner = "",
+    Status.pm10_Outer ="",
+    Status.pm10_Inner = "",
+    Status.pm25_Outer = "",
+    Status.pm25_Inner = "",
+    Status.voc_Outer ="",
+    Status.voc_Inner = "",
+    Status.co2_Outer = "",
+    Status.co2_Inner = "",
+    Status.year = "",
+    Status.month = "",
+    Status.date = "",
+    Status.hours = "",
+    Status.minute = "", 
+    Status.second = "",
+    Status.aircleanermode = "",
+    Status.aircleanerspeed = "";
+    
     res.redirect('/');
 });
 

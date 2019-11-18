@@ -52,13 +52,13 @@
 			<h3 class="sub-title">그래프</h3>
 
 			<div class="chart-wrap">
-				<select name="" id="">
-					<option value="">온도</option>
-					<option value="">습도</option>
-					<option value="">PM2.5</option>
-					<option value="">PM10</option>
-					<option value="">VOC</option>
-					<option value="">CO2</option>
+				<select name="" id="select_box" onchange="change_dropbox();">
+					<option value="0">온도</option>
+					<option value="1">습도</option>
+					<option value="2">PM2.5</option>
+					<option value="3">PM10</option>
+					<option value="4">VOC</option>
+					<option value="5">CO2</option>
 				</select>
 
 				<!-- 차트 -->
@@ -69,32 +69,32 @@
 
 				<div class="chart-info">
 					<div class="date">
-						<p>2019.11.03</p>
+						<p><%=yyyy%>.<%=mm%>.<%=dd%></p>
 					</div>
 					<ul>
 						<li>
 							<h4>온도<span>Temperature</span></h4>
-							<strong>100</strong>
+							<strong><%=Inner_temp%></strong>
 						</li>
 						<li>
 							<h4>습도<span>Humidity</span></h4>
-							<strong>100</strong>
+							<strong><%=Inner_humid%></strong>
 						</li>
 						<li>
 							<h4>PM2.5<span>Particulate Matter</span></h4>
-							<strong>100</strong>
+							<strong><%=Inner_pm25%></strong>
 						</li>
 						<li>
 							<h4>PM10<span>Particulate Matter</span></h4>
-							<strong>100</strong>
+							<strong><%=Inner_pm10%></strong>
 						</li>
 						<li>
 							<h4>VOC<span>Volatile Organic Compounds</span></h4>
-							<strong>100</strong>
+							<strong><%=Inner_voc%></strong>
 						</li>
 						<li>
 							<h4>CO2<span>Carbon dioxide</span></h4>
-							<strong>100</strong>
+							<strong><%=Inner_co2%></strong>
 						</li>
 					</ul>
 				</div>
@@ -102,5 +102,71 @@
 
 		</div>
 	</div>
+	<script>
+		var where=0;
+		var yyyy="<%=yyyy%>";
+		var mm="<%=mm%>";
+		var dd="<%=dd%>";
+		var hour = "<%=hour%>";
+		var minute = "<%=minute%>";
+		var time_label=[];
+		var time_data="<%=time_data%>";
+		var dots=time_data.split(',');
+		var ttime=Number(hour*60)+ Number(minute);
+
+		ttime-=(minute%30);
+
+		for(var i=11;i>=0;i--){
+			var h=parseInt(ttime/60);
+			var m=parseInt(ttime%60);
+			if(m<10){
+    			m='0'+m;
+			}
+			time_label[i]=String(h)+":"+String(m);
+			ttime-=30;
+			if(ttime<0){
+				ttime=24*60;
+            }
+	   }
+	   function change_dropbox()
+	   {
+			var select_box = document.getElementById("select_box");
+			where= select_box.options[select_box.selectedIndex].value;
+			change_chart();
+			change_chart();
+	   }
+		function change_chart()
+		{
+		console.log(where*12,where*12+12);
+		console.log(dots.slice(where*12,where*12+12));
+			var ctx = document.getElementById('myChart').getContext('2d');
+
+				var myLineChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+				label: '',
+					labels: time_label,
+					datasets: [{
+						data: dots.slice(where*12,where*12+12),
+						borderColor: "white",
+						backgroundColor: 'rgb(255, 99, 132)',
+						borderWidth: 3,
+						fill:false, // line의 아래쪽을 색칠할 것인가? 
+						lineTension:0.1, // 값을 높이면, line의 장력이 커짐.
+					}],
+				},
+				options: {
+					legend:"",
+					fill:false,
+					scales: {
+						yAxes: [{
+							stacked: false
+						}]
+					}
+				}
+			});
+			
+		}
+	</script>
 </body>
 </html>
