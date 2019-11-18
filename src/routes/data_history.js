@@ -66,7 +66,7 @@ router.get('/', async (req, res, next) => {
             if (m == 0) {
                 await Inner_Todo.findOne({ "year": yyyy, "month": today.getMonth() + 1, "date": today.getDate(), "hours": h, "minute": { $gte: 0, $lte: 29 } }, { _id: 0 }, function (err, todo) {
                     if (err) throw err;
-                    if (todo.length != 0) {
+                    if (todo != null && todo.length != 0) {
 
                         time_data[0].unshift(todo.temp);
                         time_data[1].unshift(todo.humid);
@@ -87,7 +87,7 @@ router.get('/', async (req, res, next) => {
                 await Inner_Todo.findOne({ "year": yyyy, "month": today.getMonth() + 1, "date": today.getDate(), "hours": h, "minute": { $gte: 30, $lte: 59 } }, { _id: 0 }, function (err, todo) {
                     if (err) throw err;
 
-                    if (todo.length != 0) {
+                    if (todo != null && todo.length != 0) {
 
                         time_data[0].unshift(todo.temp);
                         time_data[1].unshift(todo.humid);
