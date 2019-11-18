@@ -2,9 +2,10 @@ $(document).ready(function(){
 	menuClick();
 	tabChange();
 	tabActive();
+	$("#select_box option:eq(0)").attr("selected","selected");
 	//turn_off_solution();
 	//set_current_date();
-
+	/*
 	var ctx = document.getElementById('myChart').getContext('2d');
 	var myLineChart = new Chart(ctx, {
 		type: 'line',
@@ -31,6 +32,8 @@ $(document).ready(function(){
 			}
 		}
 	});
+	*/
+	change_chart();
 })
 
 
