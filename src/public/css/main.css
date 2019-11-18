@@ -162,6 +162,7 @@ button.btn-base {
   align-items: center;
   justify-content: space-between; }
   #header .btn-menu {
+    cursor:pointer;
     background: url(../images/icon_menu.png) 50% no-repeat;
     background-size: 26px 22px;
     width: 50px;
