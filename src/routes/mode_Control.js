@@ -39,6 +39,9 @@ router.get('/:mode', (req, res, next) => {
     else if(req.params.mode === 'sleep'){
         add_path += "sleep";
     }
+    else if(req.params.mode === 'off'){
+        add_path +="off";
+    }
     /*else if(req.params.mode === 'turnOffSolution'){
         res.render('팝업_꺼짐예약설정', { id: req.session.user_id });
     }*/
