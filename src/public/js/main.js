@@ -280,8 +280,7 @@ function set_current_date(pop_id){
 }
 
 function Main_Ai(){
-	if(document.getElementById('detail').style.visibility == "hidden"){
-		document.getElementById('detail').style.visibility = "visible";
+	if(document.getElementById('btn-reservation').style.visibility == "visible"){
 		document.getElementById('btn-reservation').style.visibility = "hidden";
 		$.ajax({
 			url: "/modeControl/normal", //url
@@ -296,7 +295,6 @@ function Main_Ai(){
 		});
 	}
 	else{
-		document.getElementById('detail').style.visibility = "hidden";
 		document.getElementById('btn-reservation').style.visibility = "visible";
 		$.ajax({
 			url: "/modeControl/off", //url
