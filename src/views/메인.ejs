@@ -39,7 +39,8 @@
                 url : "/insertdb/whatstatus",
                 async: true,
                 success : function (data) {
-                    let status = JSON.parse(data);
+					//let status = JSON.parse(data);
+					let status = data;
                     let temp_Outer = status.temp_Outer;
                     let temp_Inner = status.temp_Inner;
                     let humid_Outer = status.humid_Outer;
@@ -100,7 +101,7 @@
 						document.getElementById('pm25_Outer').innerHTML= "PM2.5 <strong>"+ pm25_Outer + "</strong>";
 						document.getElementById('pm25_Inner').innerHTML= "PM2.5 <strong>"+ pm25_Inner + "</strong>";
 						document.getElementById('voc_Outer').innerHTML= "VOC <strong>"+ voc_Outer + "</strong>";
-						document.getElementById('voc_Inner').innerHTML= "VOC <strong>"+ _Inner + "</strong>";
+						document.getElementById('voc_Inner').innerHTML= "VOC <strong>"+ voc_Inner + "</strong>";
 						document.getElementById('co2_Outer').innerHTML= "CO2 <strong>"+ co2_Outer + "</strong>";
 						document.getElementById('co2_Inner').innerHTML= "CO2 <strong>"+ co2_Inner + "</strong>";
                     },

@@ -12,7 +12,8 @@ let mode = -1;
 
 
 router.get('/whatstatus', (req, res, next) => {
-    res.json(JSON.stringify(status));
+    //res.json(JSON.stringify(status));
+    res.json(status);
 });
 
 
