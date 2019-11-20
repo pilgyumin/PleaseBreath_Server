@@ -4,8 +4,9 @@ import http from 'http';
 const fetch = require('node-fetch');
 const router = express.Router()
 let Status = require('../Model/DATA');
+const pi_url = require('../routes/control_Machine/Pi_Url');
 
-let pi_hostname = 'localhost';
+let pi_hostname = pi_url.hostname;
 let pi_port = '3000';
 let pi_path = '/Mode/';
 

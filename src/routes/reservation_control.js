@@ -5,17 +5,9 @@ const router = express.Router()
 const http = require('http');
 const fetch = require('node-fetch');
 
-let solution_status = require('../Model/aiSolution_status');
-let request = require('request');
-
-//const pi_hostname = '192.168.1.84';
-const pi_hostname = 'localhost';
+const pi_hostname = '192.168.1.84';
 const pi_port = '3000';
 const pi_path = '/ReservationControl/';
-
-// 요청이 들어오면
-// data set
-// res.redirect('url' + resource)
 
 
 router.post('/:mode/:power', (req, res, next) => {
