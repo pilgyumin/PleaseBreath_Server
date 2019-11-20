@@ -11,7 +11,7 @@ const Inner_DATA = require('./Inner_sensor.js');
 const Inner_Todo = Inner_DATA;
 // DATA terminal display
 
-var Inner = new Object();
+let Inner = new Object();
 /* GET home page. */
 router.get('/', async (req, res, next) => {
     if (req.session.logined) {
@@ -21,52 +21,61 @@ router.get('/', async (req, res, next) => {
             Inner = todo;
         }).limit(1).sort({ $natural: -1 });
         //res.json(Outer);
-        var Inner_temp = JSON.stringify(Inner[0].temp);
-        var Inner_humid = JSON.stringify(Inner[0].humid);
-        var Inner_pm25 = JSON.stringify(Inner[0].pm25);
-        var Inner_pm10 = JSON.stringify(Inner[0].pm10);
-        var Inner_voc = JSON.stringify(Inner[0].voc);
-        var Inner_co2 = JSON.stringify(Inner[0].co2);
+        let Inner_temp = JSON.stringify(Inner[0].temp);
+        let Inner_humid = JSON.stringify(Inner[0].humid);
+        let Inner_pm25 = JSON.stringify(Inner[0].pm25);
+        let Inner_pm10 = JSON.stringify(Inner[0].pm10);
+        let Inner_voc = JSON.stringify(Inner[0].voc);
+        let Inner_co2 = JSON.stringify(Inner[0].co2);
 
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth() + 1; //January is 0!
-        var yyyy = today.getFullYear();
-        var hour = today.getHours();
-        var minute = today.getMinutes();
+        let today = new Date();
+        let dd = today.getDate();
+        let mm = today.getMonth() + 1; //January is 0!
+        let yyyy = today.getFullYear();
+        let hour = today.getHours();
+        let minute = today.getMinutes();
 
-        var time_data = [[],[],[],[],[],[]];
+        let time_data = new Array(200);
 
-        var temp_stamp = new Date();
+        let temp_stamp = new Date();
         temp_stamp.setMinutes(today.getMinutes() - (minute%30));
         console.log(today, temp_stamp);
 
 
-        for (var i = 11; i >= 0; i--) {
+        for (let i = 11; i >= 0; i--) {
 
             //now is temp_stamp. find temp_stamp ~ temp_stamp+30m data average
-            var start = temp_stamp.getTime();
-            var end = start + 1800000
-                await Inner_Todo.findOne({ "id": "Inner", "timestamp": { $gte: start, $lt: end } }, { _id: 0 }, function (err, todo) {
-                    if (err) throw err;
-                    if (todo != null && todo.length != 0) {
+            let start = temp_stamp.getTime();
+            let end = start + 1800000;
 
-                        time_data[0].unshift(todo.temp);
-                        time_data[1].unshift(todo.humid);
-                        time_data[2].unshift(todo.pm25);
-                        time_data[3].unshift(todo.pm10);
-                        time_data[4].unshift(todo.voc);
-                        time_data[5].unshift(todo.co2);
+            // let temp_todo = new Object();
+
+            console.log(0+i,12+i,24+i,36+i,48+i,60+i);
+               const temp_todo =  await Inner_Todo.findOne({ "id": "Inner", "timestamp": { $gte: start, $lt: end } }, function (err, todo) {
+                    if (err) console.log(err)
+                    // else if (!todo);
+                    // else{
+                    // temp_todo=todo;
+                    // }
+                });
+
+                    console.log(i+temp_todo);
+                if (temp_todo != null && temp_todo.length != 0) {
+                        time_data[0+i]=temp_todo.temp;
+                        time_data[12+i]=temp_todo.humid;
+                        time_data[24+i]=temp_todo.pm25;
+                        time_data[36+i]=temp_todo.pm10;
+                        time_data[48+i]=temp_todo.voc;
+                        time_data[60+i]=temp_todo.co2;
                     }
                     else{
                         
-                        for(var j=0; j<6; j++){
-                            time_data[j].unshift("null");
+                        for(let j=0; j<6; j++){
+                            console.log(j*12+i);
+                            time_data[j*12+i]="null";
                         }
 
                     }
-                });
-                
                 temp_stamp.setMinutes(temp_stamp.getMinutes() - 30); // 30분 전으로
         }
 
