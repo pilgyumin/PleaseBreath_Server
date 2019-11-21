@@ -28,8 +28,8 @@ router.post('/power', (req, res, next) => {
         status.aircleaner_speed = 3;
     }
     else{
-        status.aircleaner_power = 3;
-        
+        status.aircleaner_power = 1;
+        status.aircleaner_speed = 3;
     }
     res.json(status);
 });
