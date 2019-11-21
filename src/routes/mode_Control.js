@@ -6,7 +6,11 @@ const router = express.Router()
 let Status = require('../Model/DATA');
 const pi_url = require('../routes/control_Machine/Pi_Url');
 
+
+let pi_hostname = '192.168.1.84';
+
 let pi_hostname = pi_url.hostname;
+
 let pi_port = '3000';
 let pi_path = '/Mode/';
 

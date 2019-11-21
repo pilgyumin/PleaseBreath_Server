@@ -1,5 +1,6 @@
-let solution_mode = 1;
 
+let solution_mode = 1;
+let Pi = "192.168.1.84";
 $(document).ready(function(){
 	menuClick();
 	tabChange();
