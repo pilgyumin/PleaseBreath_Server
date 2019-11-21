@@ -179,20 +179,80 @@
 			var Inner_notice=['[좋음] 실내 공기상태를 좋게 유지하고 있어요!','[건조] 공기가 건조해요! 실내 습도를 50~60%로 유지해주세요. 호흡기 질환자와 피부질환자는 더욱 유의해야 합니다.','[미세먼지 나쁨] PM10(미세먼지 수치)가 51이상으로 집안에 미세먼지가 많아요! 솔루션을 가동시켜 실내공기를 정화하는것을 추천합니다. ','[미세먼지 매우나쁨] PM10이 71이상으로 집안에 미세먼지가 매우 많아요! 당장 솔루션을 가동시켜 실내공기를 정화하세요','[이산화탄소 나쁨] 머리가 답답하지 않으신가요? 실내 이산화탄소 농도가 높아요! 솔루션을 가동시켜 환기하는것을 추천합니다.','[VOC 나쁨] 실내에 VOC(휘발성 유기화합물)의 농도가 높아요! VOC에는 벤젠과 같은 발암물질이 포함되어있어 인체에 매우 유해하므로 솔루션을 가동시켜 환기를 시키세요'];
 			console.log(Outer_voc);
 			//$("Outer_temp").css({height : "100%"});
+			if(parseInt(Inner_temp)>100){
+				document.getElementById("Inner_temp").style.height = "100%";
+			}
+			else{
+				document.getElementById("Inner_temp").style.height = parseInt(Inner_temp)+"%";
+			}
+			if(parseInt(Inner_humid)>100){
+				document.getElementById("Inner_humid").style.height = "100%";
+			}
+			else{
+				document.getElementById("Inner_humid").style.height = parseInt(Inner_humid)+"%";
+			}
+			if(parseInt(Inner_pm25)>100){
+				document.getElementById("Inner_pm25").style.height = "100%";
+			}
+			else{
+				document.getElementById("Inner_pm25").style.height = parseInt(Inner_pm25)+"%";
+			}
+			if(parseInt(Inner_pm10)>100){
+				document.getElementById("Inner_pm10").style.height = "100%";
+			}
+			else{
+				document.getElementById("Inner_pm10").style.height = parseInt(Inner_pm10)+"%";
+			}
+			if(parseInt(Inner_voc)*5>100){
+				document.getElementById("Inner_voc").style.height = "100%";
+			}
+			else{
+				document.getElementById("Inner_voc").style.height = parseInt(Inner_voc)*5+"%";
+			}
+			if(parseInt(Inner_co2)/100>100){
+				document.getElementById("Inner_co2").style.height = "100%";
+			}
+			else{
+				document.getElementById("Inner_co2").style.height = parseInt(Inner_co2)/100+"%";
+			}
 
-			document.getElementById("Inner_temp").style.height = parseInt(Inner_temp)+"%";
-			document.getElementById("Inner_humid").style.height = parseInt(Inner_humid)+"%";
-			document.getElementById("Inner_pm25").style.height = parseInt(Inner_pm25)+"%";
-			document.getElementById("Inner_pm10").style.height = parseInt(Inner_pm10)+"%";
-			document.getElementById("Inner_voc").style.height = parseInt(Inner_voc)*5+"%";
-			document.getElementById("Inner_co2").style.height = parseInt(Inner_co2)/100+"%";
-
-			document.getElementById("Outer_temp").style.height = parseInt(Outer_temp)+"%";
-			document.getElementById("Outer_humid").style.height = parseInt(Outer_humid)+"%";
-			document.getElementById("Outer_pm25").style.height = parseInt(Outer_pm25)+"%";
-			document.getElementById("Outer_pm10").style.height = parseInt(Outer_pm10)+"%";
-			document.getElementById("Outer_voc").style.height = parseInt(Outer_voc)*5+"%";
-			document.getElementById("Outer_co2").style.height = parseInt(Outer_co2)/100+"%";
+			
+			if(parseInt(Outer_temp)>100){
+				document.getElementById("Outer_temp").style.height = "100%";
+			}
+			else{
+				document.getElementById("Outer_temp").style.height = parseInt(Outer_temp)+"%";
+			}
+			if(parseInt(Outer_humid)>100){
+				document.getElementById("Outer_humid").style.height ="100%";
+			}
+			else{
+				document.getElementById("Outer_humid").style.height = parseInt(Outer_humid)+"%";
+			}
+			if(parseInt(Outer_pm25)>100){
+				document.getElementById("Outer_pm25").style.height = "100%";
+			}
+			else{
+				document.getElementById("Outer_pm25").style.height = parseInt(Outer_pm25)+"%";
+			}
+			if(parseInt(Outer_pm10)>100){
+				document.getElementById("Outer_pm10").style.height = "100%";
+			}
+			else{
+				document.getElementById("Outer_pm10").style.height = parseInt(Outer_pm10)+"%";
+			}
+			if(parseInt(Outer_voc)*5>100){
+				document.getElementById("Outer_voc").style.height = "100%";
+			}
+			else{
+				document.getElementById("Outer_voc").style.height = parseInt(Outer_voc)*5+"%";
+			}
+			if(parseInt(Outer_co2)/100>100){
+				document.getElementById("Outer_co2").style.height ="100%";
+			}
+			else{
+				document.getElementById("Outer_co2").style.height = parseInt(Outer_co2)/100+"%";
+			}
 
 			document.getElementById("Inner_notice").textContent=[];
 			document.getElementById("Outer_notice").textContent=[];
