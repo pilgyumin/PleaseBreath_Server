@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 const router = express.Router()
 let Status = require('../Model/DATA');
 
-let pi_hostname = 'localhost';
+let pi_hostname = '192.168.1.84';
 let pi_port = '3000';
 let pi_path = '/Mode/';
 
