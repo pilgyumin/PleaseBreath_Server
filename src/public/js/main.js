@@ -1,4 +1,4 @@
-let solution_mode = 2;
+let solution_mode = 1;
 
 $(document).ready(function(){
 	menuClick();
